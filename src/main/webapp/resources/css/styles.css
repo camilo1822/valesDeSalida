@@ -1,0 +1,1389 @@
+/*Extended from http://www.grupofamilia.com.co/proveedores/es/Paginas/ordenes-de-compra.aspx*/
+/*Validate if necesary*/
+@font-face {
+	font-family: 'Dosis';
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face {
+ font-family: 'Dosis';
+ src: url("../fonts/Dosis/Dosis-Light.ttf");
+ font-weight: normal;
+ font-style: normal;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+body {
+    font-family: "Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+    background: #F5F5F5;
+}
+
+input#numPags {
+    float: left;
+    padding: 9px;
+    width: 83px;
+    border: none;
+    color: #A28392;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select.numResultados {
+    width: 50px;
+}
+
+select.numResultados {
+    float: left;
+    margin-top: 6px;
+    margin-right: 12px;
+}
+
+img {
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+}
+h2 {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 600 !important;
+    font-size: 30px !important;
+    color: #2a4991;
+    background: url(../img/backgrounds/bg-ico-headers-content-green.png) no-repeat center left;
+    padding-left: 35px;
+    margin: 0 0 20px;
+}
+hr{
+    border: 1px solid #009FE2;
+    margin-bottom: 10px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+th{
+	    line-height: 1;	
+}
+
+.divSelec{
+    /* display: inline-block; */
+    width: 100%;
+    height: 10px;
+}
+
+.selColum{
+    font-size: 20px;
+    color: #2A4991 !important;
+    cursor: pointer;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    font-weight: 400 !important;
+    width: 500px;
+    display: inline-block;
+    margin-top: 15px;
+}
+.sel2Colum{
+    font-size: 20px;
+    color: #2A4991 !important;
+    cursor: pointer;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    font-weight: 400 !important;
+    width: 500px;
+    display: inline-block;
+    margin-top: 15px;
+}
+.selColum:before{
+    content: url("http://www.grupofamilia.com.co/Style%20Library/familia-clientes/img/add.png");
+    position: relative;
+    top: 7px;
+}
+
+.sel2Colum:before{
+    content: url("http://www.grupofamilia.com.co/Style%20Library/familia-clientes/img/cerrar.png");
+    position: relative;
+    top: 7px;
+}
+
+.tablaVales tr:nth-child(2n+1){
+   background-color: #f5f5f5;
+}
+
+.tablaDetalles tr:nth-child(2n+1){
+   background-color: #f5f5f5;
+}
+
+.tablaDetalles tr:nth-child(2n+1) input{
+   background-color: #f5f5f5;
+}
+
+.tabla-materiales tr:nth-child(2n){
+   background-color: #f5f5f5;
+}
+.tabla-materiales tr:nth-child(2n) input{
+   background-color: #f5f5f5;
+}
+
+.tabla-materiales tr:nth-child(2n) textarea{
+   background-color: #f5f5f5;
+}
+
+span.obligatio{
+	color:red;
+}
+
+.firstPage, .previousPage, .nextPage, .lastPage, .pageNumbers {
+    float: left;
+    cursor: pointer;
+    background-color: #fbba00;
+    padding: 5px 20px;
+    display: inline-block;
+    color: white;
+    margin-right: 5px;
+    border-radius: 6px;
+    border: 1px solid #E2BD00 !important;
+    font-weight: 100;
+}
+
+a.logout {
+    float: right;
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+/*****Paginador****/
+
+.pager {
+    /* width: 800px; */
+    margin: 10px auto;
+    /* height: 300px; */
+    text-align: center;
+    font-family: 'Open Sans', sans-serif !important;
+    color: #848383;
+    display: table;
+}
+
+.pager a{
+ 	margin-left: 5px;
+    margin-right: 5px;
+    color: #fff; 
+}
+
+.pager a.active{
+    color: #FF0000; 
+}
+
+
+.Pager select {
+    width: 46px;
+    font-size: 8pt;
+    height: 26px;
+    margin: 0px 5px !important;
+    padding: 0px;
+}
+
+.Pager a {
+    background-color: #fbba00;
+    padding: 5px 20px;
+    display: inline-block;
+    color: white;
+    margin-right: 5px;
+    border-radius: 6px;
+    border: 1px solid #E2BD00 !important;
+    font-weight: 100;
+}
+
+.pager a:hover {
+    background-color: #d8a000;
+    color: #E3127D;
+}
+
+.Pager a:nth-child(1):after {
+    content: "<< Primero";
+}
+
+.Pager a:nth-child(2):after {
+    content: "< Anterior";
+}
+
+.Pager a:nth-child(11):after {
+    content: "Siguiente >";
+}
+
+.Pager a:nth-child(12):after {
+    content: "Último >>";
+}
+.Pager a:hover {
+    background-color: #d8a000;
+    color: #E3127D;
+}
+#logo {
+    float: left;
+    width: 185px;
+    padding: 20px 50px;
+}
+.ms-rteElement-HeadingGreen {
+    background: url(../img/backgrounds/bg-ico-headers-content-green.png) no-repeat center left !important;
+    margin-top: 30px;
+}
+input[type="text"], input[type="email"], input[type=password], input[type=file], input[type=date], input[type=number], select, .sp-peoplepicker-topLevel {
+    color: #555;
+    line-height: 1em;
+    width: 76%;
+    height: 1.5em;
+    padding-left: 0em;
+    margin-top: 0.1em;
+    border: 0.1em solid #599EDF;
+    border-radius: 0.4em;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    font-family: "Open sans", sans-serif;
+    font-size: 12px;
+}
+select {
+    width: 80%;
+    background-color: white;
+    height: 1.9em;
+    padding-right: 2em;
+    background: url('../img/down-arrow.png') no-repeat right, -moz-linear-gradient(top, #FBFBFB 0%, #E9E9E9 100%);
+    background: url('../img/down-arrow.png') no-repeat right, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FBFBFB), color-stop(100%,#E9E9E9));
+    background: url('../img/down-arrow.png') no-repeat right;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+.label {
+    font-size: 14px;
+    color: #575555;
+    font-weight: 500;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+.btnEnviar, input[type=button], input[type="submit"] {
+    margin-left: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    color: white;
+    background-color: #8CC63F;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 100;
+    border: 1px #8CC63F solid;
+}
+
+/*New styles*/
+th#campoAprobado {
+    padding: 19px 5px;
+}
+
+#breadcrumb-client {
+    background: url('../img/backgrounds/bg-breadcrumb-clients.png') no-repeat bottom left;
+    height: 61px;
+    padding: 0px;
+}
+#breadcrumb-client span {
+    font-size: 13px;
+}
+#content-breadcrumb-client a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+}
+#content-breadcrumb-client a:hover {
+    text-decoration: underline;
+}
+#content-breadcrumb-client {
+    background: #8e8e8e;
+    height: 17px;
+    padding: 12px 12px 12px 42px;
+    border-radius: 0px 30px 30px 0;
+    color: white;
+    width: 92%;
+}
+h3 {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #2a4991;
+	float: left;
+    width: 100%;
+}
+.separator {
+    background: #009FE2;
+    height: 2px;
+    width: 97%;
+    float: left;
+    margin: 20px auto;
+}
+form#salidaMaterialesForm {
+    padding-left: 35px;
+}
+.input-block {
+    display: inline-block;
+	float: left;
+    margin: 0 15px 0 0;
+}
+
+.input-block1{
+    display: inline-block;
+	float: left;
+    margin: 17px 20px 0px 0px;
+}
+
+.fecFiltro{
+	padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    padding-left: 23px !important;
+}
+
+label.label {
+	float: left;
+    width: 100%;
+    margin: 3px 0;
+}
+.input-block input,
+.input-block textarea {
+	float: left;
+	width: 100%;
+    padding-left: 0;
+}
+.input-block select{
+	float: left;
+	width: 100%;
+    padding-left: 0;
+}
+.input-block textarea {
+	/* height: 120px; */
+	   color: #555;
+    line-height: 1em;
+    width: 100%;
+    padding-left: 0em;
+    margin-top: 0.1em;
+    border: 0.1em solid #599EDF;
+    border-radius: 0.4em;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
+    font-family: "Open sans", sans-serif;
+    font-size: 12px;
+}
+
+form#salidaMaterialesForm input[type="button"], input[type="submit"]{
+    float: left;
+    width: 140px;
+    text-indent: -20px;
+}
+
+form#salidaMaterialesForm2 input[type="button"], input[type="submit"]{
+    float: left;
+    width: 140px;
+    text-indent: -20px;
+} 
+
+.valeShow{
+	width: 140px;
+}
+
+.buttons div{
+    float: left;
+}
+.buttons {
+    padding-left: 35%;
+}
+/* input[name="Guardar"] {
+    margin-left: 50px;
+} */
+form#salidaMaterialesForm input[name="Agregar"] {
+    float: right;
+    margin-right: 2%;
+}
+
+
+input.pdf {
+	margin-left: 20px !important;
+}
+
+.relleno {
+    margin-left: 23px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 79px;
+	width: 92%;
+    padding-left: 40px;
+    z-index: -1;
+    height: 63px;
+}
+
+/*estilos modal login*/
+.labelLogin{
+	display: inline-block;
+}
+
+.inputLogin{
+	display: block;
+	width: 100% !important;
+	text-align: center;
+}
+
+.btn-block {
+	margin-left: 35% !important;
+    width: 65px;
+}
+
+.form-group {
+    margin: 15px;
+}
+
+.bodyLogin{
+	padding: 20px 50px !important;
+}
+
+.headerLogin{
+	padding: 5px !important;
+	text-align: center;
+	background-color: #7DC200 !important;
+}
+
+.headerLogin h4{
+	color: #ffffff;
+}
+
+.modal.fade{
+	width: 300px !important;
+}
+/*fin estilos modal login*/
+.verLista{
+	margin-left: 70px !important;
+	 background: #8CC63F url('../img/lupa.png') no-repeat 90% center;
+}
+
+.headerError{
+	margin-right: 25px;
+}
+
+.main-container {
+    margin-left: 23px;
+    background-color: #ffffff;
+    background-size: 100%;
+    position: absolute;
+    top: 142px;
+    width: 92%;
+    padding-left: 40px;
+    padding-bottom: 60px;
+}
+
+.form-row {
+	width: 100%;
+	float: left;
+}
+.col-quarter {
+    width: 20.5%;
+}
+
+.col-quarter.trio {
+    margin-left: 55px;
+}
+
+.col-quarter.trio2 {
+    width: 18.5%;
+}
+    
+.col-half {
+    /* width: 48%; */
+   width: 40%;
+}
+
+/* p.obligatorio.lupa {
+    position: absolute;
+    bottom: -172px;
+} */
+
+/* p.obligatorio.lupa1 {
+    position: absolute;
+    bottom: -240px;
+} */
+
+.input-block.col-half.izqui {
+    margin-left: 55px;
+}
+
+
+.col-full {
+    width: 97%;
+}
+
+.in-descri{
+	border: none !important;
+}
+
+.campo-editable {
+	border : 0.1em solid #599EDF !important;
+	border-radius : 0.4em;
+}
+
+.selectUm{
+	width: 55px !important;
+}
+
+.UmHome{
+	width: 100% !important;
+}
+
+.contFila{
+	width: 62% !important;
+}
+
+form#salidaMaterialesForm .search-nit{
+    display: inline-block;
+    position: relative;
+    left: 498px;
+    top: -21px;
+}
+
+.input-interno{
+	width: 100%;
+    display: inline-block;	
+}
+
+form#salidaMaterialesForm .search-proveedor{
+ 	display: inline-block;
+    position: relative;
+  	left: 498px;
+    top: -21px;
+}
+
+form#salidaMaterialesForm .search-empresa{
+ 	display: inline-block;
+    position: relative;
+    left: 498px;
+    top: -21px;
+}
+
+.search1.search-nit1{
+    float: right;
+    position: absolute;
+/*     right: 39px;
+    top: 755px; */
+    right: 34px;
+    top: 749px;
+}
+
+
+
+.search1.search-proveedor1{
+    float: left;
+    position: absolute;
+    /*left: 587px;
+    top: 755px;*/
+    left: 518px;
+    top: 749px;
+}
+.search1.search-empresa1{
+    float: left;
+    position: absolute;
+	/* left: 587px;
+    top: 804px; */
+    left: 518px;
+    top: 797px;
+}
+
+.search1{
+	height: 21px !important;
+}
+
+.fec{
+	width : 87% !important;
+}
+
+.fecFinalTh{
+	width: 120px !important;
+}
+
+table.tabla-materiales td:NTH-CHILD(3) input{
+	width: 100% !important;
+}
+
+#contenidoDescrip {
+    text-overflow: ellipsis;
+}
+
+.agregar{
+	width:144px;
+}
+
+td.column-fifteen.bote {
+    width: 30px !important;
+}
+
+
+.noVale{
+	position: absolute;
+    right: 266px;
+    top: 25px;
+}
+
+form#valesSalidaForm1 {
+    width: 97%;
+}
+
+.input-lupa{
+	border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    width: 94% !important;
+    margin-top: 0 !important;
+}
+
+.lupCod{
+	width:60px !important;
+}
+
+.input-lupa1{
+	border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    width: 56% !important;
+    margin-top: 0 !important;
+    float: left;
+}
+
+/*estilos datePicker*/
+.ui-widget {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1em;
+}
+
+.ui-widget-content {
+    /*border: 1px solid #dddddd;*/
+    background: #ffffff;
+    color: #333333;
+}
+
+.ui-widget-header {
+    border: 1px solid #dddddd;
+    background: #e9e9e9;
+    color: #333333;
+    font-weight: bold;
+}
+
+.ui-datepicker table {
+    width: 100%;
+    font-size: .9em;
+    border-collapse: collapse;
+    margin: 0 0 .4em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: 1px solid #c5c5c5;
+    background: #f6f6f6;
+    font-weight: normal;
+    color: #454545;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: block;
+    padding: .2em;
+    text-align: right;
+    text-decoration: none;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #dad55e;
+    background: #fffa90;
+    color: #777620;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.ui-widget-header .ui-icon {
+    background-image: url('../img/iconPicker.png');
+}
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url('../img/iconPicker.png');
+}
+.ui-datepicker .ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    left: .5em;
+    top: .3em;
+}
+.ui-icon-circle-triangle-w {
+    background-position: -80px -192px;
+}
+.ui-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+    right: 2px;
+}
+
+.ui-icon-circle-triangle-e {
+    background-position: -48px -192px;
+}
+
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    position: absolute;
+    top: 2px;
+    width: 1.8em;
+    height: 1.8em;
+}
+.ui-widget-header a {
+    color: #333333;
+}
+
+.ui-widget-content a {
+    color: #333333;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 3px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 3px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 3px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 3px;
+}
+/*fin picker*/
+
+.imgLupa{
+	background: #8CC63F;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 0.08em solid #599EDF;
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+form#salidaMaterialesForm .search{
+    background: #8CC63F url('../img/lupa.png') no-repeat 90% center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+form#salidaMaterialesForm .add {
+    background: #8CC63F url('../img/add.png') no-repeat 90% center;
+}
+form#salidaMaterialesForm .print {
+    background: #8CC63F url('../img/print.png') no-repeat 90% center;
+}
+form#salidaMaterialesForm .submit {
+    background: #8CC63F url('../img/submit.png') no-repeat 90% center;
+}
+
+form#salidaMaterialesForm2 .submit2 {
+    background: #8CC63F url('../img/submit.png') no-repeat 90% center;
+}
+
+form#salidaMaterialesForm2 .visualizar {
+    background: #8CC63F url('../img/pdf.png') no-repeat;
+    background-size : contain;
+    background-position: 84px;
+    width: 125px !important;
+}
+
+form#generarPdf .visualizar {
+    background: #8CC63F url('../img/pdf.png') no-repeat;
+    background-size : contain;
+    background-position: 84px;
+}
+
+
+input#deleteVale{
+    border-radius: 6px;
+    padding: 13px;
+    border: 1px #8CC63F solid;
+    border-radius: 6px;
+    background: #8CC63F url('../img/deleteV.png') no-repeat;
+    background-size: 30px;
+    background-position: 0px;
+    height: 41px;
+    width: 31px;
+    margin: 0 !important
+}
+/**Table styles**/
+.table-container {
+    float: left;
+    overflow-x: overlay;
+    width: 98%;
+    overflow-x: scroll;
+}
+form#salidaMaterialesForm table {
+    font-family: "Open sans", sans-serif;
+    font-size: 12px;
+    table-layout: fixed;
+}
+form#salidaMaterialesForm2 table {
+    font-family: "Open sans", sans-serif;
+    font-size: 12px;
+    table-layout: fixed;
+}
+form#salidaMaterialesForm table td,
+form#salidaMaterialesForm table th {
+    border-collapse:collapse;
+}
+form#salidaMaterialesForm2 table td,
+form#salidaMaterialesForm2 table th {
+    border-collapse:collapse;
+}
+form#salidaMaterialesForm tbody tr:nth-child(odd) td *,
+form#salidaMaterialesForm tbody tr:nth-child(odd) td {
+   /*background-color: #F5F5F5;*/
+}
+form#salidaMaterialesForm2 tbody tr:nth-child(odd) td *,
+form#salidaMaterialesForm2 tbody tr:nth-child(odd) td {
+   /*background-color: #F5F5F5;*/
+}
+form#salidaMaterialesForm tbody {
+    overflow-x: scroll;
+}
+form#salidaMaterialesForm thead th {
+    background: #00AEEF;
+    color: #FFF;
+}
+form#valesSalidaForm table{
+    border-spacing: 0px !important;
+    width: 100%;
+}
+
+form#valesSalidaForm thead th {
+    background: #00AEEF;
+    color: #FFF;
+}
+form#salidaMaterialesForm2 tbody {
+    overflow-x: scroll;
+}
+form#salidaMaterialesForm2 thead th {
+    background: #00AEEF;
+    color: #FFF;
+}
+form#valesSalidaForm2 table{
+    border-spacing: 0px !important;
+    width: 100%;
+}
+
+form#valesSalidaForm2 thead th {
+    background: #00AEEF;
+    color: #FFF;
+}
+
+
+
+
+form#valesSalidaForm1 table{
+    border-spacing: 2.5px !important;
+    width: 100%;
+}
+
+form#valesSalidaForm1 td{
+	text-align: center;
+}
+
+.listaEmpresas {
+    height: 145px !important;
+}
+
+.bordeSel {
+    border: 0.1em solid #599EDF;
+
+}
+    
+.divSelec li{
+	float: left;
+	width: 150px;
+}
+
+.selectores {
+    width: 100%;
+    height: 65px;
+}
+
+.selectForm{
+	width:50px !important;
+}
+
+.selectFormTd{
+	width:50px !important;
+}
+
+form#valesSalidaForm1 thead th {
+    background: #00AEEF;
+    color: #FFF;
+}
+
+button.submit {
+    margin-left: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    color: white;
+    background-color: #8CC63F;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 100;
+    border: 1px #8CC63F solid;
+}
+
+.esperadaTh{
+	width:105px;
+}
+
+.prorrogaTh{
+	    min-width: 105px !important;
+}
+
+.botonHome{
+	position: relative !important;
+	margin-top: -10px !important;
+}
+
+button#ir{
+	margin-left: 0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 6px;
+    color: white;
+    background-color: #8CC63F !important;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 100;
+    border: 1px #8CC63F solid;
+    border-radius: 6px;
+}
+
+input#pdf{
+    border-radius: 6px;
+    padding: 13px;
+    border: 1px #8CC63F solid;
+    border-radius: 6px;
+    background: #8CC63F url('../img/pdf.png') no-repeat;
+    background-size: 40px;
+    background-position: -5px;
+    height: 41px;
+    width: 31px;
+    margin: 0 !important
+}
+
+
+form#salidaMaterialesForm tbody input[type="text"], 
+form#salidaMaterialesForm tbody input[type="email"], 
+form#salidaMaterialesForm tbody input[type=password], 
+form#salidaMaterialesForm tbody input[type=file], 
+form#salidaMaterialesForm tbody textarea, 
+form#salidaMaterialesForm tbody select {
+    color: #555;
+    font-family: "Open sans", sans-serif;
+    font-size: 12px;
+}
+tbody input{
+    border: none;
+    text-align: center;
+    color: #555;
+}
+.column-one,
+.column-one input{
+    width: 30px;
+    max-width: 30px;
+}
+.column-two,
+.column-six,
+.column-ten,
+.column-eleven,
+.column-twelve,
+.column-fourteen,
+.column-two input, 
+.column-six input,
+.column-ten input,
+.column-eleven input,
+.column-twelve input,
+.column-fourteen input {
+    width: 80px;
+    max-width: 145px;
+}
+.column-three,
+.column-three input {
+    width: 220px;
+}
+.column-four,
+.column-five,
+.column-four input,
+.column-five input {
+    width: 50px;
+    max-width: 50px;
+}
+.column-seven,
+.column-seven input {
+    width: 90px;
+    max-width: 90px;
+}
+.column-eight,
+.column-nine, 
+.column-eight select,
+.column-nine select {
+    width: 70px;
+}
+.column-thirteen {
+    width: 30px;
+}
+.column-fifteen,
+.column-fifteen input {
+    width: 150px;
+    max-width: 150px;
+}
+form#salidaMaterialesForm input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+    display: none;
+}
+form#salidaMaterialesForm input[type=checkbox]:checked + label:before {
+    content: "\2713";
+    color: #8AC832;
+}
+
+.datepicker {
+	background: url(../img/calendario.png) no-repeat right;
+    background-size: contain;
+    width: 107px !important;
+}
+
+form#salidaMaterialesForm input[type=checkbox] + label:before {
+    content: "";
+    display: inline-block;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    border: solid 1px #599EDF;
+    border-radius: 5px;
+    line-height: 18px;
+    margin-left: 15px;
+    font-size: 19px;
+    text-align: center;
+    color: transparent;
+    margin-right: 7px;
+}
+form#salidaMaterialesForm td a {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 1px;
+}
+form#salidaMaterialesForm td a.edit {
+    background:  url('../img/edit.png') no-repeat center;
+}
+form#salidaMaterialesForm td label.edit {
+    background:  url('../img/edit.png') no-repeat center;
+    background-size: 69%;
+} 
+form#salidaMaterialesForm td label.edit:before {
+    content: "" !important;
+    border: 0px !important;
+    margin: 0 !important;
+    height: 15px !important;
+} 
+form#salidaMaterialesForm td a.save {
+    background:  url('../img/save.png') no-repeat center;
+}
+form#salidaMaterialesForm td a.delete {
+    background:  url('../img/delete.png') no-repeat center;
+}
+
+form#salidaMaterialesForm td a.edite{
+	background:  url('../img/edit.png') no-repeat center;
+	margin-left: 10px;
+}
+
+form#salidaMaterialesForm td a.recibido:before{
+	/* background:  url('../img/salidaMateriales-(1).png') no-repeat center;
+	width: 20px;
+    height: 20px; */
+    content: "\2713";
+    display: inline-block;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    border: solid 1px #0284ff;
+    border-radius: 5px;
+    line-height: 18px;
+    margin-left: 15px;
+    font-size: 19px;
+    text-align: center;
+    color: transparent;
+    margin-right: 7px;
+    /*content: */
+    color: #8AC832;
+}
+
+/**End Table styles**/
+
+/*Obligatorio*/
+.obligatorio{
+    font-style: italic;
+    font-size: 11px;
+    color: red;
+}
+/*Fin Obligatorio*/
+
+
+.cancelar {
+    display: inline-block;
+}
+
+.modal-header1 {
+	float: right;
+    display: inline-block;
+}
+
+.modal-header1 h4{
+    color: #ffffff;
+}
+
+.modal-header2 {
+	background-color: #7DC200 !important;
+}
+
+.modal-header2 h4{
+    color: #ffffff;
+}
+
+
+.colorSel {
+	background-color: #7DC200;
+}
+
+.modalError {
+    height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #FF0385 !important;
+    width: 25% !important;
+    border: 18px solid !important;
+    border-color: white !important;
+    border-radius: 0px !important;
+}
+
+#errorModal{
+	height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #FF0385 !important;
+    width: 25% !important;
+    /*border: 18px solid !important;*/
+    /*border-color: white !important;*/
+    border-radius: 0px !important;
+}
+
+#centroObligatorio{
+	height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #FF0385 !important;
+    width: 25% !important;
+    /*border: 18px solid !important;*/
+    /*border-color: white !important;*/
+    border-radius: 0px !important;
+}
+
+#modalPorteria{
+	height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #8CC63F !important;
+    width: 25% !important;
+    /*border: 18px solid !important;*/
+    /*border-color: white !important;*/
+    border-radius: 0px !important;
+}
+
+.modalExito {
+    height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #7DC200 !important;
+    width: 25% !important;
+    border: 18px solid !important;
+    border-color: white !important;
+    border-radius: 0px !important;
+}
+
+.centro {
+    width: 40px !important;
+}
+
+.btnCancel{
+	background:  url('../img/cancel.png') no-repeat center;
+	background-size: 158%;
+	border: 0;
+	width: 45px;
+    height: 45px;
+}
+
+
+/**Responsive**/
+@media (max-width: 1024px) {
+    .col-full {
+        width: 98%;
+    }
+    .buttons {
+        padding-left: 30%;
+    }
+    .Pager a:nth-child(1):after {
+        content: "<<";
+    }
+
+    .Pager a:nth-child(2):after {
+        content: "<";
+    }
+
+    .Pager a:nth-child(11):after {
+        content: ">";
+    }
+
+    .Pager a:nth-child(12):after {
+        content: ">>";
+    }
+}
+@media (max-width: 846px) {
+	.input-block.col-half.izqui {
+    	margin-left: 0px !important;
+	}
+}
+
+@media (min-width: 1367px) {
+	.input-lupa {
+   		width: 92% !important;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width: 1357px) {
+	.input-lupa {
+   		width: 90% !important;		    
+	}
+	.material{
+		width: 40% !important;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width: 1107px) {
+	label.label.respon {
+    	margin-top: 20px;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width: 846px) {
+	.col-quarter.trio {
+	   margin-left: 0px !important;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width: 1000px) {
+	.noVale {
+	    top: 91px !important;
+	}
+}
+
+@media only screen and (min-width:550px) and (max-width: 767px) {
+	.noVale {
+    right: 54px;
+    width: 148px !important;
+    top: 91px !important;
+	}
+}
+
+
+
+@media (max-width: 768px) {
+    .col-quarter {
+        width: 47%;
+    }
+    .col-half {
+        width: 96%;
+    }
+    .col-full {
+        width: 96%;
+    }
+    .buttons {
+        padding-left: 25%;
+    }
+}
+@media (max-width: 425px) {
+    .col-quarter {
+        width: 95%;
+    }
+    .col-half {
+        width: 95%;
+    }
+    .col-full {
+        width: 95%;
+    }
+    form#salidaMaterialesForm input[type="button"],  input[type="submit"] {
+        float: left;
+        width: 95%;
+        text-indent: -20px;
+    }
+    .buttons {
+        padding-left: 0%;
+    }
+    input[name="Guardar"] {
+        margin-left: 0px;
+    }
+    input[name="Agregar"] {
+        float: left;
+    }
+    
+    .messages {
+    color: #FA787E !important;
+  }
+  
+  form.ng-submitted input.ng-invalid{
+    border-color: #FA787E;
+  }
+  
+  form#salidaMaterialesForm input.ng-invalid.ng-pristine {
+    border-color: #FA787E;
+  }
+  
+ 
+}

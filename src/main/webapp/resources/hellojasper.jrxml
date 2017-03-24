@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="helloHasperXML" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd">
+   <style name="alternateStyle" fontName="Arial" mode="Opaque" forecolor="black" backcolor="#eaeaea">
+      <conditionalStyle>
+         <conditionExpression><![CDATA[new Boolean($V{countNumber}.intValue() % 2 == 0)]]></conditionExpression>
+         <style mode="Opaque" forecolor="black" backcolor="#ffffff" />
+      </conditionalStyle>
+   </style>
+   <style name="titulosStyle" fontName="Arial" isBold="true" />
+   <style name="datosStyle" fontName="Arial" forecolor="gray"/>
+   <parameter name="ReportTitle" class="java.lang.String" />
+   <parameter name="vales" class="com.familia.vales.jpa.entities.Vale" />
+   <parameter name="FechaAct" class="java.lang.String" />
+   <field name="codigo" class="java.lang.String">
+      <fieldDescription><![CDATA[codigo]]></fieldDescription>
+   </field>
+   <field name="idDetalleVale" class="java.lang.String">
+      <fieldDescription><![CDATA[idDetalleVale]]></fieldDescription>
+   </field>
+   <field name="cantidad" class="java.lang.Integer">
+      <fieldDescription><![CDATA[cantidad]]></fieldDescription>
+   </field>
+   <field name="descripcion" class="java.lang.String">
+      <fieldDescription><![CDATA[descripcion]]></fieldDescription>
+   </field>
+   <field name="fechaEsperada" class="java.util.Date">
+      <fieldDescription><![CDATA[fechaEsperada]]></fieldDescription>
+   </field>
+   <field name="fechaProrroga" class="java.lang.String">
+      <fieldDescription><![CDATA[fechaProrroga]]></fieldDescription>
+   </field>
+   <field name="fechaFinal" class="java.lang.String">
+      <fieldDescription><![CDATA[fechaFinal]]></fieldDescription>
+   </field>
+   <field name="fila" class="java.lang.Integer">
+      <fieldDescription><![CDATA[fila]]></fieldDescription>
+   </field>
+   <field name="noOc" class="java.lang.Integer">
+      <fieldDescription><![CDATA[noOc]]></fieldDescription>
+   </field>
+   <field name="perteneceMaquina" class="java.lang.String">
+      <fieldDescription><![CDATA[perteneceMaquina]]></fieldDescription>
+   </field>
+   <field name="peso" class="java.lang.Double">
+      <fieldDescription><![CDATA[peso]]></fieldDescription>
+   </field>
+   <field name="recibido" class="java.lang.String">
+      <fieldDescription><![CDATA[recibido]]></fieldDescription>
+   </field>
+   <field name="regresa" class="java.lang.String">
+      <fieldDescription><![CDATA[regresa]]></fieldDescription>
+   </field>
+   <field name="valor" class="java.lang.Double">
+      <fieldDescription><![CDATA[valor]]></fieldDescription>
+   </field>
+   <field name="valorUni" class="java.lang.Double">
+      <fieldDescription><![CDATA[valorUni]]></fieldDescription>
+   </field>
+   <field name="unidadMedidaVale" class="com.familia.vales.jpa.entities.UnidadMedidaVale">
+      <fieldDescription><![CDATA[unidadMedidaVale]]></fieldDescription>
+   </field>
+   <variable name="countNumber" class="java.lang.Integer" calculation="Count">
+      <variableExpression><![CDATA[Boolean.TRUE]]></variableExpression>
+   </variable>
+   <group name="datos">
+      <groupExpression><![CDATA["datos"]]></groupExpression>
+      <groupHeader>
+         <band height="465">
+            <line>
+               <reportElement forecolor="#2a4991" x="0" y="0" width="515" height="1" />
+            </line>
+            <staticText>
+               <reportElement forecolor="#2a4991" x="0" y="20" width="200" height="20" />
+               <text><![CDATA[Solicitud de salida]]></text>
+            </staticText>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="40" width="200" height="20" />
+               <text><![CDATA[Diligenciado / Autorizado por:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="55" width="600" height="20" />
+               <textFieldExpression><![CDATA[$P{vales}.getNombreDiligencio()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="400" y="40" width="200" height="20" />
+               <text><![CDATA[Motivo:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="400" y="55" width="600" height="20" />
+               <textFieldExpression><![CDATA[$P{vales}.getMotivo()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="70" width="200" height="20" />
+               <text><![CDATA[Justificacion explicita de la salida:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="85" width="515" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getJustificacion()]]></textFieldExpression>
+            </textField>
+            <line>
+               <reportElement forecolor="#2a4991" x="0" y="140" width="515" height="1" />
+            </line>
+            <staticText>
+               <reportElement forecolor="#2a4991" x="0" y="160" width="200" height="20" />
+               <text><![CDATA[Solicitud de destino]]></text>
+            </staticText>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="180" width="200" height="20" />
+               <text><![CDATA[Proveedor:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="195" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoProveedor()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="400" y="180" width="200" height="20" />
+               <text><![CDATA[Nit:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="400" y="195" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoNit()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="215" width="200" height="20" />
+               <text><![CDATA[Empresa:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="230" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoEmpresa()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="400" y="215" width="200" height="20" />
+               <text><![CDATA[Direccion:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="400" y="230" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoDireccion()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="245" width="200" height="20" />
+               <text><![CDATA[Nombre contacto:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="260" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoNombre()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="200" y="245" width="200" height="20" />
+               <text><![CDATA[Telefono:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="200" y="260" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoTel()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="400" y="245" width="200" height="20" />
+               <text><![CDATA[Ciudad:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="400" y="260" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getDestinoCiudad()]]></textFieldExpression>
+            </textField>
+            <line>
+               <reportElement forecolor="#2a4991" x="0" y="280" width="515" height="1" />
+            </line>
+            <staticText>
+               <reportElement forecolor="#2a4991" x="0" y="300" width="200" height="20" />
+               <text><![CDATA[Datos de quien retira]]></text>
+            </staticText>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="320" width="200" height="20" />
+               <text><![CDATA[Nombre:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="335" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getRetiraNombre()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="400" y="320" width="200" height="20" />
+               <text><![CDATA[C.C:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="400" y="335" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getRetiraIdentificacion()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="0" y="355" width="200" height="20" />
+               <text><![CDATA[Empresa Transporte:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="0" y="370" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getRetiraEmpresa()]]></textFieldExpression>
+            </textField>
+            <staticText>
+               <reportElement style="titulosStyle" x="400" y="355" width="200" height="20" />
+               <text><![CDATA[Placa vehiculo:]]></text>
+            </staticText>
+            <textField>
+               <reportElement style="datosStyle" x="400" y="370" width="600" height="40" />
+               <textFieldExpression><![CDATA[$P{vales}.getRetiraPlaca()]]></textFieldExpression>
+            </textField>
+            <line>
+               <reportElement forecolor="#2a4991" x="0" y="390" width="515" height="1" />
+            </line>
+            <staticText>
+               <reportElement forecolor="#2a4991" x="0" y="410" width="200" height="20" />
+               <text><![CDATA[Materiales]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="0" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Fila]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="0" y="445" width="300" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text />
+            </staticText>
+            <line>
+               <reportElement x="20" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="25" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Codigo]]></text>
+            </staticText>
+            <line>
+               <reportElement x="60" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="65" y="430" width="65" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Descripcion]]></text>
+            </staticText>
+            <line>
+               <reportElement x="120" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="125" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Unidad de]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="125" y="445" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Medida]]></text>
+            </staticText>
+            <line>
+               <reportElement x="175" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="180" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Cantidad]]></text>
+            </staticText>
+            <line>
+               <reportElement x="220" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="230" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Valor]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="225" y="445" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Unitario]]></text>
+            </staticText>
+            <line>
+               <reportElement x="265" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="275" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Valor]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="270" y="445" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Estimado]]></text>
+            </staticText>
+            <line>
+               <reportElement x="320" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="325" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Peso]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="324" y="445" width="150" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text />
+            </staticText>
+            <line>
+               <reportElement x="360" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="365" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Regresa]]></text>
+            </staticText>
+            <line>
+               <reportElement x="410" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="415" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[No. OC]]></text>
+            </staticText>
+            <staticText>
+               <reportElement x="465" y="430" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[Fecha Esperada]]></text>
+            </staticText>
+            <line>
+               <reportElement x="460" y="430" width="1" height="35" forecolor="#ffffff" />
+            </line>
+            <staticText>
+               <reportElement x="465" y="445" width="55" height="20" mode="Opaque" forecolor="white" backcolor="#00AEEF" />
+               <text><![CDATA[de Regreso]]></text>
+            </staticText>
+         </band>
+      </groupHeader>
+   </group>
+   <title>
+      <band height="70">
+         <ellipse>
+            <reportElement x="350" y="9" width="165" height="20" forecolor="#0052A3" backcolor="#0052A3" />
+         </ellipse>
+         <textField>
+            <reportElement forecolor="#ffffff" x="385" y="11" width="100" height="19" />
+            <textFieldExpression><![CDATA[$P{ReportTitle}]]></textFieldExpression>
+         </textField>
+         <textField>
+            <reportElement x="0" y="30" width="100" height="19" />
+            <textFieldExpression><![CDATA[$P{FechaAct}]]></textFieldExpression>
+         </textField>
+      </band>
+   </title>
+   <detail>
+      <band height="30">
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="0" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{fila}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="25" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="65" y="0" width="65" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="125" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{unidadMedidaVale}.getUnidadMedida()]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="180" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="230" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{valorUni}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="275" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="325" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="365" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{regresa}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="415" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression><![CDATA[$F{noOc}]]></textFieldExpression>
+         </textField>
+         <textField isStretchWithOverflow="true">
+            <reportElement style="alternateStyle" stretchType="RelativeToTallestObject" x="465" y="0" width="55" height="30" isRemoveLineWhenBlank="true" />
+            <textFieldExpression class="java.lang.String"><![CDATA[$F{fechaEsperada}==null ? "_" : new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{fechaEsperada})]]></textFieldExpression>
+         </textField>
+      </band>
+   </detail>
+   <pageFooter>
+      <band height="15">
+         <textField>
+            <reportElement x="0" y="0" width="520" height="15" />
+            <textElement textAlignment="Right" />
+            <textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+         </textField>
+         <textField evaluationTime="Report">
+            <reportElement x="521" y="0" width="14" height="15" />
+            <textElement textAlignment="Left" />
+            <textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+         </textField>
+      </band>
+   </pageFooter>
+   <summary>
+      <band height="320">
+         <line>
+            <reportElement forecolor="#2a4991" x="0" y="20" width="515" height="1" />
+         </line>
+         <staticText>
+            <reportElement style="titulosStyle" x="0" y="30" width="200" height="20" />
+            <text><![CDATA[Observaciones:]]></text>
+         </staticText>
+         <textField>
+            <reportElement style="datosStyle" x="0" y="50" width="515" height="40" />
+            <textFieldExpression><![CDATA[$P{vales}.getObservaciones()]]></textFieldExpression>
+         </textField>
+         <line>
+            <reportElement forecolor="#2a4991" x="0" y="120" width="515" height="1" />
+         </line>
+         <staticText>
+            <reportElement style="titulosStyle" x="0" y="140" width="515" height="20" />
+            <text><![CDATA[Solicitante:]]></text>
+         </staticText>
+         <textField>
+            <reportElement style="datosStyle" x="0" y="170" width="515" height="40" />
+            <textFieldExpression><![CDATA[$P{vales}.getSolicitante()]]></textFieldExpression>
+         </textField>
+         <line>
+            <reportElement x="400" y="270" width="100" height="1" />
+         </line>
+         <textField>
+            <reportElement x="400" y="275" width="100" height="40" />
+            <textFieldExpression><![CDATA["Firma: "+$P{vales}.getRetiraNombre()]]></textFieldExpression>
+         </textField>
+      </band>
+   </summary>
+</jasperReport>
