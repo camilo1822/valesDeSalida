@@ -87,7 +87,7 @@
             <div class="form-row">
                <div class="input-block col-quarter">
                   <label class="label">Material contratado en PICIZ:</label>
-                  <select name="contratadoEnPiciz" name="singleSelect" ng-model="data.singleSelect">
+                  <select id="controladoPiciz" name="contratadoEnPiciz" name="singleSelect" ng-model="data.singleSelect">
                      <option value="No">No</option>
                      <option value="Si">Si</option>
                   </select>
@@ -560,6 +560,22 @@
          </div>
       </div>
       <!-- Fin modal centro -->
+        <!-- Modal centroIncorrecto -->
+       <div class="modal fade" id="centroIncorrecto" role="dialog">
+         <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+         <div class="cancelar">
+            <button class="btnCancel" onclick="cerrarModalIncorrecto()"></button>
+         </div>
+         <div class="modal-header1 headerError">
+            <h4>Solo se aceptan los centro CO05,CO60 y CO61</h4>
+                 </div>
+      </div>
+         </div>
+      </div>
+      <!-- Fin modal centroIncorrecto -->
       <!-- Fin Modal Error -->
       <!-- Modal Lista -->
       <div modal="showModal3" close="cancel()" class="modalLista" >

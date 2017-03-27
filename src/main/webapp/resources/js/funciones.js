@@ -813,6 +813,10 @@ function cerrarModalCentro(){
 	__jquery("#centroObligatorio").modal('toggle');
 }
 
+function cerrarModalIncorrecto(){
+	__jquery("#centroIncorrecto").modal('toggle');
+}
+
 function cerrarModalPorteria(){
 	__jquery("#modalPorteria").modal('toggle');
 }
@@ -820,9 +824,13 @@ function cerrarModalPorteria(){
 function buscarMaterial(){
 	var centro = __jquery("#centro").val();
 	var codigo = __jquery("#codigoConsultar").val();
+	var piciz = __jquery("#controladoPiciz").val();
 	if(centro==""){
 		__jquery("#centroObligatorio").attr("style","border: 18px solid white !important");
 		__jquery("#centroObligatorio").modal();
+	}else if((piciz=="Si" && centro!="CO05") && (piciz=="Si" && centro!="CO60") && (piciz=="Si" && centro!="CO61")){
+		__jquery("#centroIncorrecto").attr("style","border: 18px solid white !important");
+		__jquery("#centroIncorrecto").modal();
 	}else{
 		var cond = validaMaterial(centro,codigo);
 		if(cond==true){
