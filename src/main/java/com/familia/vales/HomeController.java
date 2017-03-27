@@ -232,7 +232,11 @@ public class HomeController{
 			  				vale.setMotivo("Devolución");
 			  			}else if(motivo.equals("Venta")){
 			  				vale.setMotivo("Venta Desperdicio");
-			  			}else{
+			  			}else if(motivo.equals("Donación")){
+			  				vale.setMotivo("Donación");
+			  			}else if(motivo.equals("Préstamos")){
+			  				vale.setMotivo("Préstamos");
+			  			}else {
 			  				vale.setMotivo(cual);
 			  			}
 			  			
