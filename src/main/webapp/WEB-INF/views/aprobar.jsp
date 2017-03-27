@@ -207,8 +207,9 @@
 							<th>Valor estimado</th>
 							<th>Peso(kg) si es controlado</th>
 							<th>Regresa</th>
-							<th>Repuesto pertenece a m&aacute;quina</th>
-							<th>No. OC servicio</th>
+							<th>Pertenece a m&aacute;quina</th>
+							<th>OC servicio</th>
+							<th>OC adquisici&oacute;n</th>
 							<th>Fecha esperada de regreso</th>
 							<th ng-if="data.prorroga=='Si'">Fecha de prorroga</th>
 							<th ng-if="data.prorroga=='Si'">Recibido</th>
@@ -231,6 +232,7 @@
 							<td class="column-eight"><input class="in-descri" type="text" value="<c:out value="${i.getRegresa()}"/>" readonly/></td>
 							<td class="column-nine"><input class="in-descri" type="text" value="<c:out value="${i.getPerteneceMaquina()}"/>" readonly/></td>
 							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getNoOc()}"/>" readonly/></td>
+							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getOcAd()}"/>" readonly/></td>
 							<td class="column-eleven"><input class="in-descri fec" type="date" value="<c:out value="${i.getFechaEsperada()}"/>" readonly/></td>
 							<td ng-if="data.prorroga=='Si'" class="column-eleven"><input id="fecProrroga<c:out value="${i.getFila()}"/>" class="in-descri fec" type="date" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" min="${model.fechaHoy }"/></td>
               				<td ng-if="data.prorroga=='Si'"><input type="checkbox"  id="checkRecibido<c:out value="${i.getFila()}"/>" class="checkbox"  ng-model="chekRecibido<c:out value="${i.getFila()}"/>" ng-init="chekRecibido<c:out value="${i.getFila()}"/>=false" ng-change="mostrarFecha('${i.getFila()}','{{chekRecibido<c:out value="${i.getFila()}"/>}}')"/>

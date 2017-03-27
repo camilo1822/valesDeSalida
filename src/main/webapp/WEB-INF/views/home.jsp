@@ -239,7 +239,7 @@
                <div class="agregar">
                   <input ng-disabled="salidaMaterialesForm.codigo.$invalid || salidaMaterialesForm.centro.$invalid || salidaMaterialesForm.um.$invalid
                      || salidaMaterialesForm.cantidad.$invalid || salidaMaterialesForm.peso.$invalid
-                     || salidaMaterialesForm.repuesto.$invalid || salidaMaterialesForm.noOC.$invalid" type="button" name="Agregar" value="Agregar"
+                     || salidaMaterialesForm.repuesto.$invalid || salidaMaterialesForm.noOC.$invalid || salidaMaterialesForm.noOCa.$invalid""  type="button" name="Agregar" value="Agregar"
                      class="add" ng-click="addMaterial()"/>
                </div>
                <table name="tabla-materiales" class="tabla-materiales">
@@ -255,8 +255,9 @@
                         <th>Valor estimado</th>
                         <th>Peso(kg) si es controlado</th>
                         <th>Regresa</th>
-                        <th>Repuesto pertenece a m&aacute;quina</th>
-                        <th>No. OC servicio</th>
+                        <th>Pertenece a m&aacute;quina</th>
+                        <th>OC servicio</th>
+                        <th>OC adquisici&oacute;n</th>
                         <th class="esperadaTh">Fecha esperada de regreso</th>
                         <th ng-if="contador1!=1" class="fecFinalTh">Fecha final</th>
                         <th ng-if="contador1!=1">Acciones</th>
@@ -333,6 +334,14 @@
                               required/>
                            <input ng-if="data.singleSelect=='No'" type="text" name="noOC" value="N/A" readOnly/>
                            <p class="obligatorio" ng-show="salidaMaterialesForm.noOC.$invalid && salidaMaterialesForm.noOC.$touched">Obligatorio</p>
+                        </td>
+                        
+                        
+                        <td>
+                           <input ng-if="data.singleSelect=='Si'" type="number" name="noOCa" ng-model="material.noOCa" ng-model-options="{ updateOn: 'blur' }"
+                              required/>
+                           <input ng-if="data.singleSelect=='No'" type="text" name="noOCa" value="N/A" readOnly/>
+                           <p class="obligatorio" ng-show="salidaMaterialesForm.noOCa.$invalid && salidaMaterialesForm.noOCa.$touched">Obligatorio</p>
                         </td>
                         
                   		<%-- <td>
@@ -419,6 +428,14 @@
                               ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit" />
                            <input ng-if="data.singleSelect=='No'" class="in-descri" type="text" value="N/A" name="noOc{{material.ide}}" readonly/>
                         </td>
+                        
+                        <td class="column-ten">
+                           <input ng-if="data.singleSelect=='Si'" class="in-descri" type="text" value="material.noOCa" name="noOca{{material.ide}}" ng-model="material.noOCa"
+                              ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit" />
+                           <input ng-if="data.singleSelect=='No'" class="in-descri" type="text" value="N/A" name="noOca{{material.ide}}" readonly/>
+                        </td>
+                        
+                        
                         <td class="column-eleven">
                            <input ng-if="material.regresa=='No'" name="fecha{{material.ide}}" class="in-descri fec" type="date" value="dd/mm/aaaa" readonly/>
                               <!-- picker -->
@@ -570,8 +587,9 @@
             <button class="btnCancel" onclick="cerrarModalIncorrecto()"></button>
          </div>
          <div class="modal-header1 headerError">
-            <h4>Solo se aceptan los centro CO05,CO60 y CO61</h4>
-                 </div>
+            <h4>Solo se aceptan los centros</h4>
+            <h4>CO05,CO60 y CO61</h4>
+         </div>
       </div>
          </div>
       </div>

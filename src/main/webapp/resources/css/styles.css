@@ -1237,6 +1237,10 @@ form#salidaMaterialesForm td a.recibido:before{
     border-radius: 0px !important;
 }
 
+#centroIncorrecto h4{
+	margin-top: 0px !important;
+}
+
 #modalPorteria{
 	height: 160px;
     height: 50px;

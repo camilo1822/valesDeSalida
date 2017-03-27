@@ -44,6 +44,9 @@ public class DetalleVale implements Serializable {
 	@Column(name="NO_OC")
 	private int noOc;
 
+	@Column(name="OC_AD")
+	private int ocAd;
+
 	@Column(name="PERTENECE_MAQUINA")
 	private String perteneceMaquina;
 
@@ -149,6 +152,14 @@ public class DetalleVale implements Serializable {
 
 	public void setNoOc(int noOc) {
 		this.noOc = noOc;
+	}
+
+	public int getOcAd() {
+		return this.ocAd;
+	}
+
+	public void setOcAd(int ocAd) {
+		this.ocAd = ocAd;
 	}
 
 	public String getPerteneceMaquina() {

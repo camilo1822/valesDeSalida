@@ -305,6 +305,7 @@ public class HomeController{
 					  			String regresa =  request.getParameter("regresa"+i);
 					  			String pertenece =  request.getParameter("repuesto"+i);
 					  			String oc =  request.getParameter("noOc"+i);
+					  			String oca =  request.getParameter("noOca"+i);
 					  			String fechaEspp =  request.getParameter("fecha"+i);
 					  			try {
 					  				if(fechaEspp.equals("")){
@@ -328,6 +329,11 @@ public class HomeController{
 					  				detVal.setNoOc(0);
 					  			}else{
 					  				detVal.setNoOc(Integer.parseInt(oc));
+					  			}
+					  			if(oca.equals("N/A")){
+					  				detVal.setOcAd(0);
+					  			}else{
+					  				detVal.setOcAd(Integer.parseInt(oca));
 					  			}
 					  			detVal.setPerteneceMaquina(pertenece);
 					  			detVal.setPeso(Double.parseDouble(peso));

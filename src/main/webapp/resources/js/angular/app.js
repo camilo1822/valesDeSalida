@@ -142,6 +142,7 @@ validationApp.controller('mainController', function($scope,$filter,$window) {
 		        regresa: $scope.data.regresa,
 		        repuesto: $scope.data.repuesto,
 		        noOC: $scope.material.noOC,
+		        noOCa: $scope.material.noOCa,
 		        fechaEsperada: $scope.fechaEsperada,
 		        fechaFinal:  $scope.fechaFinalHome,
 		        ide: $scope.contador1
