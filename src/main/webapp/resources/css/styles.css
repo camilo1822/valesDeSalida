@@ -312,6 +312,11 @@ th#campoAprobado {
 #content-breadcrumb-client a:hover {
     text-decoration: underline;
 }
+
+#centroFiltro{
+	width: 183px;
+}
+
 #content-breadcrumb-client {
     background: #8e8e8e;
     height: 17px;
@@ -421,6 +426,14 @@ form#salidaMaterialesForm input[name="Agregar"] {
 
 input.pdf {
 	margin-left: 20px !important;
+}
+
+#thDescr{
+	width: 20%;
+}
+
+#descripcionSAP{
+	width: 100%;
 }
 
 .relleno {
@@ -620,7 +633,7 @@ form#salidaMaterialesForm .search-empresa{
 }
 
 table.tabla-materiales td:NTH-CHILD(3) input{
-	width: 100% !important;
+	width: 75% !important;
 }
 
 #contenidoDescrip {
@@ -654,7 +667,7 @@ form#valesSalidaForm1 {
 }
 
 .lupCod{
-	width:60px !important;
+	width:96px !important;
 }
 
 .input-lupa1{
@@ -1265,6 +1278,18 @@ form#salidaMaterialesForm td a.recibido:before{
 
 .centro {
     width: 40px !important;
+}
+
+.centr {
+    width: 3% !important;
+}
+
+.cod{
+	width: 8% !important;
+}
+
+.inputCentro{
+	width: 100%;
 }
 
 .btnCancel{

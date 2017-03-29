@@ -280,23 +280,13 @@ public class HomeController{
 			  				String fila =  request.getParameter("fila"+i);
 			  				if(fila!=null){
 			  					String codigo =  request.getParameter("codigo"+i);
+			  					String centro = request.getParameter("centro"+i);
 					  			String descripcion =  request.getParameter("descri"+i);
 					  			String um =  request.getParameter("um"+i);
+					  			detVal.setUnidad(um);
 					  			UnidadMedidaVale b;
-					  			if(um.equals("Kg")){
-					  				b = umRepository.findOne(1);
-					  				detVal.setUnidadMedidaVale(b);
-					  			}else if(um.equals("gr")){
-					  				b = umRepository.findOne(2);
-					  				detVal.setUnidadMedidaVale(b);
-					  			}else if(um.equals("Mt")){
-					  				b = umRepository.findOne(3);
-					  				detVal.setUnidadMedidaVale(b);
-					  			}else{
-					  				b = umRepository.findOne(4);
-					  				System.out.println("::::::b::::: "+b);
-					  				detVal.setUnidadMedidaVale(b);
-					  			}
+					  			b = umRepository.findOne(1);
+					  			detVal.setUnidadMedidaVale(b);
 					  			String cantidad =  request.getParameter("cantidad"+i);
 					  			String valorUni =  request.getParameter("vlrUnitario"+i);
 					  				
@@ -321,6 +311,7 @@ public class HomeController{
 					  			detVal.setCantidad(Integer.parseInt(cantidad));
 					  			detVal.setValorUni(Double.parseDouble(valorUni));
 					  			detVal.setCodigo(codigo);
+					  			detVal.setCentro(centro);
 					  			detVal.setDescripcion(descripcion);				  			
 					  			detVal.setFechaProrroga(null);
 					  			detVal.setFila(Integer.parseInt(fila));
@@ -518,6 +509,7 @@ public class HomeController{
 		  repuesta.add("?"+SI_CONSULTA_MATERIALES_IN_S13mtemp[0].getCODIGO()+"?");
 		  repuesta.add("?"+SI_CONSULTA_MATERIALES_IN_S13mtemp[0].getDESCRIPCION()+"?");
 		  repuesta.add("?"+SI_CONSULTA_MATERIALES_IN_S13mtemp[0].getVALOR()+"?");
+		  repuesta.add("?"+SI_CONSULTA_MATERIALES_IN_S13mtemp[0].getUMB()+"?");
 		  response.getWriter().println(repuesta);
 	  }
 	  

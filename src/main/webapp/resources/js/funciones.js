@@ -69,7 +69,7 @@ function onReadyPortal(__jquery) {
 		if(window.location.search=="" && window.location.pathname=="/ValesDeSalida/lista"){
 			 numPaginas();
 			 numResultados();
-		 }else if(window.location.pathname=="/ValesDeSalida/filtro" || window.location.pathname=="/ValesDeSalida/FiltroFecha"){
+		 }else if(window.location.pathname=="/ValesDeSalida/filtro" || window.location.pathname=="/ValesDeSalida/FiltroFecha" || window.location.pathname=="/ValesDeSalida/FiltroCentro"){
 			 
 			 }else{
 			 __jquery(".paginate").paginga({
@@ -849,6 +849,7 @@ function buscarMaterial(){
 		            document.getElementById("descripcionSAP").value= l[3];
 		            var numero = findAndReplace(l[4]);
 		            document.getElementById("vlrUnitarioSAP").value= parseInt(numero);
+		            document.getElementById("umSOAP").value= l[5];
 				}
 			});
 			valorEstimado2();
@@ -886,9 +887,11 @@ function buscarMaterialListaJS(x){
 		        	}
 		            var descri="contenidoDescrip"+x;
 		            var vlr="vlrUnitario"+x;
+		            var um="umsoap"+x;
 		            document.getElementById(descri).value= l[3];
 		            var numero = findAndReplace(l[4]);
 		            document.getElementById(vlr).value= parseInt(numero);
+		            document.getElementById(um).value= l[5];
 				}
 			});
 			valorEstimadoLista2(x);
@@ -950,15 +953,19 @@ function llenarTabla(x){
 	var descripcion = __jquery("#descripcionSAP").val();
 	var valrUnitario = __jquery("#vlrUnitarioSAP").val();
 	var vlrEstimado = __jquery("#vlrEstimado").val();
+	var um = __jquery("#umSOAP").val();
 	var nomDescri = "contenidoDescrip"+x;
 	var nomUni = "vlrUnitario"+x;
 	var nomEsti = "valor"+x;
+	var nomUm = "umsoap"+x;
 	document.getElementById(nomDescri).value= descripcion;
 	document.getElementById(nomUni).value= valrUnitario;
 	document.getElementById(nomEsti).value= vlrEstimado;
+	document.getElementById(nomUm).value= um;
 	document.getElementById("vlrUnitarioSAP").value= "";
 	document.getElementById("vlrEstimado").value= "NaN";
 	document.getElementById("cantMat").value= "";
+	document.getElementById("umSOAP").value= "";
 	document.getElementById("peso").value= "";
 	document.getElementById("descripcionSAP").value= "";
 	document.getElementById("centro").value= "";

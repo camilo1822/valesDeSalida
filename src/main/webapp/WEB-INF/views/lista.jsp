@@ -86,9 +86,22 @@
 						<input id="fecFiltro" class="fec datepicker" type="text" name="fecFiltro" readonly/>
 					</div>
 					<input type="submit" name="Consultar" value="Consultar por Fecha" class="add fecFiltro"/>
-					<!-- Fin Filtrar por fecha -->
-					
+					<!-- Fin Filtrar por fecha -->				
 				</div>
+			</form>
+			
+			<form id="valesSalidaForm" name="valesSalidaForm" method="post" action="FiltroCentro" novalidate>
+	
+				<div class="form-row">
+					<!-- Filtrar por Centro -->
+					<div class="input-block1 fechaFiltro">
+						<label>Centro:</label>
+						<input id="centroFiltro" class="" type="text" name="centFiltro"/>
+					</div>
+					<input type="submit" name="Consultar" value="Consultar por Centro" class="add fecFiltro"/>
+					<!-- Fin Filtrar por centro -->
+				</div>	
+
 			</form>
 				
 <form id="valesSalidaForm1" name="valesSalidaForm1" method="get" action="valeDetail" novalidate> 

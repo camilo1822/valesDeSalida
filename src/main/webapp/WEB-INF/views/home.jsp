@@ -86,7 +86,7 @@
             </div>
             <div class="form-row">
                <div class="input-block col-quarter">
-                  <label class="label">Material contratado en PICIZ:</label>
+                  <label class="label">Material controlado en PICIZ:</label>
                   <select id="controladoPiciz" name="contratadoEnPiciz" name="singleSelect" ng-model="data.singleSelect">
                      <option value="No">No</option>
                      <option value="Si">Si</option>
@@ -245,10 +245,10 @@
                <table name="tabla-materiales" class="tabla-materiales">
                   <thead>
                      <tr>
-                        <th class="column-one">Nro. Fila</th>
-                        <th>C&oacute;digo</th>
+                        <th class="column-one">Nro. Fila</th>                     
                         <th class="centr">Centro</th>
-                        <th>Descripci&oacute;n</th>
+                        <th class="cod">C&oacute;digo</th>
+                        <th id="thDescr">Descripci&oacute;n</th>
                         <th>UM unidad de medida</th>
                         <th>Valor Unitario</th>
                         <th>Cantidad</th>                        
@@ -268,7 +268,13 @@
                         <td class="column-eight">
                            <input id="nroFilas" class="contFila" type="text" value="contador1" name="fila" ng-model="contador1" readonly/>
                         </td>
-                        <td>
+
+                        <td class="">
+                           <input type="text" class="obligacionTabla inputCentro" id="centro" name="centro" ng-model="material.centro" ng-change="convMayusculasAng()"/>
+                          
+                        </td>
+                        
+                         <td>
                            <div class="lupCod">
                               <input class="input-lupa1 obligacionTabla" type="text" id="codigoConsultar" name="codigo" ng-model="material.codigo" ng-model-options="{ updateOn: 'blur' }" required
                                  />
@@ -276,26 +282,14 @@
                               <p class="obligatorio" ng-show="salidaMaterialesForm.codigo.$invalid && salidaMaterialesForm.codigo.$touched">Obligatorio</p>
                            </div>
                         </td>
-                                
-                      <td class="centr">
-                           <input type="text" class="obligacionTabla" id="centro" name="centro" ng-model="material.centro" ng-change="convMayusculasAng()"/>
-                          
-                        </td>
-                        
+
                         <td>
                            <input type="text" class="descriMaterial obligacionTabla" id="descripcionSAP" name="descripcion" ng-model="material.descripcion"/>
                         	<p class="obligatorio obligatoriedaddescripcionSAP" style="display:none">Obligatorio</p>
                         </td>
                         <td>
-                           <select class="selectUm UmHome" name="um" ng-model="material.um" ng-model-options="{ updateOn: 'blur' }" required/>
-                              <c:forEach items="${model.unidades}" var="i">
-                                 <option value=
-                                 <c:out value="${i}" />
-                                 >
-                                 <c:out value="${i}" />
-                                 </option>
-                              </c:forEach>
-                           </select>
+                           <input type="text" id="umSOAP" class="selectUm UmHome" name="um" ng-model="material.um"/>
+                  
                            <p class="obligatorio" ng-show="salidaMaterialesForm.um.$invalid && salidaMaterialesForm.um.$touched">Obligatorio</p>
                         </td>                     
                         <td>
@@ -366,6 +360,8 @@
                      <tr ng-repeat="material in materiales">
                         <td class="column-one"><input class="in-descri" type="text" value="material.fila" name="fila{{material.ide}}" ng-model="material.fila"
                            readonly/></td>
+                           
+                           <td class="column-two"><input class="in-descri" type="text" value="material.centro" id="centro{{material.ide}}" name="centro{{material.ide}}" ng-model="material.centro" ng-change="convMayusculasListaAng(material.ide)" ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit"/></td>
                         <td class="column-two">
                         	<input ng-if="!habEdit" class="in-descri" type="text" value="material.codigo" name="codigo{{material.ide}}" ng-model="material.codigo" readonly/>
                         	
@@ -377,7 +373,7 @@
                         </td>
                            
                            
-                           <td class="column-two"><input class="in-descri" type="text" value="material.centro" id="centro{{material.ide}}" name="centro{{material.ide}}" ng-model="material.centro" ng-change="convMayusculasListaAng(material.ide)" ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit"/></td>
+                           
                            
                            
                            
@@ -386,17 +382,10 @@
                               name="descri{{material.ide}}" ng-model="material.descripcion" ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit"/>
                         </td>
                         <td class="column-four">
-                           <input ng-if="!habEdit" class="in-descri" type="text" value="material.um" name="um{{material.ide}}" ng-model="material.um"
-                              ng-class="{'campo-editable': habEdit}" readonly/>
-                           <select ng-if="habEdit" class="selectUm" name="um{{material.ide}}" ng-model="material.um" />
-                              <c:forEach items="${model.unidades}" var="i">
-                                 <option value=
-                                 <c:out value="${i}" />
-                                 >
-                                 <c:out value="${i}" />
-                                 </option>
-                              </c:forEach>
-                           </select>
+                           <input id="umsoap{{material.ide}}" class="in-descri" type="text" value="material.um" name="um{{material.ide}}" ng-model="material.um"
+                              ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit"/>
+                           
+                        
                         </td>
                         
                         <td class="column-five"><input class="in-descri" type="number" id="vlrUnitario{{material.ide}}" name="vlrUnitario{{material.ide}}" ng-model="material.vlrUnitario" ng-change="vlrEstimadoLista1(material.ide)" ng-class="{'campo-editable': habEdit}" ng-readonly="!habEdit"/></td>

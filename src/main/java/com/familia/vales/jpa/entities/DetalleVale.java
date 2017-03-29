@@ -23,6 +23,8 @@ public class DetalleVale implements Serializable {
 
 	private int cantidad;
 
+	private String centro;
+
 	private String codigo;
 
 	private String descripcion;
@@ -55,6 +57,8 @@ public class DetalleVale implements Serializable {
 	private String recibido;
 
 	private String regresa;
+
+	private String unidad;
 
 	private double valor;
 
@@ -96,6 +100,14 @@ public class DetalleVale implements Serializable {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public String getCentro() {
+		return this.centro;
+	}
+
+	public void setCentro(String centro) {
+		this.centro = centro;
 	}
 
 	public String getCodigo() {
@@ -192,6 +204,14 @@ public class DetalleVale implements Serializable {
 
 	public void setRegresa(String regresa) {
 		this.regresa = regresa;
+	}
+
+	public String getUnidad() {
+		return this.unidad;
+	}
+
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
 	}
 
 	public double getValor() {

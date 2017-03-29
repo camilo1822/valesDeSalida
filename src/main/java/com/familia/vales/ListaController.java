@@ -184,6 +184,48 @@ public class ListaController {
 			}
 	   }
 	
+	@RequestMapping(value="/FiltroCentro", method = RequestMethod.POST)
+	   public ModelAndView FiltroCentro(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
+			String centro = request.getParameter("centFiltro");			
+			centro = centro.toUpperCase();
+			if(centro != ""){				
+				Collection<Vale> valess = valeRepository.findAll();
+				Vector<Vale> vales = new Vector<Vale>();
+
+				for (Iterator<Vale> iterator = valess.iterator(); iterator.hasNext();) {
+					Vale valeFiltr = (Vale) iterator.next();
+					int iden=valeFiltr.getIdVale();
+					Collection<DetalleVale> detFil = detValRep.findAll();
+					for(Iterator<DetalleVale> iterator1 = detFil.iterator(); iterator1.hasNext();){
+						DetalleVale DetValeFiltr = (DetalleVale) iterator1.next();
+						int identi = DetValeFiltr.getVale().getIdVale();
+						if(iden==identi){
+							String centr=DetValeFiltr.getCentro();
+							if(centr==null){
+								break;
+							}
+							
+							if(centr.equals(centro)){
+								vales.add(valeFiltr);
+								break;
+							}
+						} 
+							
+					}				 
+				}		
+				Map<String, Object> miModelo = new HashMap<String, Object>();
+				miModelo.put("vales", vales);
+				ModelAndView miMAV = new ModelAndView();
+		        miMAV.setViewName("lista");
+		        miMAV.addObject("model",miModelo);
+		        return miMAV;
+
+			}else{
+				System.out.println("no tiene fecha");
+				return new ModelAndView("redirect:/lista");
+			}
+	   }
+	
 	@RequestMapping("/retornaProveedor")
 	public void retornaProveedor(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		extranet_sgto_ordenes_compra.familia.DT_CON_PROV extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id=new DT_CON_PROV();  

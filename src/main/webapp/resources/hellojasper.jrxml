@@ -133,7 +133,10 @@
                <text><![CDATA[Direccion:]]></text>
             </staticText>
             <textField>
-               <reportElement style="datosStyle" x="400" y="230" width="600" height="40" />
+               <reportElement style="datosStyle" x="400" y="225" width="120" height="100" />
+               <textElement>
+		            <font fontName="Arial" size="6"/>
+		        </textElement>
                <textFieldExpression><![CDATA[$P{vales}.getDestinoDireccion()]]></textFieldExpression>
             </textField>
             <staticText>

@@ -77,7 +77,7 @@
 				</div>
 				<div class="form-row">
 					<div class="input-block col-quarter">
-						<label class="label">Material contratado en PICIZ:</label>
+						<label class="label">Material controlado en PICIZ:</label>
 						<input type="text" name="contratadoEnPiciz" value="${model.vale.getMaterialPiciz()}" readonly/>
 					</div>
 					<span><div class="input-block col-quarter" ng-style="visible">
@@ -189,6 +189,7 @@
 					<thead>
 						<tr>
 							<th class="column-one">Nro. Fila</th>
+							<th>Centro</th>
 							<th>C&oacute;digo</th>
 							<th>Descripci&oacute;n</th>
 							<th>UM unidad de medida</th>
@@ -209,9 +210,10 @@
 						<c:forEach items="${model.detVales}" var="i">
 							<tr>
 							<td class="column-one"><input class="in-descri" type="text" value="<c:out value="${i.getFila()}"/>" readonly/></td>
+							<td class="column-two"><input class="in-descri" type="text" value="<c:out value="${i.getCentro()}"/>" readonly/></td>
 							<td class="column-two"><input class="in-descri" type="text" value="<c:out value="${i.getCodigo()}"/>" readonly/></td>
 							<td class="column-three"><input class="in-descri" type="text" value="<c:out value="${i.getDescripcion()}"/>" readonly/></td>
-							<td class="column-four"><input class="in-descri" type="text" value="<c:out value="${i.getUnidadMedidaVale().getUnidadMedida()}"/>" readonly/></td>
+							<td class="column-four"><input class="in-descri" type="text" value="<c:out value="${i.getUnidad()}"/>" readonly/></td>
 							<td class="column-five"><input class="in-descri" type="text" value="<c:out value="${i.getCantidad()}"/>" readonly/></td>
 							<td class="column-five"><input class="in-descri" type="text" value="<c:out value="${i.getValorUni()}"/>" readonly/></td>
 							<td class="column-six"><input class="in-descri" type="text" value="<c:out value="${i.getValor()}"/>" readonly/></td>
