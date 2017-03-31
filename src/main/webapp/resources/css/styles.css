@@ -1250,6 +1250,21 @@ form#salidaMaterialesForm td a.recibido:before{
     border-radius: 0px !important;
 }
 
+/* #modalRechazo{
+	height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #FF0385 !important;
+    width: 25% !important;
+    border: 18px solid !important;
+    border-color: white !important;
+    border-radius: 0px !important;
+} */
+
+.ocultar{
+	display : none;
+}
+
 #centroIncorrecto h4{
 	margin-top: 0px !important;
 }
@@ -1286,6 +1301,26 @@ form#salidaMaterialesForm td a.recibido:before{
 
 .cod{
 	width: 8% !important;
+}
+
+.rechazado{
+	margin-left: 20px !important;
+}
+
+#justificacionRechazo{
+	width: 100% !important;
+}
+
+#btnRecha{
+	margin-left: 35% !important;
+}
+
+#titJustifi{
+	margin-left: 35% !important;
+}
+
+.errorJust{
+	width: 85% !important;
 }
 
 .inputCentro{

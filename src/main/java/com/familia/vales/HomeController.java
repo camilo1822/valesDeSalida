@@ -1,5 +1,8 @@
 package com.familia.vales;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -12,8 +15,21 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Vector;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.Address;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.naming.AuthenticationException;
 import javax.naming.AuthenticationNotSupportedException;
 import javax.naming.Context;
@@ -24,6 +40,7 @@ import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +70,13 @@ import com.familia.vales.servicios.CorreoServicioImpl;
 
 import extranet_devoluciones_oc.familia.DT_FCMM;
 import extranet_devoluciones_oc.familia.SI_CONSULTA_MATERIALES_OUT_SProxy;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 /**
@@ -470,6 +494,124 @@ public class HomeController{
 				} catch (Exception e) {
 					System.out.println("error "+ e);
 				}
+	  }
+	  
+		public static void enviarPdf(String pdf,String cuerpo,HttpServletResponse response, String para, String de) throws MessagingException{
+				 Properties properties = new Properties();
+					properties.put("mail.smtp.host", "correoapps.familia.com.co");
+					properties.put("mail.smtp.localhost", "correoapps.familia.com.co");
+					properties.put("hostname", "correoapps.familia.com.co");
+					properties.put("mail.smtp.port", 25);
+
+					Session session = Session.getDefaultInstance(properties, null);
+					
+					BodyPart texto = new MimeBodyPart();
+		            texto.setText(cuerpo);
+		            BodyPart adjunto = new MimeBodyPart();
+		            adjunto.setDataHandler(
+		                new DataHandler(new FileDataSource(pdf)));
+		            adjunto.setFileName("vale.pdf");
+		            MimeMultipart multiParte = new MimeMultipart();
+		            multiParte.addBodyPart(texto);
+		            multiParte.addBodyPart(adjunto);
+		            
+					session.setDebug(true);
+
+					MimeMessage msg = new MimeMessage(session);
+
+					msg.setFrom(new InternetAddress(para));
+					Address toAddress = new InternetAddress(de);
+					msg.setRecipient(Message.RecipientType.TO, toAddress);
+
+					msg.setSubject("Vale rechazado", "ISO-8859-1");
+					msg.setSentDate(new Date());
+
+					msg.setContent(multiParte);
+
+					Transport transport = null;
+					try {
+						response.setContentType("text/html");
+						transport = session.getTransport("smtp");
+						transport.connect();
+						transport.sendMessage(msg, msg.getAllRecipients());
+					} catch (Exception e) {
+
+					} finally {
+						if (transport != null) {
+							transport.close();
+						}
+					}
+		        
+		}
+		
+		public void borrarRechazado(String id, HttpServletResponse response) throws IOException, ParseException {
+			String valeId=id;
+			Collection<DetalleVale> valle = detValRep.findAll();	  	          
+  			for (Iterator<DetalleVale> iterator = valle.iterator(); iterator.hasNext();) {
+  				DetalleVale detallVale = (DetalleVale) iterator.next();
+  				if(detallVale.getVale().getIdVale()==Integer.parseInt(valeId)){
+  					detValRep.delete(detallVale);
+  				}
+  			}
+  			Collection<OperacionVale> Opvale = opRep.findAll();  	          
+  			for (Iterator<OperacionVale> iterator = Opvale.iterator(); iterator.hasNext();) {
+  				OperacionVale opeVale = (OperacionVale) iterator.next();
+  				if(opeVale.getVale().getIdVale()==Integer.parseInt(valeId)){
+  					opRep.delete(opeVale);
+  				}
+  			}
+			Vale eliminado = valeRepository.findOne(Integer.parseInt(valeId));
+			valeRepository.delete(eliminado);
+   }
+		
+	  
+	  @RequestMapping("/rechazarVale")
+	  public void rechazarVale(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, ParseException{
+		  String valeId=request.getParameter("idValePdf");
+		  String cuerpo = request.getParameter("cuerpoMsj");
+		  String remitente = request.getParameter("Remitente");
+			Vale val = valeRepository.findOne(Integer.parseInt(valeId));
+	    	try{ 
+				
+				Date fecha1 = new Date();		  			
+				DateFormat dateFormat1 = new SimpleDateFormat("EEE, MMM d, yyyy");		  				
+				String fechaActu = dateFormat1.format(fecha1);
+	            
+	            ServletContext servletContext = request.getSession().getServletContext();
+	            String relativeWebPath = "resources/hellojasper.jrxml";
+	            String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
+	            String relativeWebPath2 = "resources/rechazado.pdf";
+	            String generado = servletContext.getRealPath(relativeWebPath2);
+	            System.out.println("generado   "+generado);
+	            JasperReport jasperReport = 
+	            JasperCompileManager.compileReport(absoluteDiskPath);	
+	            String titulo = "Reporte De Vale "+ valeId;
+	            Map<String, Object> parameters = new HashMap<String, Object>();
+	            parameters.put("ReportTitle", titulo);
+	            parameters.put("vales", val);
+	            parameters.put("FechaAct", fechaActu);  
+	            Collection<DetalleVale> valle = detValRep.findAll();
+	            ArrayList<DetalleVale> vall= new ArrayList<DetalleVale>();
+				for (Iterator<DetalleVale> iterator = valle.iterator(); iterator.hasNext();) {
+					DetalleVale detallVale = (DetalleVale) iterator.next();
+					if(detallVale.getVale().getIdVale()==Integer.parseInt(valeId)){
+						vall.add(detallVale);
+					}
+				}
+
+	          JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(vall);
+
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,beanColDataSource);  	     
+			JasperExportManager.exportReportToPdfFile(
+                      jasperPrint, generado); 
+			Usuario user = userRep.findOne(Integer.parseInt(valeId));
+			String correo = user.getEmail();
+			enviarPdf(generado,cuerpo,response,correo,remitente);
+			borrarRechazado(valeId,response);
+	        }
+	        catch (JRException e){
+	            e.printStackTrace();
+	        }
 	  }
 	  
 	  /*@RequestMapping("/firmaAlmacen")

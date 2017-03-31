@@ -288,7 +288,31 @@ function salidaAlm(){
 	}else{
 		__jquery(".obligatoriocorreoPorteria").css("display","block");
 	}
+}
 
+function rechazar(){
+	__jquery("#modalRechazo").attr("style","border: 18px solid white !important");
+	__jquery("#modalRechazo").modal();
+	__jquery(".ocultar").attr("style","display: block !important");
+}
+
+function rechazado(){
+	var numeroVale = jQuery("#valeNum").val();
+	var firma = jQuery("#almacenLogeado").val();
+	var correo = jQuery("#credencialCorreo").val();
+	var cuerpo = jQuery("#justificacionRechazo").val();
+	var remitente = jQuery("#credencialCorreo").val();
+	__jquery.ajax({
+		url : "/ValesDeSalida/rechazarVale",
+		data : {correoRem:correo,idValePdf : numeroVale, firmaAlmcen : firma, cuerpoMsj : cuerpo, Remitente : remitente},
+		type : "POST",
+		async : false,
+		success : function(evt) {
+			window.location="http://danae:8081/ValesDeSalida/lista";  	
+		}
+	});
+	__jquery("#modalRechazo").modal('toggle');
+	__jquery(".ocultar").attr("style","display: none !important");
 }
 
 function callToolTip(){

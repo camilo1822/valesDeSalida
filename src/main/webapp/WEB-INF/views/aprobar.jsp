@@ -341,6 +341,9 @@
 			<section class="buttons">
 				<br>
 				<input type="button" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlm()"/>
+				
+				
+				<input type="button" name="Rechazar" value="Rechazar" class="submit2 rechazado" onclick="rechazar()"/>
 				<!-- <input ng-if="salidaMaterialesForm2.$invalid" type="button" name="Guardar1" value="Aprobar" class="submit2 buttonSalida" ng-click="submitForm()"/>
 				<input ng-if="!salidaMaterialesForm2.$invalid" type="button" id="Guardar" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlm()" ng-click="mensajeExito()"/> -->
 			</section>
@@ -418,6 +421,24 @@
 	    </div>
 	  </div>
 	  <!-- Fin modal login -->
+	  
+	   <!-- Modal rechazado -->
+       <div class="modal fade" id="modalRechazo" role="dialog">
+         <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content ocultar">
+	      <div><h3 id="titJustifi">Justificación</h3></div>        
+         <div class="modal-header1 headerError errorJust">
+            <textarea name="justificacionRechazo" id="justificacionRechazo" maxlength="1000" rows="7"></textarea>
+         </div>
+         <div>
+         <input type="button" id="btnRecha" name="aceptarRechazo" value="Aceptar" class="submit2 rechazado" onclick="rechazado()"/>
+         </div>
+      </div>
+         </div>
+      </div>
+      <!-- Fin modal rechazado -->
       		    
 </body>
 
