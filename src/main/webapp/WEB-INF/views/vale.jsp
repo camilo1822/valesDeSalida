@@ -240,7 +240,10 @@
 							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getNoOc()}"/>" readonly/></td>
 							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getOcAd()}"/>" readonly/></td>
 							<td class="column-eleven"><input class="in-descri fec" type="date" value="<c:out value="${i.getFechaEsperada()}"/>" readonly/></td>
-							<td ng-if="data.prorroga=='Si'" class="column-eleven"><input id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec datepicker" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/></td>   				             				
+							<td ng-if="data.prorroga=='Si'" class="column-eleven">
+							<input ng-if="'<c:out value="${i.getFechaProrroga()}"/>' == ''" id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec datepicker" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/>
+							<input ng-if="'<c:out value="${i.getFechaProrroga()}"/>' != ''" id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec in-descri" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/>
+							</td>   				             				
               				<td ng-if="data.prorroga=='Si'"><input type="checkbox"  id="checkRecibido<c:out value="${i.getFila()}"/>" class="checkbox"  ng-model="chekRecibido<c:out value="${i.getFila()}"/>" ng-init="chekRecibido<c:out value="${i.getFila()}"/>=false" ng-change="mostrarFecha('${i.getFila()}','{{chekRecibido<c:out value="${i.getFila()}"/>}}')"/>
               				<a  ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''" class="recibido"></a>
               				<label ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''" for="checkRecibido<c:out value="${i.getFila()}"/>" class="elemento imgCheck imgCheckCond" id="checkRecibido<c:out value="${i.getFila()}"/>"/>
