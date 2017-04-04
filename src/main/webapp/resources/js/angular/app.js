@@ -202,6 +202,18 @@ validationApp.controller('mainController', function($scope,$filter,$window) {
 			$scope[nombre1]="";
 		}
 	};
+	
+	$scope.mostrarPort = function(x,y){					  
+		$scope.CurrentDate = new Date();	
+		var nombre = 'chekRecibidoPort'+x;
+		var nombre1 = 'fechaFinalPort'+x;
+		var nombre2 = 'fechaFinaliPort'+x;
+		if(y=="false"){
+			$scope[nombre1]="Si";
+		}else if($scope[nombre2]==''){
+			$scope[nombre1]="";
+		}
+	};
 		  
 	$scope.data = {
 			singleSelect: "No",

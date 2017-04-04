@@ -54,6 +54,8 @@ public class DetalleVale implements Serializable {
 
 	private double peso;
 
+	private String port;
+
 	private String recibido;
 
 	private String regresa;
@@ -188,6 +190,14 @@ public class DetalleVale implements Serializable {
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+
+	public String getPort() {
+		return this.port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
 	}
 
 	public String getRecibido() {

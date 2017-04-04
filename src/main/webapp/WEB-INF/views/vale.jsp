@@ -216,6 +216,7 @@
 							<th>Fecha esperada de regreso</th>
 							<th class ="prorrogaTh" ng-if="data.prorroga=='Si'">Fecha de prorroga</th>							
 							<th ng-if="data.prorroga=='Si'">Recibido</th>
+							<th ng-if="data.prorroga=='Si'">Recibido Porteria</th>
 							<th>Fecha final</th>	
 							<!-- <th ng-if="data.prorroga=='Si'">Aprobado</th> -->
 							<th id="campoAprobado">Aprobado</th>							
@@ -243,13 +244,27 @@
 							<td ng-if="data.prorroga=='Si'" class="column-eleven">
 							<input ng-if="'<c:out value="${i.getFechaProrroga()}"/>' == ''" id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec datepicker" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/>
 							<input ng-if="'<c:out value="${i.getFechaProrroga()}"/>' != ''" id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec in-descri" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/>
-							</td>   				             				
+							</td>  
+							 				             				
               				<td ng-if="data.prorroga=='Si'"><input type="checkbox"  id="checkRecibido<c:out value="${i.getFila()}"/>" class="checkbox"  ng-model="chekRecibido<c:out value="${i.getFila()}"/>" ng-init="chekRecibido<c:out value="${i.getFila()}"/>=false" ng-change="mostrarFecha('${i.getFila()}','{{chekRecibido<c:out value="${i.getFila()}"/>}}')"/>
               				<a  ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''" class="recibido"></a>
               				<label ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''" for="checkRecibido<c:out value="${i.getFila()}"/>" class="elemento imgCheck imgCheckCond" id="checkRecibido<c:out value="${i.getFila()}"/>"/>
               				</td>
+              				
+              				
+              				<td ng-if="data.prorroga=='Si'"><input type="checkbox"  id="checkRecibidoPort<c:out value="${i.getFila()}"/>" class="checkbox"  ng-model="chekRecibidoPort<c:out value="${i.getFila()}"/>" ng-init="chekRecibidoPort<c:out value="${i.getFila()}"/>=false" ng-change="mostrarPort('${i.getFila()}','{{chekRecibidoPort<c:out value="${i.getFila()}"/>}}')"/>
+              				<a  ng-if="'<c:out value="${i.getPort()}"/>' != ''" class="recibido"></a>
+              				<label ng-if="'<c:out value="${i.getPort()}"/>' == ''" for="checkRecibidoPort<c:out value="${i.getFila()}"/>" class="elemento imgCheck imgCheckCond" id="checkRecibidoPort<c:out value="${i.getFila()}"/>"/>
+              				</td>
+              				
+              				
+              				
 							<td class="column-six"><input id="fecFinal<c:out value="${i.getFila()}"/>" class="in-descri" type="text" name="fecFinal<c:out value="${i.getFila()}"/>" value="fechaFinal<c:out value="${i.getFila()}"/>" ng-model="fechaFinal<c:out value="${i.getFila()}"/>" ng-init="fechaFinal<c:out value="${i.getFila()}"/>='<c:out value="${i.getFechaFinal()}"/>'" readonly/>
 							<input  Style="Display:none" class="in-descri" type="text" name="fecFinali<c:out value="${i.getFila()}"/>" value="fechaFinali<c:out value="${i.getFila()}"/>" ng-model="fechaFinali<c:out value="${i.getFila()}"/>" ng-init="fechaFinali<c:out value="${i.getFila()}"/>='<c:out value="${i.getFechaFinal()}"/>'" readonly/>
+							</td>
+							
+							<td class="column-six" style="display:none"><input id="fecFinalPort<c:out value="${i.getFila()}"/>" class="in-descri" type="text" name="fecFinalPort<c:out value="${i.getFila()}"/>" value="fechaFinalPort<c:out value="${i.getFila()}"/>" ng-model="fechaFinalPort<c:out value="${i.getFila()}"/>" ng-init="fechaFinalPort<c:out value="${i.getFila()}"/>='<c:out value="${i.getPort()}"/>'" readonly/>
+							<input  Style="Display:none" class="in-descri" type="text" name="fecFinali<Port<c:out value="${i.getFila()}"/>" value="fechaFinaliPort<c:out value="${i.getFila()}"/>" ng-model="fechaFinaliPort<c:out value="${i.getFila()}"/>" ng-init="fechaFinaliPort<c:out value="${i.getFila()}"/>='<c:out value="${i.getPort()}"/>'" readonly/>
 							</td>
 							
 							

@@ -340,6 +340,7 @@ public class HomeController{
 					  			detVal.setFechaProrroga(null);
 					  			detVal.setFila(Integer.parseInt(fila));
 					  			detVal.setIdDetalleVale(tamm);
+					  			detVal.setPort("");
 					  			if(oc.equals("N/A")){
 					  				detVal.setNoOc(0);
 					  			}else{
@@ -721,6 +722,46 @@ public class HomeController{
 		        e.printStackTrace();
 		    }
 		  response.getWriter().println(alamcenistas);
+	  }
+	  
+	  @RequestMapping("/aprobadoresPorteriaLdap")
+	  public void aprobadoresPorteriaLdap(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
+		  String[] porteros=  {"SalidaPorteriaCaloto","SalidaPorteriaMedPpal","SalidaPorteriaMedSur","SalidaPorteriaCajicaNorte","SalidaPorteriaCajicaSur","SalidaPorteriaCajicaPpal","SalidaPorteriaCajicaZF","SalidaPorteriaRionegro","SalidaPorteriaEcuador","SalidaPorteriaArgentinaWilde","SalidaPorteriaRepDom"};
+		  String url = "ldap://familia.com.co:389";
+		  Hashtable<String, String> env = new Hashtable<String, String>();
+		  env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		  env.put(Context.PROVIDER_URL, url);
+		  env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		  env.put(Context.SECURITY_PRINCIPAL, "CN=Salmat Alma,OU=Medellin,OU=Colombia,OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co");
+		  env.put(Context.SECURITY_CREDENTIALS, "Inicio2016");
+		  ArrayList<String> listaPorteros=new ArrayList<>();
+		  try {
+			  for(int j=0;j <= porteros.length;j++){
+				String ruta="CN="+porteros[j];
+		        DirContext ctx = new InitialDirContext(env);		        
+		        NamingEnumeration<?> namingEnum = ctx.search("OU=Salma,OU=Aplicaciones,OU=Grupos,OU=Familia,DC=familia,DC=com,DC=co", ruta, new SearchControls());
+		        while (namingEnum.hasMore ()) {		        	
+		            SearchResult result = (SearchResult) namingEnum.next ();    
+		            Attributes attrs = result.getAttributes ();
+		            String miembros=attrs.get("member").toString();
+		            for(int i = 0;i < miembros.length(); i++){
+		            	int inicio = miembros.indexOf("CN"); 
+		            	int fin = miembros.indexOf(",",inicio);
+		         
+		            	if(inicio != -1){
+		            		String usuario=miembros.substring(inicio+3, fin);
+		            		listaPorteros.add("?"+usuario+"?");
+			            	miembros=miembros.substring(fin+1);
+		            	}
+		            	
+		            }
+		        }
+		        namingEnum.close();
+			  }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		  response.getWriter().println(listaPorteros);
 	  }
 	  
 	  public String obtenerCorreo(String cn){

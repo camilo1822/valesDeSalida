@@ -88,6 +88,7 @@ public class EditarController {
 		String idDetVales = request.getParameter("idFila");
 		String aprobado= request.getParameter("valApro");
 		String correo2= request.getParameter("Correo");
+		String aporbadoPort= request.getParameter("Port");
 		
 		this.contactenosServicio = new CorreoServicioImpl(); 
 	  	Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
@@ -123,6 +124,96 @@ public class EditarController {
 		  			if(fecFinal.equals("")){
 			  			detallVale.setFechaFinal(null);
 			  			detallVale.setRecibido("No");
+			  			detallVale.setPort(aporbadoPort);
+			  		}else{
+			  			detallVale.setRecibido("Si");
+			  			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				  		Date datew = formatter.parse(fecFinal);
+				  		DateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+				  		String datew1 = formatter1.format(datew);
+				  		Date datew2 = formatter1.parse(datew1);
+				  		detallVale.setFechaFinal(datew2);	
+				  		detallVale.setPort(aporbadoPort);
+				  		 try {
+				  			 	contactenosServicio.enviarCorreo(correo,correo2,numVale, PLANTILLA_SOLICITANTE, response);
+							} catch (Exception e) {
+								System.out.println("error al enviar: "+ e);
+							}
+			  		}
+					} catch (Exception e) {
+						System.out.println("Error : " + e);
+					}
+					if(aprobado!="" && aprobado!=null){					
+						detallVale.setAprobado(aprobado);
+					}
+					
+					
+		  			detValRep.save(detallVale);
+			 }
+			try {
+				String comp = detallVale.getAprobado();
+				if(comp.equals("Si")){
+			  		cont+=1;			  
+				}
+			} catch (Exception e) {
+				System.out.println("Error aprobado: "+e);
+			}
+			
+	  	}
+
+	  	if(cont == tam){
+	  		EstadoVale est = estadoValeRepository.findOne(2);
+			vale.setEstadoVale(est);
+			valeRepository.save(vale);
+
+	  	}
+   }
+	
+	@RequestMapping("/valeEditar2")
+  	public void valeEditar2(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
+		String fecFinal =  request.getParameter("fecFin");
+		String fecProrroga =  request.getParameter("fecPro");	
+		String numVale =  request.getParameter("idVal");
+		String idDetVales = request.getParameter("idFila");
+		String aprobado= request.getParameter("valApro");
+		String correo2= request.getParameter("Correo");
+		String aporbadoPort= request.getParameter("Port");
+		
+		this.contactenosServicio = new CorreoServicioImpl(); 
+	  	Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
+	  	OperacionVale opVal = operacionRep.findOne(Integer.parseInt(numVale));
+	  	String correo = opVal.getUsuario().getEmail();
+	  	Collection<DetalleVale> valle = detValRep.findAll();
+	  	Vector<DetalleVale> vall = new Vector<DetalleVale>();
+	  	for (Iterator<DetalleVale> iterator = valle.iterator(); iterator.hasNext();) {
+	  		DetalleVale detallVale = (DetalleVale) iterator.next();
+	  		if(detallVale.getVale().getIdVale()==vale.getIdVale()){
+	  			vall.add(detallVale);
+	  		}
+	  	}
+	  	int tam = vall.size();
+	  	int cont = 0;
+	  	for (Iterator<DetalleVale> iterator = vall.iterator(); iterator.hasNext();) {
+	  		DetalleVale detallVale = (DetalleVale) iterator.next();
+
+			if(detallVale.getFila()==Integer.parseInt(idDetVales)){
+				try {
+		  			if(fecProrroga.equals("")){
+			  			detallVale.setFechaProrroga(null);
+			  		}else{
+			  			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				  		Date datew = formatter.parse(fecProrroga);
+				  		detallVale.setFechaProrroga(datew);
+			  		}								
+				} catch (Exception e) {
+					System.out.println("Error : " + e);
+				}
+				
+				try {
+		  			if(fecFinal.equals("")){
+			  			detallVale.setFechaFinal(null);
+			  			detallVale.setRecibido("No");
+			  			detallVale.setPort(aporbadoPort);
 			  		}else{
 			  			detallVale.setRecibido("Si");
 			  			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -131,6 +222,7 @@ public class EditarController {
 				  		String datew1 = formatter1.format(datew);
 				  		Date datew2 = formatter1.parse(datew1);
 				  		detallVale.setFechaFinal(datew2);
+				  		detallVale.setPort(aporbadoPort);
 				  		 try {
 				  			 	contactenosServicio.enviarCorreo(correo,correo2,numVale, PLANTILLA_SOLICITANTE, response);
 							} catch (Exception e) {
