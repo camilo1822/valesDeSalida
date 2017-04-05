@@ -62,7 +62,7 @@ function onReadyPortal(__jquery) {
 	 
 	 if (__jquery("#formVale").length) {
 		 validarCorreo();
-		 listaPorteros();
+		 botonGuardar();
 	}
 
 	 if (__jquery("#valesSalidaForm1").length) {
@@ -151,6 +151,25 @@ function guardarMaterial(x) {
 	var correo = jQuery("#correoUsuario").val();
 	__jquery.ajax({
 		url : "/ValesDeSalida/valeEditar",
+		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero},
+		type : "POST",
+		async : false,
+		success : function(evt) {
+	
+		}
+	});
+}
+
+function guardarMaterial2(x) {
+	var fecProrroga = jQuery("#fecProrroga"+x).val();
+	var fecFinal = jQuery("#fecFinal"+x).val();
+	var portero = jQuery("#fecFinalPort"+x).val();
+	var idVales = jQuery("#valeNum").val();
+	var fila = jQuery("#fila"+x).val();
+	var apro = jQuery("#varRecibido"+x).val();
+	var correo = jQuery("#correoUsuario").val();
+	__jquery.ajax({
+		url : "/ValesDeSalida/valeEditar2",
 		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero},
 		type : "POST",
 		async : false,
@@ -385,7 +404,12 @@ function CallPicker(){
 	setTimeout(picker, 500);
 }
 
+function listaPorteros1(){
+	setTimeout(listaPorteros, 1000);
+}
+
 function picker(){
+	
 	__jquery( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy',minDate: new Date() });
 	var valor = __jquery("#datepicker").val();
 	if(valor != null){
@@ -1132,7 +1156,12 @@ function mailPorteria(){
 }
 
 function listaPorteros(){
-	var nombre=__jquery("#lugarPorteria").val();
+	var nombre=__jquery("#nameUsuario").val();
+	var ciclo = __jquery("#numFilass").text();
+	for(var i = 1;i<=ciclo;i++){
+ 		var nom = "checkRecibidoPort"+i;
+ 		document.getElementById(nom).disabled = true;
+ 	} 
 		__jquery.ajax({
 			url : "/ValesDeSalida/aprobadoresPorteriaLdap",
 			data : {},
@@ -1150,7 +1179,57 @@ function listaPorteros(){
 	            	}
 	        	}
 	        	for(var i = 1; i < d.length-1;i++){
-	        	
+	        		console.log(d[i]);
+	        		console.log(nombre);
+	        		if(nombre==d[i]){
+	        			__jquery("#conPort").attr("style","display: block !important");
+	    				__jquery("#sinPort").attr("style","display: none !important");
+	    				
+        		     	for(var i = 1;i<=ciclo;i++){
+        		     		var nom = "checkRecibidoPort"+i;
+        		     		document.getElementById(nom).disabled = false;
+        		     	}  
+	        			break;
+	        		}else{
+	        			__jquery("#conPort").attr("style","display: none !important");
+	        			
+	        		}
+	        	}
+	  
+			}
+		});
+}
+
+function botonGuardar(){
+	var nombre=__jquery("#nameUsuario").val();	
+		__jquery.ajax({
+			url : "/ValesDeSalida/aprobadoresPorteriaLdap",
+			data : {},
+			type : "POST",
+			async : false,
+			success : function(evt) {			
+				var r= evt.split("[").toString();
+	            var s= r.split("]").toString();	            
+	            var m= s.split("?");
+	            var d = m.unique();
+
+	            for(var j = 1; j < d.length;j++){
+	            	if(d[j].length<3){
+	            		d.splice(j,1);
+	            	}
+	        	}
+	        	for(var i = 1; i <= d.length-1;i++){
+	        		console.log(d[i]);
+	        		console.log(nombre);
+	        		if(nombre==d[i]){
+	        			__jquery("#conPort").attr("style","display: block !important");
+	    				__jquery("#sinPort").attr("style","display: none !important");
+	    				       		     
+	        			break;
+	        		}else{
+	        			__jquery("#conPort").attr("style","display: none !important");
+	        			
+	        		}
 	        	}
 	  
 			}

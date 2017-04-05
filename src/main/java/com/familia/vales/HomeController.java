@@ -737,6 +737,7 @@ public class HomeController{
 		  ArrayList<String> listaPorteros=new ArrayList<>();
 		  try {
 			  for(int j=0;j <= porteros.length;j++){
+				  System.out.println(porteros[j]);
 				String ruta="CN="+porteros[j];
 		        DirContext ctx = new InitialDirContext(env);		        
 		        NamingEnumeration<?> namingEnum = ctx.search("OU=Salma,OU=Aplicaciones,OU=Grupos,OU=Familia,DC=familia,DC=com,DC=co", ruta, new SearchControls());
@@ -937,6 +938,7 @@ public class HomeController{
 				            Attributes attrs1 = result1.getAttributes ();
 				            String ciudad = attrs1.get("ou").toString();
 				            ciudad=ciudad.substring(4);
+				            System.out.println("las ciudades son : xxxxxxxxxxxxx " + ciudad);
 				            String ruta2="OU="+ciudad+","+ruta1;
 				            NamingEnumeration<?> namingEnum2 = ctx.search(ruta2, "CN=*", new SearchControls());
 				            while(namingEnum2.hasMore ()){

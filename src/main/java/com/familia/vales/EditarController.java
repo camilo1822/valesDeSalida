@@ -15,8 +15,21 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Vector;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.mail.Address;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.directory.Attributes;
@@ -64,6 +77,8 @@ public class EditarController {
 	
 	private static final String PLANTILLA_SOLICITANTE = "com/familia/vales/correo/plantillaCorreoSolicitante.vm";
 
+	private static final String PLANTILLA_ALMACEN = "com/familia/vales/correo/plantillaAlmacen.vm";
+	
 	private CorreoServicio contactenosServicio;
 	
 	@Autowired
@@ -171,6 +186,7 @@ public class EditarController {
 	
 	@RequestMapping("/valeEditar2")
   	public void valeEditar2(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
+		System.out.println("metodo1");
 		String fecFinal =  request.getParameter("fecFin");
 		String fecProrroga =  request.getParameter("fecPro");	
 		String numVale =  request.getParameter("idVal");
@@ -178,26 +194,30 @@ public class EditarController {
 		String aprobado= request.getParameter("valApro");
 		String correo2= request.getParameter("Correo");
 		String aporbadoPort= request.getParameter("Port");
-		
-		this.contactenosServicio = new CorreoServicioImpl(); 
+		System.out.println("metodo2");
 	  	Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
 	  	OperacionVale opVal = operacionRep.findOne(Integer.parseInt(numVale));
 	  	String correo = opVal.getUsuario().getEmail();
 	  	Collection<DetalleVale> valle = detValRep.findAll();
 	  	Vector<DetalleVale> vall = new Vector<DetalleVale>();
+	  	System.out.println("metodo3");
 	  	for (Iterator<DetalleVale> iterator = valle.iterator(); iterator.hasNext();) {
+	  		System.out.println("metodo4");
 	  		DetalleVale detallVale = (DetalleVale) iterator.next();
 	  		if(detallVale.getVale().getIdVale()==vale.getIdVale()){
 	  			vall.add(detallVale);
 	  		}
 	  	}
+	  	System.out.println("metodo5");
 	  	int tam = vall.size();
 	  	int cont = 0;
 	  	for (Iterator<DetalleVale> iterator = vall.iterator(); iterator.hasNext();) {
 	  		DetalleVale detallVale = (DetalleVale) iterator.next();
-
+	  		System.out.println("metodo6");
 			if(detallVale.getFila()==Integer.parseInt(idDetVales)){
 				try {
+					System.out.println("metodo7");
+					System.out.println(fecProrroga);
 		  			if(fecProrroga.equals("")){
 			  			detallVale.setFechaProrroga(null);
 			  		}else{
@@ -206,15 +226,25 @@ public class EditarController {
 				  		detallVale.setFechaProrroga(datew);
 			  		}								
 				} catch (Exception e) {
+					System.out.println("error5");
 					System.out.println("Error : " + e);
 				}
 				
 				try {
+					System.out.println("metodo8");
 		  			if(fecFinal.equals("")){
 			  			detallVale.setFechaFinal(null);
 			  			detallVale.setRecibido("No");
 			  			detallVale.setPort(aporbadoPort);
+			  			System.out.println(aporbadoPort);
+			  			if(aporbadoPort.equals("Si")){
+			  				System.out.println("metodo9");
+			  				String[] almacenes = retornaAlmacenes(numVale);
+			  				String[] correos = obtenerCorreos(almacenes);
+			  				enviarCorreo(response,numVale,correos,correo2);
+			  			}
 			  		}else{
+			  			System.out.println("metodo8");
 			  			detallVale.setRecibido("Si");
 			  			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 				  		Date datew = formatter.parse(fecFinal);
@@ -223,13 +253,18 @@ public class EditarController {
 				  		Date datew2 = formatter1.parse(datew1);
 				  		detallVale.setFechaFinal(datew2);
 				  		detallVale.setPort(aporbadoPort);
-				  		 try {
-				  			 	contactenosServicio.enviarCorreo(correo,correo2,numVale, PLANTILLA_SOLICITANTE, response);
-							} catch (Exception e) {
-								System.out.println("error al enviar: "+ e);
-							}
+				  		System.out.println(aporbadoPort);
+				  		if(aporbadoPort.equals("Si")){
+				  			System.out.println("metodo9.1");
+			  				String[] almacenes = retornaAlmacenes(numVale);
+			  				System.out.println(almacenes);
+			  				System.out.println(almacenes.length);
+			  				String[] correos = obtenerCorreos(almacenes);
+			  				enviarCorreo(response,numVale,correos,correo2);
+			  			}
 			  		}
 					} catch (Exception e) {
+						System.out.println("erororororor");
 						System.out.println("Error : " + e);
 					}
 					if(aprobado!="" && aprobado!=null){					
@@ -257,6 +292,170 @@ public class EditarController {
 
 	  	}
    }
+	
+	public String[] retornaAlmacenes(String numVale) throws IOException, ParseException{
+		System.out.println("ponto1");
+		Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
+		String ciudad = vale.getPlanta();
+		String[] almacenes = null;
+		System.out.println(ciudad);
+		switch(ciudad){
+			case " Medellin": 
+				ArrayList<String> alamcenistas=new ArrayList<>();
+				alamcenistas = almacenistasLdap("AprobadoresMedellin");
+				almacenes=new String[alamcenistas.size()];
+				for(int i=0;i<alamcenistas.size();i++){
+					almacenes[i]=alamcenistas.get(i);
+				}				
+				break;
+		}
+		return almacenes;
+	}
+	
+	public String[] obtenerCorreos(String[] cn){
+		System.out.println("ponto2");
+		System.out.println(cn.length);
+		  String[] correo=new String[cn.length];
+		  System.out.println("ponto2.1.1");
+		  for(int i=0;i<correo.length;i++){
+			  System.out.println("ponto2.1");
+			  String unico="";
+			  String url = "ldap://familia.com.co:389";
+				Hashtable<String, String> env = new Hashtable<String, String>();
+				env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+				env.put(Context.PROVIDER_URL, url);
+				env.put(Context.SECURITY_AUTHENTICATION, "simple");
+				env.put(Context.SECURITY_PRINCIPAL, "CN=Salmat Alma,OU=Medellin,OU=Colombia,OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co");
+				env.put(Context.SECURITY_CREDENTIALS, "Inicio2016");
+				String ruta = "OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co";
+				  try {
+				        DirContext ctx = new InitialDirContext(env);
+				        NamingEnumeration<?> namingEnum = ctx.search(ruta, "OU=*", new SearchControls());
+				        while (namingEnum.hasMore ()) {	
+				            SearchResult result = (SearchResult) namingEnum.next ();    
+				            Attributes attrs = result.getAttributes ();
+				            String pais = attrs.get("ou").toString();
+				            pais=pais.substring(4);
+				            String ruta1="OU="+pais+","+ruta;
+				            NamingEnumeration<?> namingEnum1 = ctx.search(ruta1, "OU=*", new SearchControls());
+				            while(namingEnum1.hasMore ()){
+				            	SearchResult result1 = (SearchResult) namingEnum1.next ();
+					            Attributes attrs1 = result1.getAttributes ();
+					            String ciudad = attrs1.get("ou").toString();
+					            ciudad=ciudad.substring(4);
+					            String ruta2="OU="+ciudad+","+ruta1;
+					            String user="CN="+cn[i];
+					            NamingEnumeration<?> namingEnum2 = ctx.search(ruta2, user, new SearchControls());
+					            while(namingEnum2.hasMore ()){
+					            	SearchResult result2 = (SearchResult) namingEnum2.next ();    
+						            Attributes attrs2 = result2.getAttributes ();
+						            unico = attrs2.get("mail").toString();
+						            System.out.println(correo);
+					            }
+				            }
+				        }
+				      namingEnum.close();
+				    } catch (Exception e) {
+				    	System.out.println("ponto2 error");
+				        e.printStackTrace();
+				    }
+				  unico = unico.substring(6);
+				  correo[i]=unico;
+		  }
+		  
+		  return correo;
+	  }
+	
+	public ArrayList<String> almacenistasLdap(String lugar) throws IOException, ParseException {
+		  String ruta="CN="+lugar;
+		  System.out.println("ruta "+ruta);
+		  String url = "ldap://familia.com.co:389";
+		  Hashtable<String, String> env = new Hashtable<String, String>();
+		  env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+		  env.put(Context.PROVIDER_URL, url);
+		  env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		  env.put(Context.SECURITY_PRINCIPAL, "CN=Salmat Alma,OU=Medellin,OU=Colombia,OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co");
+		  env.put(Context.SECURITY_CREDENTIALS, "Inicio2016");
+		  ArrayList<String> alamcenistas=new ArrayList<>();
+		  try {
+		        DirContext ctx = new InitialDirContext(env);		 
+		        NamingEnumeration<?> namingEnum = ctx.search("OU=Salma,OU=Aplicaciones,OU=Grupos,OU=Familia,DC=familia,DC=com,DC=co", ruta, new SearchControls());
+		        while (namingEnum.hasMore ()) {		        	
+		            SearchResult result = (SearchResult) namingEnum.next ();    
+		            Attributes attrs = result.getAttributes ();
+		            String miembros=attrs.get("member").toString();
+		            for(int i = 0;i < miembros.length(); i++){
+		            	int inicio = miembros.indexOf("CN"); 
+		            	int fin = miembros.indexOf(",",inicio);
+		         
+		            	if(inicio != -1){
+		            		String usuario=miembros.substring(inicio+3, fin);
+			            	alamcenistas.add("?"+usuario+"?");
+			            	miembros=miembros.substring(fin+1);
+		            	}
+		            	
+		            }
+		        }
+		        namingEnum.close();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		  return alamcenistas;
+	  }
+	
+	
+	public static void enviarCorreo(HttpServletResponse response,String id, String[] para, String de) throws MessagingException{
+		System.out.println("ponto3");
+		String[] destinatarios = new String[3];
+		System.out.println("coreossssa ccccc "+para);
+	 	destinatarios[0]="juan.arboleda@pragma.com.co";
+	 	destinatarios[1]="juanc.arboleda@udea.edu.com";
+	 	destinatarios[2]="christian.fontalvo@sqasa.com"; 
+		Properties properties = new Properties();
+			properties.put("mail.smtp.host", "correoapps.familia.com.co");
+			properties.put("mail.smtp.localhost", "correoapps.familia.com.co");
+			properties.put("hostname", "correoapps.familia.com.co");
+			properties.put("mail.smtp.port", 25);
+
+			Session session = Session.getDefaultInstance(properties, null);
+			
+			BodyPart texto = new MimeBodyPart();
+           texto.setText("Coordial Saludo, llegó un material del vale "+id+" .Gracias");          
+           MimeMultipart multiParte = new MimeMultipart();
+           multiParte.addBodyPart(texto);
+           
+			session.setDebug(true);
+
+			MimeMessage msg = new MimeMessage(session);
+
+			 Address[] destinos = new Address[destinatarios.length];
+	            for(int i=0;i<destinos.length;i++){
+	                destinos[i]=new InternetAddress(destinatarios[i]);
+	            }
+	            msg.addRecipients(Message.RecipientType.TO,destinos);
+			Address toAddress = new InternetAddress(de);
+			msg.setRecipient(Message.RecipientType.TO, toAddress);
+
+			msg.setSubject("Vale rechazado", "ISO-8859-1");
+			msg.setSentDate(new Date());
+
+			msg.setContent(multiParte);
+
+			Transport transport = null;
+			try {
+				response.setContentType("text/html");
+				transport = session.getTransport("smtp");
+				transport.connect();
+				transport.sendMessage(msg, msg.getAllRecipients());
+			} catch (Exception e) {
+
+			} finally {
+				if (transport != null) {
+					transport.close();
+				}
+			}
+       
+}
 		
 
 	@RequestMapping("/verPdf")
