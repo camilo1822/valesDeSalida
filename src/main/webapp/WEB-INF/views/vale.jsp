@@ -282,8 +282,8 @@
 							<td ng-if="'${model.vale.getEstadoVale().getEstado()}'!='CERRADO'" class="column-fifteen">
 								
 								<a class="edite" title="Editar" onclick="CallPicker()" ng-click="editarMaterial()"></a>
-								<a id="sinPort" class="save" title="Guardar" onclick="guardarMaterial(${i.getFila()})" ng-click="mensajeExito()"></a>
-								<a id="conPort" class="save" title="Guardar" onclick="guardarMaterial2(${i.getFila()})" ng-click="mensajeExito()"></a>
+								<a id="sinPort<c:out value="${i.getFila()}"/>" class="save" title="Guardar" onclick="guardarMaterial(${i.getFila()})" ng-click="mensajeExito()"></a>
+								<a id="conPort<c:out value="${i.getFila()}"/>" class="save" title="Guardar" onclick="guardarMaterial2(${i.getFila()})" ng-click="mensajeExito()"></a>
 
 							</td>
 							</tr>

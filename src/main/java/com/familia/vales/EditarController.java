@@ -245,7 +245,7 @@ public class EditarController {
 				  		System.out.println(aporbadoPort);
 				  		if(aporbadoPort.equals("Si")){
 			  				String[] almacenes = retornaAlmacenes(numVale);
-			  				String[] correos = obtenerCorreos(almacenes);
+			  				String[] correos = obtenerCorreos(almacenes);			  				
 			  				enviarCorreos(response,numVale,correos,correo2);
 			  			}
 			  		}
@@ -300,7 +300,7 @@ public class EditarController {
 		  String[] correo=new String[cn.length];
 		  for(int i=0;i<correo.length;i++){
 			  if(cn[i].equals("SalMat Alma")){
-				  System.out.println("salmat alma");
+				  correo[i]="salmat@alma.com";
 			  }else{
 				  String unico="";
 				  String url = "ldap://familia.com.co:389";
@@ -328,14 +328,12 @@ public class EditarController {
 						            ciudad=ciudad.substring(4);
 						            String ruta2="OU="+ciudad+","+ruta1;
 						            String user="CN="+cn[i];
-						            System.out.println("usuario "+user);
 						            NamingEnumeration<?> namingEnum2 = ctx.search(ruta2, user, new SearchControls());
 						            while(namingEnum2.hasMore ()){
 						
 						            	SearchResult result2 = (SearchResult) namingEnum2.next ();   
 							            Attributes attrs2 = result2.getAttributes ();
-							            unico = attrs2.get("mail").toString();
-							            System.out.println("los coreooooos son: "+correo);
+							            unico = attrs2.get("mail").toString();						            
 						            }
 					            }
 					        }
@@ -343,7 +341,7 @@ public class EditarController {
 					    } catch (Exception e) {
 					        e.printStackTrace();
 					    }
-					  unico = unico.substring(6);
+					  unico = unico.substring(6);					  
 					  correo[i]=unico;
 			  }			  
 		  }

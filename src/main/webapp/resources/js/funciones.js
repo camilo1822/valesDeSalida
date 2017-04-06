@@ -1201,7 +1201,8 @@ function listaPorteros(){
 }
 
 function botonGuardar(){
-	var nombre=__jquery("#nameUsuario").val();	
+	var nombre=__jquery("#nameUsuario").val();
+	var ciclo = __jquery("#numFilass").text();
 		__jquery.ajax({
 			url : "/ValesDeSalida/aprobadoresPorteriaLdap",
 			data : {},
@@ -1219,15 +1220,27 @@ function botonGuardar(){
 	            	}
 	        	}
 	        	for(var i = 1; i <= d.length-1;i++){
+	        		console.log(d.length-1);
+	        		console.log(i);
 	        		console.log(d[i]);
-	        		console.log(nombre);
+	        		console.log(nombre.trim());
+	        		nombre=nombre.trim();
 	        		if(nombre==d[i]){
-	        			__jquery("#conPort").attr("style","display: block !important");
-	    				__jquery("#sinPort").attr("style","display: none !important");
-	    				       		     
+	        			
+	        			for(var l = 1;l<=ciclo;l++){
+	        		 		var nom = "#conPort"+l;
+	        		 		var nom1 = "#sinPort"+l;
+	        		 		__jquery(nom).attr("style","display: block !important");
+		    				__jquery(nom1).attr("style","display: none !important");
+	        		 	} 	    				       		     
 	        			break;
 	        		}else{
-	        			__jquery("#conPort").attr("style","display: none !important");
+	        			for(var m = 1;m<=ciclo;m++){
+	        		 		var nom = "#conPort"+m;
+	        		 		var nom1 = "#sinPort"+m;
+	        		 		__jquery(nom).attr("style","display: none !important");
+		    				__jquery(nom1).attr("style","display: block !important");
+	        		 	} 
 	        			
 	        		}
 	        	}
