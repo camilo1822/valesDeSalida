@@ -222,6 +222,7 @@ public class HomeController{
 			  			String correoAlmacen = obtenerCorreo(usuarioAlmacen);
 			  			System.out.println("correoAlmacen "+correoAlmacen);
 			  			String planta =  request.getParameter("plantaUsuario");
+			  			String almacenOrigen =  request.getParameter("almacenOrigen");
 			  			
 			  			DetalleVale detVal = new DetalleVale();
 			  			EstadoVale estVal = new EstadoVale();
@@ -247,6 +248,7 @@ public class HomeController{
 			  			vale.setDestinoProveedor(proveedor);
 			  			vale.setSenores(senores);
 			  			vale.setMaterialPiciz(piciz);
+			  			vale.setAlmacenOrigen(almacenOrigen);
 
 			  			if(motivo.equals("Reparación")){
 			  				vale.setMotivo("Reparación / Fabricación");

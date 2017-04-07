@@ -21,6 +21,9 @@ public class Vale implements Serializable {
 
 	private String almacen;
 
+	@Column(name="ALMACEN_ORIGEN")
+	private String almacenOrigen;
+
 	@Column(name="DESTINO_CIUDAD")
 	private String destinoCiudad;
 
@@ -82,11 +85,11 @@ public class Vale implements Serializable {
 
 	//bi-directional many-to-one association to DetalleVale
 	@OneToMany(mappedBy="vale")
-	private List<DetalleVale> detalleVale;
+	private List<DetalleVale> detalleVales;
 
 	//bi-directional many-to-one association to OperacionVale
 	@OneToMany(mappedBy="vale")
-	private List<OperacionVale> operacionVale;
+	private List<OperacionVale> operacionVales;
 
 	//bi-directional many-to-one association to EstadoVale
 	@ManyToOne
@@ -110,6 +113,14 @@ public class Vale implements Serializable {
 
 	public void setAlmacen(String almacen) {
 		this.almacen = almacen;
+	}
+
+	public String getAlmacenOrigen() {
+		return this.almacenOrigen;
+	}
+
+	public void setAlmacenOrigen(String almacenOrigen) {
+		this.almacenOrigen = almacenOrigen;
 	}
 
 	public String getDestinoCiudad() {
@@ -288,45 +299,45 @@ public class Vale implements Serializable {
 		this.solicitante = solicitante;
 	}
 
-	public List<DetalleVale> getDetalleVale() {
-		return this.detalleVale;
+	public List<DetalleVale> getDetalleVales() {
+		return this.detalleVales;
 	}
 
-	public void setDetalleVale(List<DetalleVale> detalleVale) {
-		this.detalleVale = detalleVale;
+	public void setDetalleVales(List<DetalleVale> detalleVales) {
+		this.detalleVales = detalleVales;
 	}
 
 	public DetalleVale addDetalleVale(DetalleVale detalleVale) {
-		getDetalleVale().add(detalleVale);
+		getDetalleVales().add(detalleVale);
 		detalleVale.setVale(this);
 
 		return detalleVale;
 	}
 
 	public DetalleVale removeDetalleVale(DetalleVale detalleVale) {
-		getDetalleVale().remove(detalleVale);
+		getDetalleVales().remove(detalleVale);
 		detalleVale.setVale(null);
 
 		return detalleVale;
 	}
 
-	public List<OperacionVale> getOperacionVale() {
-		return this.operacionVale;
+	public List<OperacionVale> getOperacionVales() {
+		return this.operacionVales;
 	}
 
-	public void setOperacionVale(List<OperacionVale> operacionVale) {
-		this.operacionVale = operacionVale;
+	public void setOperacionVales(List<OperacionVale> operacionVales) {
+		this.operacionVales = operacionVales;
 	}
 
 	public OperacionVale addOperacionVale(OperacionVale operacionVale) {
-		getOperacionVale().add(operacionVale);
+		getOperacionVales().add(operacionVale);
 		operacionVale.setVale(this);
 
 		return operacionVale;
 	}
 
 	public OperacionVale removeOperacionVale(OperacionVale operacionVale) {
-		getOperacionVale().remove(operacionVale);
+		getOperacionVales().remove(operacionVale);
 		operacionVale.setVale(null);
 
 		return operacionVale;

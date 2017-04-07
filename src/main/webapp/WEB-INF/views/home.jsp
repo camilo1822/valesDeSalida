@@ -464,7 +464,7 @@
                   
                   <div class="input-block col-quarter">
                    		<label class="label">Almacen:</label>
-	                   	<select class="lugarAprobante" id="lugarAprobante" ng-model="lugarAprobante" ng-change="listaAlmacenistas()" onchange="mostrarAlmacenistas()">
+	                   	<select class="lugarAprobante" name="almacenOrigen" id="lugarAprobante" ng-model="lugarAprobante" ng-change="listaAlmacenistas()" onchange="mostrarAlmacenistas()">
 						  <option value=""></option>
 						  <option value="AprobadoresMedellin">Medellín</option>
 						  <option value="AprobadoresCajica">Cajica</option>
