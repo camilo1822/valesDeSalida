@@ -191,9 +191,10 @@ public class HomeController{
 	 * Simply selects the home view to render by returning its name.
 	 * @throws IOException 
 	 * @throws ParseException 
+	 * @throws MessagingException 
 	 */
 	  @RequestMapping(value = "/vale", method = RequestMethod.POST)
-	   public ModelAndView vale(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model,final RedirectAttributes redirectAttributes) throws IOException, ParseException {		
+	   public ModelAndView vale(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model,final RedirectAttributes redirectAttributes) throws IOException, ParseException, MessagingException {		
 		  if(actualizado.equals("")){
 		  				String ciuDest = request.getParameter("ciudadContacto");
 		  				String numVale =  request.getParameter("idFiltrado");
@@ -418,6 +419,11 @@ public class HomeController{
 			  			
 			  			ModelAndView miMAV = new ModelAndView();
 		  		        miMAV.setViewName(redirect);
+		  		        if(piciz.equals("Si")){
+		  		        	String[] almacenes = retornaAlmacenes(numVale);
+			  				String[] correos = obtenerCorreos(almacenes);
+			  				enviarCorreos(response,numVale,correos,correo);
+		  		        }
 		  		        try {
 		  		        	contactenosServicio.enviarCorreo(correoAlmacen,correo,numVale, PLANTILLA_CONTACTENOS, response);
 						} catch (Exception e) {
@@ -430,6 +436,157 @@ public class HomeController{
 		  			}
 		  			
 	   }
+	  
+	  public String[] retornaAlmacenes(String numVale) throws IOException, ParseException{
+			Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
+			String ciudad = vale.getPlanta();
+			String almacen = "AprobadoresZFCajica";
+			String[] almacenes = null;
+			System.out.println(ciudad);
+			ArrayList<String> alamcenistas=new ArrayList<>();
+			alamcenistas = almacenistasLdap(almacen);
+			almacenes=new String[alamcenistas.size()];
+			for(int i=0;i<alamcenistas.size();i++){
+				almacenes[i]=alamcenistas.get(i);
+			}
+			return almacenes;
+		}
+		
+		public String[] obtenerCorreos(String[] cn){
+			  String[] correo=new String[cn.length];
+			  for(int i=0;i<correo.length;i++){
+				  if(cn[i].equals("SalMat Alma")){
+					  correo[i]="salmat@alma.com";
+				  }else{
+					  String unico="";
+					  String url = "ldap://familia.com.co:389";
+						Hashtable<String, String> env = new Hashtable<String, String>();
+						env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+						env.put(Context.PROVIDER_URL, url);
+						env.put(Context.SECURITY_AUTHENTICATION, "simple");
+						env.put(Context.SECURITY_PRINCIPAL, "CN=Salmat Alma,OU=Medellin,OU=Colombia,OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co");
+						env.put(Context.SECURITY_CREDENTIALS, "Inicio2016");
+						String ruta = "OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co";
+						  try {
+						        DirContext ctx = new InitialDirContext(env);
+						        NamingEnumeration<?> namingEnum = ctx.search(ruta, "OU=*", new SearchControls());
+						        while (namingEnum.hasMore ()) {	
+						            SearchResult result = (SearchResult) namingEnum.next ();    
+						            Attributes attrs = result.getAttributes ();
+						            String pais = attrs.get("ou").toString();
+						            pais=pais.substring(4);
+						            String ruta1="OU="+pais+","+ruta;
+						            NamingEnumeration<?> namingEnum1 = ctx.search(ruta1, "OU=*", new SearchControls());
+						            while(namingEnum1.hasMore ()){
+						            	SearchResult result1 = (SearchResult) namingEnum1.next ();
+							            Attributes attrs1 = result1.getAttributes ();
+							            String ciudad = attrs1.get("ou").toString();
+							            ciudad=ciudad.substring(4);
+							            String ruta2="OU="+ciudad+","+ruta1;
+							            String user="CN="+cn[i];
+							            NamingEnumeration<?> namingEnum2 = ctx.search(ruta2, user, new SearchControls());
+							            while(namingEnum2.hasMore ()){
+							
+							            	SearchResult result2 = (SearchResult) namingEnum2.next ();   
+								            Attributes attrs2 = result2.getAttributes ();
+								            unico = attrs2.get("mail").toString();						            
+							            }
+						            }
+						        }
+						      namingEnum.close();
+						    } catch (Exception e) {
+						        e.printStackTrace();
+						    }
+						  unico = unico.substring(6);					  
+						  correo[i]=unico;
+				  }			  
+			  }
+			  
+			  System.out.println(correo);
+			  return correo;
+		  }
+		
+		public static void enviarCorreos(HttpServletResponse response,String id, String[] para, String de) throws MessagingException{
+			Properties properties = new Properties();
+				properties.put("mail.smtp.host", "correoapps.familia.com.co");
+				properties.put("mail.smtp.localhost", "correoapps.familia.com.co");
+				properties.put("hostname", "correoapps.familia.com.co");
+				properties.put("mail.smtp.port", 25);
+
+				Session session = Session.getDefaultInstance(properties, null);
+				
+				BodyPart texto = new MimeBodyPart();
+				String url="http://danae:8081/ValesDeSalida/aprobar?valorFiltrado=$datosPlantilla"+id;
+	           texto.setText("Tiene una solicitud de salida de materiales en proceso para su validación y respectiva aprobación, acceda a ella dando clic en el siguiente link \n"+url);          
+	           MimeMultipart multiParte = new MimeMultipart();
+	           multiParte.addBodyPart(texto);
+	           
+				session.setDebug(true);
+
+				MimeMessage msg = new MimeMessage(session);
+				msg.setFrom(new InternetAddress(de));
+				 Address[] destinos = new Address[para.length];
+		            for(int i=0;i<destinos.length;i++){
+		                destinos[i]=new InternetAddress(para[i]);
+		            }
+		            msg.addRecipients(Message.RecipientType.TO,destinos);
+				msg.setSubject("Vale entrante", "ISO-8859-1");
+				msg.setSentDate(new Date());
+
+				msg.setContent(multiParte);
+
+				Transport transport = null;
+				try {
+					response.setContentType("text/html");
+					transport = session.getTransport("smtp");
+					transport.connect();
+					transport.sendMessage(msg, msg.getAllRecipients());
+				} catch (Exception e) {
+
+				} finally {
+					if (transport != null) {
+						transport.close();
+					}
+				}
+	       
+	}
+		
+		public ArrayList<String> almacenistasLdap(String lugar) throws IOException, ParseException {
+			  String ruta="CN="+lugar;
+			  System.out.println("ruta "+ruta);
+			  String url = "ldap://familia.com.co:389";
+			  Hashtable<String, String> env = new Hashtable<String, String>();
+			  env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+			  env.put(Context.PROVIDER_URL, url);
+			  env.put(Context.SECURITY_AUTHENTICATION, "simple");
+			  env.put(Context.SECURITY_PRINCIPAL, "CN=Salmat Alma,OU=Medellin,OU=Colombia,OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co");
+			  env.put(Context.SECURITY_CREDENTIALS, "Inicio2016");
+			  ArrayList<String> alamcenistas=new ArrayList<>();
+			  try {
+			        DirContext ctx = new InitialDirContext(env);		 
+			        NamingEnumeration<?> namingEnum = ctx.search("OU=Salma,OU=Aplicaciones,OU=Grupos,OU=Familia,DC=familia,DC=com,DC=co", ruta, new SearchControls());
+			        while (namingEnum.hasMore ()) {		        	
+			            SearchResult result = (SearchResult) namingEnum.next ();    
+			            Attributes attrs = result.getAttributes ();
+			            String miembros=attrs.get("member").toString();
+			            for(int i = 0;i < miembros.length(); i++){
+			            	int inicio = miembros.indexOf("CN"); 
+			            	int fin = miembros.indexOf(",",inicio);
+			         
+			            	if(inicio != -1){
+			            		String usuario=miembros.substring(inicio+3, fin);
+				            	alamcenistas.add(usuario);
+				            	miembros=miembros.substring(fin+1);
+			            	}
+			            	
+			            }
+			        }
+			        namingEnum.close();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			    }
+			  return alamcenistas;
+		  }
 	  
 	  @RequestMapping(value = "/valeSaliente", method = RequestMethod.GET)
 	   public ModelAndView valeSaliente(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
