@@ -76,7 +76,7 @@
 						
 					</div> 
 		</section>
-		<form id="salidaMaterialesForm2" name="salidaMaterialesForm" method="post" action="aprobar">
+		<form id="salidaMaterialesForm2" name="salidaMaterialesForm" method="post" action="aprobarJ">
 			<section>
 				<div class="form-row" id="formularioLoginAprobar">
 					
@@ -302,17 +302,39 @@
 						<label class="label">Solicitante:</label>
 						<input type="text" value="${model.vale.getSolicitante()}"name="solicitante" readonly/>
 					</div>
-					<div class="input-block col-quarter">
+					<!-- <div class="input-block col-quarter">
 						<label class="label">Almac&eacute;n:</label>
 						<input type="text" name="almacen" id="almacenLogeado" readonly/>
-					</div>
+					</div> -->
+					
+					<div class="input-block col-quarter">
+                   		<label class="label">Almacen:</label>
+	                   	<select class="lugarAprobante" name="almacenOrigen" id="lugarAprobante" ng-model="lugarAprobante" ng-change="listaAlmacenistas()" onchange="mostrarAlmacenistas()">
+						  <option value=""></option>
+						  <option value="AprobadoresMedellin">Medellín</option>
+						  <option value="AprobadoresCajica">Cajica</option>
+						  <option value="AprobadoresZFCajica">ZFCajica</option>
+						  <option value="AprobadoresRionegro">Rionegro</option>
+						  <option value="AprobadoresCauca">Cauca</option>
+						  <option value="AprobadoresPacifico">Pacífico</option>
+						  <option value="AprobadoresEcuador">Ecuador</option>
+						  <option value="AprobadoresArgentina">Argentina</option>
+						  <option value="AprobadoresRepDom">Republica Dominicana</option>
+						</select>
+                  </div>
+                  
+                  <div class="input-block col-quarter">
+                     <label class="label">Correo del Almac&eacute;n:</label>
+                     <input class="obligatoriedad" type="text"  id="correoAlmacen" name="correoAlmacen"/>
+                     <p class="obligatorio obligatoriocorreoAlmacen" style="display:none">Obligatorio</p>
+                  </div>
 
 					<div class="input-block col-quarter">
 						<label class="label">Retira:</label>
 						<input type="text" name="retira" value="${model.vale.getRetiraNombre()}" readonly/>
 					</div>
 					
-					<div class="input-block col-quarter">
+					<!-- <div class="input-block col-quarter">
                    		<label class="label">Porteria:</label>
 	                   	<select class="lugarPorteria" id="lugarPorteria" ng-model="lugarPorteria" ng-change="listaAlmacenistas()" onchange="mailPorteria()">
 						  <option value=""></option>
@@ -334,13 +356,13 @@
                      <label class="label">Correo Porteria:</label>
                      <input class="correoObligatorio" id="correoObligatorio" type="text" name="correoPorteria" id="correoPorteria"/>
                      <p class="obligatorio obligatoriocorreoPorteria" style="display:none">Obligatorio</p>
-                    <!--  <p class="obligatorio" ng-show="(salidaMaterialesForm2.correoPorteria.$invalid && show) || (salidaMaterialesForm2.correoPorteria.$invalid && salidaMaterialesForm2.correoPorteria.$touched)">Obligatorio</p> -->
-                  </div>
+                     <p class="obligatorio" ng-show="(salidaMaterialesForm2.correoPorteria.$invalid && show) || (salidaMaterialesForm2.correoPorteria.$invalid && salidaMaterialesForm2.correoPorteria.$touched)">Obligatorio</p>
+                  </div> -->
 				</div>
 			</section>
 			<section class="buttons">
 				<br>
-				<input type="button" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlm()"/>
+				<input type="button" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlmJ()"/>
 				
 				
 				<input type="button" name="Rechazar" value="Rechazar" class="submit2 rechazado" onclick="rechazar()"/>
@@ -380,12 +402,13 @@
       </div>
          </div>
       </div>
-       <!-- Modal lista Aprobadores -->
+      
+      <!-- Modal lista Aprobadores -->
       <div modal="showModal4" close="cancel()" class="modalLista" >
          <div class="modal-header modal-header2">
-                     <h4>Porterias:</h4>
+                     <h4>Almacenistas:</h4>
          </div>
-         <div class="listaPorteros" style="overflow-y:scroll">
+         <div class="listaAlmacenistas" style="overflow-y:scroll">
             
          </div>
          <div class="modal-footer">
@@ -393,6 +416,7 @@
          </div>
       </div>
       <!-- Fina Aprobadores -->
+      
         <!-- Modal -->
 	  <div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
@@ -434,7 +458,7 @@
          </div>
          <div>
          <input type="button" id="btnRecha" name="aceptarRechazo" value="Aceptar" class="submit2 rechazado" onclick="rechazado()"/>
-        <input type="button" id="btnRecha" name="aceptarRechazo" value="Cancelar" class="submit2 rechazado" onclick="cerrarModalRechazado()"/>
+         <input type="button" id="btnRecha" name="aceptarRechazo" value="Cancelar" class="submit2 rechazado" onclick="cerrarModalRechazado()"/>
          </div>
       </div>
          </div>

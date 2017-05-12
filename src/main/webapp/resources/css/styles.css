@@ -633,7 +633,7 @@ form#salidaMaterialesForm .search-empresa{
 }
 
 table.tabla-materiales td:NTH-CHILD(3) input{
-	width: 75% !important;
+	width: 70% !important;
 }
 
 #contenidoDescrip {
@@ -1312,7 +1312,7 @@ form#salidaMaterialesForm td a.recibido:before{
 }
 
 #btnRecha{
-	margin-left: 35% !important;
+	margin-left: 15% !important;
 }
 
 #titJustifi{

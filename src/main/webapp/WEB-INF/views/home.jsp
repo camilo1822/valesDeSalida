@@ -466,15 +466,15 @@
                    		<label class="label">Almacen:</label>
 	                   	<select class="lugarAprobante" name="almacenOrigen" id="lugarAprobante" ng-model="lugarAprobante" ng-change="listaAlmacenistas()" onchange="mostrarAlmacenistas()">
 						  <option value=""></option>
-						  <option value="AprobadoresMedellin">Medellín</option>
-						  <option value="AprobadoresCajica">Cajica</option>
-						  <option value="AprobadoresZFCajica">ZFCajica</option>
-						  <option value="AprobadoresRionegro">Rionegro</option>
-						  <option value="AprobadoresCauca">Cauca</option>
-						  <option value="AprobadoresPacifico">Pacífico</option>
-						  <option value="AprobadoresEcuador">Ecuador</option>
-						  <option value="AprobadoresArgentina">Argentina</option>
-						  <option value="AprobadoresRepDom">Republica Dominicana</option>
+						  <option value="Aprobación Jefe Salma Medellín">Medellín</option>
+						  <option value="Aprobación Jefe Salma Cajicá">Cajica</option>
+						  <option value="Aprobación Jefe Salma ZF Cajicá">ZFCajica</option>
+						  <option value="Aprobación Jefe Salma Rionegro">Rionegro</option>
+						  <option value="Aprobación Jefe Salma Cauca">Cauca</option>
+						  <option value="Aprobación Jefe Salma Pacífico">Pacífico</option>
+						  <option value="Aprobación Jefe Salma Ecuador">Ecuador</option>
+						  <option value="Aprobación Jefe Salma Argentina">Argentina</option>
+						  <option value="Aprobación Jefe Salma Republica Dominicana">Republica Dominicana</option>
 						</select>
                   </div>
                   

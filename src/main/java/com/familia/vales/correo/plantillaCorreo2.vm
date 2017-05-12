@@ -3,7 +3,7 @@
 	</div>	
 	<div class="bodymsg" style="float:left; width: 91.7%; padding: 10px 25px;">
 		<p style="font-weight: bold; font-size: 16px">Buenos días.</p>
-		<p>Tiene una solicitud de salida de materiales en proceso para su validación y respectiva aprobación, acceda a ella dando clic <a href="http://danae:8081/ValesDeSalida/aprobarJ?valorFiltrado=$datosPlantilla">aquí</a>.
+		<p>Tiene una solicitud de salida de materiales en proceso para su validación y respectiva aprobación, acceda a ella dando clic <a href="http://danae:8081/ValesDeSalida/aprobar?valorFiltrado=$datosPlantilla">aquí</a>.
 		</p>
 		<p>Cordial saludo </p>
 	</div>

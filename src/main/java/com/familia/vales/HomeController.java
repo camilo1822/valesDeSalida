@@ -1,8 +1,5 @@
 package com.familia.vales;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -87,6 +84,7 @@ public class HomeController{
 	
 	private static final String PLANTILLA_CONTACTENOS = "com/familia/vales/correo/plantillaCorreo.vm";
 	private static final String PLANTILLA_PORTERIA = "com/familia/vales/correo/plantillaCorreoPortero.vm";
+	private static final String PLANTILLA_ALMACEN = "com/familia/vales/correo/plantillaCorreo2.vm";
 	private CorreoServicio contactenosServicio;		
 	private String actualizado;
 	
@@ -651,6 +649,25 @@ public class HomeController{
 			this.contactenosServicio = new CorreoServicioImpl(); 
 			try {
 		        	contactenosServicio.enviarCorreo(correo,correoRemitente,numVale, PLANTILLA_PORTERIA, response);
+				} catch (Exception e) {
+					System.out.println("error "+ e);
+				}
+	  }
+	  
+	  @RequestMapping("/correoJefe")
+	  public void correoJefe(HttpServletRequest request, HttpServletResponse response){
+		  String numVale =  request.getParameter("idValePdf");		
+		  String correoRemitente = request.getParameter("correoRem");		
+		  	String correoPort = request.getParameter("correoPort");
+		  	String firma = request.getParameter("firmaAlmcen");	
+			
+		  	String correo = obtenerCorreo(correoPort);
+			Vale val = valeRepository.findOne(Integer.parseInt(numVale));
+			val.setAlmacen(firma);
+			valeRepository.save(val);	
+			this.contactenosServicio = new CorreoServicioImpl(); 
+			try {
+		        	contactenosServicio.enviarCorreo(correo,correoRemitente,numVale, PLANTILLA_ALMACEN, response);
 				} catch (Exception e) {
 					System.out.println("error "+ e);
 				}
@@ -1237,6 +1254,46 @@ public class HomeController{
     miMAV.addObject("model",miModelo);
 
      return miMAV;
+			
+	   }
+	  
+	  @RequestMapping(value = "/aprobarJ", method = RequestMethod.GET)
+	   public ModelAndView aprobarJ(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
+		String prueba = request.getParameter("valorFiltrado");
+		Vale val = valeRepository.findOne(Integer.parseInt(prueba));
+		Vector<DetalleVale> vecDetalle = new Vector<DetalleVale>();
+		Collection<DetalleVale> detVal = detValRep.findAll();
+		int numFila = 0;
+		Date fecHoy = new Date();
+		DateFormat formatterHoy = new SimpleDateFormat("yyyy-MM-dd");
+		String datewHoy = formatterHoy.format(fecHoy);
+		
+		for (Iterator<DetalleVale> iterator = detVal.iterator(); iterator.hasNext();) {
+			DetalleVale DetVale = (DetalleVale) iterator.next();
+			if(DetVale.getVale().getIdVale()==Integer.parseInt(prueba)){
+				vecDetalle.add(DetVale);
+				numFila+=1;
+			}
+		}
+		
+		Date date = new Date();	
+		DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");		  			
+		String fecha = dateFormat.format(date);
+		
+		Map<String, Object> miModelo = new HashMap<String, Object>();
+		/*miModelo.put("credencial",Logeado);
+		miModelo.put("credencialCorreo",CorreoLogeado);*/
+		miModelo.put("fechaHoy", datewHoy);
+		miModelo.put("fecha", fecha);
+		miModelo.put("numFila", numFila);
+		miModelo.put("vale", val);
+		miModelo.put("detVales", vecDetalle);
+		miModelo.put("prueba", prueba);
+		ModelAndView miMAV = new ModelAndView();
+   miMAV.setViewName("aprobarJ");
+   miMAV.addObject("model",miModelo);
+
+    return miMAV;
 			
 	   }
 }

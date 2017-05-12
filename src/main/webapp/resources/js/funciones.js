@@ -330,6 +330,28 @@ function salidaAlm(){
 	}
 }
 
+function salidaAlmJ(){
+	var obligatorio = jQuery("#correoAlmacen").val();
+	if(obligatorio != ''){
+		var numeroVale = jQuery("#valeNum").val();
+		var firma = jQuery("#almacenLogeado").val();
+		var correo = jQuery("#credencialCorreo").val();
+		__jquery.ajax({
+			url : "/ValesDeSalida/correoJefe",
+			data : {correoRem:correo,correoPort : obligatorio ,idValePdf : numeroVale, firmaAlmcen : firma},
+			type : "POST",
+			async : false,
+			success : function(evt) {
+			        	
+			}
+		});
+		__jquery("#modalPorteria").attr("style","border: 18px solid white !important");
+		__jquery("#modalPorteria").modal();
+	}else{
+		__jquery(".obligatoriocorreoPorteria").css("display","block");
+	}
+}
+
 function rechazar(){
 	__jquery("#modalRechazo").attr("style","border: 18px solid white !important");
 	__jquery("#modalRechazo").modal();
@@ -888,6 +910,10 @@ function cerrarModalIncorrecto(){
 
 function cerrarModalPorteria(){
 	__jquery("#modalPorteria").modal('toggle');
+}
+
+function cerrarModalRechazado(){
+	__jquery("#modalRechazo").modal('toggle');
 }
 
 function buscarMaterial(){
