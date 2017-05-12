@@ -223,6 +223,7 @@ public class HomeController{
 			  			String planta =  request.getParameter("plantaUsuario");
 			  			String almacenOrigen =  request.getParameter("almacenOrigen");
 			  			
+			  			
 			  			DetalleVale detVal = new DetalleVale();
 			  			EstadoVale estVal = new EstadoVale();
 			  			OperacionVale oprVal = new OperacionVale();			  			
@@ -247,7 +248,27 @@ public class HomeController{
 			  			vale.setDestinoProveedor(proveedor);
 			  			vale.setSenores(senores);
 			  			vale.setMaterialPiciz(piciz);
-			  			vale.setAlmacenOrigen(almacenOrigen);
+			  			
+			  			switch(almacenOrigen){
+			  			case "Aprobación Jefe Salma Medellín": vale.setAlmacenOrigen("AprobadoresMedellin");
+			  				break;
+			  			case "Aprobación Jefe Salma Cajicá": vale.setAlmacenOrigen("AprobadoresCajica");
+			  				break;
+			  			case "Aprobación Jefe Salma ZF Cajicá": vale.setAlmacenOrigen("AprobadoresZFCajica");
+			  				break;
+			  			case "Aprobación Jefe Salma Rionegro": vale.setAlmacenOrigen("AprobadoresRionegro");
+			  				break;
+			  			case "Aprobación Jefe Salma Cauca": vale.setAlmacenOrigen("AprobadoresCauca");
+			  				break;
+			  			case "Aprobación Jefe Salma Pacífico": vale.setAlmacenOrigen("AprobadoresPacifico");
+			  				break;
+			  			case "Aprobación Jefe Salma Ecuador": vale.setAlmacenOrigen("AprobadoresEcuador");
+			  				break;
+			  			case "Aprobación Jefe Salma Argentina": vale.setAlmacenOrigen("AprobadoresArgentina");
+			  				break;
+			  			case "Aprobación Jefe Salma Republica Dominicana": vale.setAlmacenOrigen("AprobadoresRepDom");
+			  				break;
+			  			}
 
 			  			if(motivo.equals("Reparación")){
 			  				vale.setMotivo("Reparación / Fabricación");
