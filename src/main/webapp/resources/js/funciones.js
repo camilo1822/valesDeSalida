@@ -358,6 +358,16 @@ function rechazar(){
 	__jquery(".ocultar").attr("style","display: block !important");
 }
 
+function coment(x){
+	__jquery("#modalRechazo").attr("style","border: 18px solid white !important");
+	__jquery("#modalRechazo").modal();
+	__jquery(".ocultar").attr("style","display: block !important");
+	document.getElementById("idComentario").value=x;
+	var id = "#textCom"+x;
+	var comentario=jQuery(id).val();
+	document.getElementById("justificacionRechazo").value=comentario;
+}
+
 function rechazado(){
 	var numeroVale = jQuery("#valeNum").val();
 	var firma = jQuery("#almacenLogeado").val();
@@ -375,6 +385,24 @@ function rechazado(){
 	});
 	__jquery("#modalRechazo").modal('toggle');
 	__jquery(".ocultar").attr("style","display: none !important");
+}
+
+function envComentario(){
+	var x = jQuery("#idComentario").val();
+	var idVales = jQuery("#valeNum").val();
+	var fila = jQuery("#fila"+x).val();
+	var com = jQuery("#justificacionRechazo").val();
+	var nom="textCom"+x;
+	document.getElementById(nom).value=com;
+	__jquery.ajax({
+		url : "/ValesDeSalida/saveComent",
+		data : {idVal : idVales, idFila : fila, comentario : com},
+		type : "POST",
+		async : false,
+		success : function(evt) {
+			__jquery("#modalRechazo").modal('toggle');
+		}
+	});
 }
 
 function callToolTip(){

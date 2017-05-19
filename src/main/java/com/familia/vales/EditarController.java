@@ -278,6 +278,31 @@ public class EditarController {
 	  	}
    }
 	
+	@RequestMapping("/saveComent")
+  	public void saveComent(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {;	
+		String numVale =  request.getParameter("idVal");
+		String idDetVales = request.getParameter("idFila");
+		String comentario= request.getParameter("comentario");
+		
+	  	Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
+	  	Collection<DetalleVale> valle = detValRep.findAll();
+	  	Vector<DetalleVale> vall = new Vector<DetalleVale>();
+	  	for (Iterator<DetalleVale> iterator = valle.iterator(); iterator.hasNext();) {
+	  		DetalleVale detallVale = (DetalleVale) iterator.next();
+	  		if(detallVale.getVale().getIdVale()==vale.getIdVale()){
+	  			vall.add(detallVale);
+	  		}
+	  	}
+	  	for (Iterator<DetalleVale> iterator = vall.iterator(); iterator.hasNext();) {
+	  		DetalleVale detallVale = (DetalleVale) iterator.next();
+
+			if(detallVale.getFila()==Integer.parseInt(idDetVales)){
+				detallVale.setComentario(comentario);
+		  		detValRep.save(detallVale);
+			 }			
+	  	}
+   }
+	
 	public String[] retornaAlmacenes(String numVale) throws IOException, ParseException{
 		Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
 		String ciudad = vale.getPlanta();

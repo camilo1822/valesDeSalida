@@ -363,6 +363,7 @@ public class HomeController{
 					  			detVal.setFila(Integer.parseInt(fila));
 					  			detVal.setIdDetalleVale(tamm);
 					  			detVal.setPort("");
+					  			detVal.setComentario("");
 					  			if(oc.equals("N/A")){
 					  				detVal.setNoOc(0);
 					  			}else{

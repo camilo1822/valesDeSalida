@@ -27,6 +27,8 @@ public class DetalleVale implements Serializable {
 
 	private String codigo;
 
+	private String comentario;
+
 	private String descripcion;
 
 	@Temporal(TemporalType.DATE)
@@ -118,6 +120,14 @@ public class DetalleVale implements Serializable {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getComentario() {
+		return this.comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 	public String getDescripcion() {

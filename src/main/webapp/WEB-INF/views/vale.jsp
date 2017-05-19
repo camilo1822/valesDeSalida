@@ -214,6 +214,7 @@
 							<th>OC servicio</th>
 							<th>OC adquisici&oacute;n</th>
 							<th>Fecha esperada de regreso</th>
+							<th ng-if="data.prorroga=='Si'">Comentario</th>
 							<th class ="prorrogaTh" ng-if="data.prorroga=='Si'">Fecha de prorroga</th>							
 							<th ng-if="data.prorroga=='Si'">Recibido</th>
 							<th ng-if="data.prorroga=='Si'">Recibido Porteria</th>
@@ -241,6 +242,11 @@
 							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getNoOc()}"/>" readonly/></td>
 							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getOcAd()}"/>" readonly/></td>
 							<td class="column-eleven"><input class="in-descri fec" type="date" value="<c:out value="${i.getFechaEsperada()}"/>" readonly/></td>
+							
+							<td ng-if="data.prorroga=='Si'"><input type="button"  id="botCom<c:out value="${i.getFila()}"/>" class=""  ng-model="botCom<c:out value="${i.getFila()}"/>" onclick="coment('${i.getFila()}')"/>
+              				<textarea id="textCom<c:out value="${i.getFila()}"/>" rows="" cols="" Style="display:none">${i.getComentario()}</textarea>
+              				</td>
+							
 							<td ng-if="data.prorroga=='Si'" class="column-eleven">
 							<input ng-if="'<c:out value="${i.getFechaProrroga()}"/>' == ''" id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec datepicker" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/>
 							<input ng-if="'<c:out value="${i.getFechaProrroga()}"/>' != ''" id="fecProrroga<c:out value="${i.getFila()}"/>" class="fec in-descri" type="text" name="fecProrroga<c:out value="${i.getFila()}"/>" value="<c:out value="${i.getFechaProrroga()}"/>" readonly/>
@@ -368,7 +374,27 @@
 			<!-- <input type="button" name="verPdf" value="Ver Pdf" class="pdf visualizar" onclick="pdf()"> -->
 			<input type="button" name="verPdf" value="Ver Pdf" class="pdf visualizar" onclick="pdfBrowser()">
 			<input type="text" id="prueba" name="idFiltrado" value="${model.vale.getIdVale()}" Style="Display:none"/>
-	</section>	
+	</section>
+	
+	 <!-- Modal comentario -->
+       <div class="modal fade" id="modalRechazo" role="dialog">
+         <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content ocultar">
+	      <div><h3 id="titJustifi">Comentario</h3></div>        
+         <div class="modal-header1 headerError errorJust">
+            <textarea name="justificacionRechazo" id="justificacionRechazo" maxlength="1000" rows="7"></textarea>
+         </div>
+         <div>
+         <input type="button" id="btnRecha" name="aceptarRechazo" value="Aceptar" class="submit2 rechazado" onclick="envComentario()"/>
+        <input type="button" id="btnRecha" name="aceptarRechazo" value="Cancelar" class="submit2 rechazado" onclick="cerrarModalRechazado()"/>
+         </div>
+      </div>
+         </div>
+      </div>
+      <!-- Fin modal comentario -->	
+      <input type="text" id="idComentario" Style="display:none"/>
 		</form>
 		</div>
 		
@@ -411,6 +437,8 @@
 	    </div>
 	  </div>
 	      <!-- Fin modal login -->
+	      
+	      
 
 </body>
 
