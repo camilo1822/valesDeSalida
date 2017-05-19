@@ -458,6 +458,10 @@ function listaPorteros1(){
 	setTimeout(listaPorteros, 1000);
 }
 
+function listaAlmacenes1(){
+	setTimeout(listaAlmacenistas, 1000);
+}
+
 function picker(){
 	
 	__jquery( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy',minDate: new Date() });
@@ -591,8 +595,9 @@ var aprobarDatos = function() {
 function validarCorreo(){
 	var pass = __jquery("#correoUsuario").val();
 	var correo = __jquery("#correoFiltrado").val();
-	 var ciclo = __jquery("#numFilass").text();
+	 var ciclo = __jquery("#numFilass").text(); 
 	   if(correo==pass){
+		//document.getElementById("btnRecha").disabled = true;
        	for(var i = 1;i<=ciclo;i++){
        		var nom = "checkRecibido1"+i;
        		document.getElementById(nom).disabled = false;
@@ -1233,8 +1238,10 @@ function listaPorteros(){
 	            	}
 	        	}
 	        	for(var i = 1; i < d.length-1;i++){
+	        		console.log("porteria");
 	        		console.log(d[i]);
 	        		console.log(nombre);
+	        		nombre=nombre.trim();
 	        		if(nombre==d[i]){
 	        			__jquery("#conPort").attr("style","display: block !important");
 	    				__jquery("#sinPort").attr("style","display: none !important");
@@ -1246,6 +1253,45 @@ function listaPorteros(){
 	        			break;
 	        		}else{
 	        			__jquery("#conPort").attr("style","display: none !important");
+	        			
+	        		}
+	        	}
+	  
+			}
+		});
+}
+
+function listaAlmacenistas(){
+	var nombre=__jquery("#nameUsuario").val();
+	var ciclo = __jquery("#numFilass").text();
+	document.getElementById("btnRecha").disabled = true;
+		__jquery.ajax({
+			url : "/ValesDeSalida/aprobadoresAlmacenLdap",
+			data : {},
+			type : "POST",
+			async : false,
+			success : function(evt) {			
+				var r= evt.split("[").toString();
+	            var s= r.split("]").toString();	            
+	            var m= s.split("?");
+	            var d = m.unique();
+
+	            for(var j = 1; j < d.length;j++){
+	            	if(d[j].length<3){
+	            		d.splice(j,1);
+	            	}
+	        	}
+	        	for(var i = 1; i < d.length-1;i++){
+	        		console.log("Almacenistas");
+	        		console.log(d[i]);
+	        		
+	        		console.log(nombre);
+	        		nombre=nombre.trim();
+	        		if(nombre==d[i]){
+	        			document.getElementById("btnRecha").disabled = false; 
+	        			break;
+	        		}else{
+	        			document.getElementById("btnRecha").disabled = true; 
 	        			
 	        		}
 	        	}

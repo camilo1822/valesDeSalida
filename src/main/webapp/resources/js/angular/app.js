@@ -229,6 +229,7 @@ validationApp.controller('mainController', function($scope,$filter,$window) {
 	$scope.editarMaterial=function(){	
 		variable=$scope.data.prorroga;
 		listaPorteros1();
+		listaAlmacenes1();
 		if(variable=="Si"){
 			$scope.data.prorroga="No";
 		}else{

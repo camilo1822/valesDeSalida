@@ -243,7 +243,7 @@
 							<td class="column-ten"><input class="in-descri" type="text" value="<c:out value="${i.getOcAd()}"/>" readonly/></td>
 							<td class="column-eleven"><input class="in-descri fec" type="date" value="<c:out value="${i.getFechaEsperada()}"/>" readonly/></td>
 							
-							<td ng-if="data.prorroga=='Si'"><input type="button"  id="botCom<c:out value="${i.getFila()}"/>" class=""  ng-model="botCom<c:out value="${i.getFila()}"/>" onclick="coment('${i.getFila()}')"/>
+							<td ng-if="data.prorroga=='Si'"><input type="button"  id="botCom<c:out value="${i.getFila()}"/>" class="botComent"  ng-model="botCom<c:out value="${i.getFila()}"/>" onclick="coment('${i.getFila()}')"/>
               				<textarea id="textCom<c:out value="${i.getFila()}"/>" rows="" cols="" Style="display:none">${i.getComentario()}</textarea>
               				</td>
 							
@@ -387,8 +387,8 @@
             <textarea name="justificacionRechazo" id="justificacionRechazo" maxlength="1000" rows="7"></textarea>
          </div>
          <div>
-         <input type="button" id="btnRecha" name="aceptarRechazo" value="Aceptar" class="submit2 rechazado" onclick="envComentario()"/>
-        <input type="button" id="btnRecha" name="aceptarRechazo" value="Cancelar" class="submit2 rechazado" onclick="cerrarModalRechazado()"/>
+         <input type="button" id="btnRecha" name="aceptarRechazo" value="Aceptar" class="submit2 rechazado btnCom" onclick="envComentario()"/>
+        <input type="button" id="btnRecha" name="aceptarRechazo" value="Cancelar" class="submit2 rechazado btnCom" onclick="cerrarModalRechazado()"/>
          </div>
       </div>
          </div>
