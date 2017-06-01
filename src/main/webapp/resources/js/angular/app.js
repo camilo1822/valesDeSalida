@@ -21,6 +21,13 @@ validationApp.controller('mainController', function($scope,$filter,$window) {
 		}
 	};
 	
+	$scope.mensajeExito1 = function() {
+		$scope.showModal3 = true;
+		$scope.okk = function() {
+			$scope.showModal3 = false;		
+		}
+	};
+	
 	$scope.listaMensajes = function() {
 		$scope.showModal3 = true;
 		$scope.okk = function() {

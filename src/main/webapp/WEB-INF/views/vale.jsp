@@ -20,7 +20,7 @@
       <script src="resources/js/funciones.js"></script>
 	  <script src="resources/js/bootstrap.min.js"></script>
 	
-	<body id="formVale" ng-app="validationApp" ng-controller="mainController">
+	<body id="formVale" class="valeDetail" ng-app="validationApp" ng-controller="mainController">
 		<header>
 			<div id="logo">
 				<div id="Custom_Logo">
@@ -55,6 +55,7 @@
 			<div class="input-block col-quarter noVale">
 						<label class="label">NÚMERO DE VALE:</label>
 						<input id="valeNum" type="text" name="radicado" value="${model.vale.getIdVale()}" readonly/>
+						<input id="nameJef" type="text" name="nameJef" value="${model.vale.getAprobadoralmacen()}" Style="Display:none"/>
 						        <style type="text/css">
   
 								    .messages {
@@ -287,9 +288,9 @@
 							
 							<td ng-if="'${model.vale.getEstadoVale().getEstado()}'!='CERRADO'" class="column-fifteen">
 								
-								<a class="edite" title="Editar" onclick="CallPicker()" ng-click="editarMaterial()"></a>
-								<a id="sinPort<c:out value="${i.getFila()}"/>" class="save" title="Guardar" onclick="guardarMaterial(${i.getFila()})" ng-click="mensajeExito()"></a>
-								<a id="conPort<c:out value="${i.getFila()}"/>" class="save" title="Guardar" onclick="guardarMaterial2(${i.getFila()})" ng-click="mensajeExito()"></a>
+								<a class="edite ocultarr" title="Editar" onclick="CallPicker()" ng-click="editarMaterial()"></a>
+								<a id="sinPort<c:out value="${i.getFila()}"/>" class="save ocultarr" title="Guardar" onclick="guardarMaterial(${i.getFila()})" ng-click="mensajeExito()"></a>
+								<a id="conPort<c:out value="${i.getFila()}"/>" class="save ocultarr" title="Guardar" onclick="guardarMaterial2(${i.getFila()})" ng-click="mensajeExito()"></a>
 
 							</td>
 							</tr>
@@ -407,6 +408,21 @@
 			  	<h4>Se actualizaron los datos</h4>			          
 			</div>			      
 		</div>
+		
+		<div class="modal fade" id="modalPorteria" role="dialog">
+         <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+         <div class="cancelar">
+            <button class="btnCancel" onclick="cerrarModalPorteria1()"></button>
+         </div>
+         <div class="modal-header1 headerError">
+            <h4>Vale sin aprobar</h4>
+                 </div>
+      </div>
+         </div>
+      </div>
 		
 		 <!-- Modal -->
 	  <div class="modal fade" id="myModal" role="dialog">

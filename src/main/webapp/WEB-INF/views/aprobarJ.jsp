@@ -306,6 +306,7 @@
 						<label class="label">Almac&eacute;n:</label>
 						<input type="text" name="almacen" id="almacenLogeado" readonly/>
 					</div> -->
+					<input type="text" name="" id="almacenLogeado" style="display:none"/>
 					
 					<div class="input-block col-quarter">
                    		<label class="label">Almacen:</label>

@@ -165,7 +165,7 @@
 					<tbody class="items">
 						<tr> 
 						<c:forEach items="${model.vales}" var="i" varStatus="j">
-							<tr ng-if="'<c:out value="${i.getAlmacen()}"/>' != ''">
+							<tr>
 								<td name="<c:out value="${i.getIdVale()}"/>" ng-model="vale.valeId"/><c:out value="${i.getIdVale()}"/></td>
 								<td ng-model="vale.valeId"/><c:out value="${i.getSolicitante()}"/></td>
 								<td ng-if="checkboxModel.valueEst==true" ng-model="vale.valeEst"><c:out value="${i.getEstadoVale().getEstado()}"/></td>

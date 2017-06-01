@@ -55,6 +55,8 @@ function onReadyPortal(__jquery) {
 			 var nameAlm = jQuery("#nameAlm").val();
 			 if(user.trim()==nameJefe && nameAlm==""){			 
 				 __jquery(".bloqueados").css("display","block");
+			 }else{
+				 __jquery(".visualizar").attr("style","margin-left: 50% !important");
 			 }
 			 logeandoAprobar(user,correo);
 		 }       
@@ -76,6 +78,15 @@ function onReadyPortal(__jquery) {
 	 if (__jquery("#formVale").length) {
 		 validarCorreo();
 		 botonGuardar();
+	}
+	 
+	 if (__jquery(".valeDetail").length) {
+		 var x = __jquery("#nameJef").val();
+		 if(x==""){
+			 __jquery(".ocultarr").css("display","none");
+			 __jquery("#modalPorteria").attr("style","border: 18px solid white !important");
+			__jquery("#modalPorteria").modal();
+		 }
 	}
 
 	 if (__jquery("#valesSalidaForm1").length) {
@@ -957,6 +968,10 @@ function cerrarModalIncorrecto(){
 function cerrarModalPorteria(){
 	__jquery("#modalPorteria").modal('toggle');
 	window.location="http://danae:8081/ValesDeSalida/lista";
+}
+
+function cerrarModalPorteria1(){
+	__jquery("#modalPorteria").modal('toggle');
 }
 
 function cerrarModalRechazado(){
