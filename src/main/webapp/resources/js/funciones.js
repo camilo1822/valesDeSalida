@@ -20,6 +20,14 @@ function onReadyPortal(__jquery) {
 	 if (__jquery("#listaForm").length) {
          CallPicker1();
       }
+	 
+	 if (__jquery(".porteria").length) {
+		 var nameport= jQuery("#getPorteria").val();
+		 if(nameport!=""){			 
+			 __jquery(".submit2").css("display","none");
+		 }
+      }
+	 
 	 if (__jquery("#formularioLogin").length) {
 		 var user = localStorage.getItem("usuario");
 		 var correo = localStorage.getItem("correo");
@@ -43,6 +51,11 @@ function onReadyPortal(__jquery) {
 			 __jquery("#myModal").modal(); 
 		 }else{
 			 __jquery("#bodyLogin").css("display","none");
+			 var nameJefe = jQuery("#nameJefe").val();
+			 var nameAlm = jQuery("#nameAlm").val();
+			 if(user.trim()==nameJefe && nameAlm==""){			 
+				 __jquery(".bloqueados").css("display","block");
+			 }
 			 logeandoAprobar(user,correo);
 		 }       
       }
@@ -943,6 +956,7 @@ function cerrarModalIncorrecto(){
 
 function cerrarModalPorteria(){
 	__jquery("#modalPorteria").modal('toggle');
+	window.location="http://danae:8081/ValesDeSalida/lista";
 }
 
 function cerrarModalRechazado(){

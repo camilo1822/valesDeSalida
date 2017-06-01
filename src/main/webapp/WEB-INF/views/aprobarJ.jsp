@@ -325,7 +325,7 @@
                   
                   <div class="input-block col-quarter">
                      <label class="label">Correo del Almac&eacute;n:</label>
-                     <input class="obligatoriedad" type="text"  id="correoAlmacen" name="correoAlmacen"/>
+                     <input class="obligatoriedad" type="text"  id="correoAlmacen" name="correoAlmacen" readonly/>
                      <p class="obligatorio obligatoriocorreoAlmacen" style="display:none">Obligatorio</p>
                   </div>
 
@@ -362,10 +362,11 @@
 			</section>
 			<section class="buttons">
 				<br>
-				<input type="button" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlmJ()"/>
+				<!-- botones -->
+				<input type="button" name="Guardar" value="Aprobar" class="submit2 bloqueados" onclick="salidaAlmJ()" Style="display:none"/>
 				
 				
-				<input type="button" name="Rechazar" value="Rechazar" class="submit2 rechazado" onclick="rechazar()"/>
+				<input type="button" name="Rechazar" value="Rechazar" class="submit2 rechazado bloqueados" onclick="rechazar()" Style="display:none"/>
 				<!-- <input ng-if="salidaMaterialesForm2.$invalid" type="button" name="Guardar1" value="Aprobar" class="submit2 buttonSalida" ng-click="submitForm()"/>
 				<input ng-if="!salidaMaterialesForm2.$invalid" type="button" id="Guardar" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlm()" ng-click="mensajeExito()"/> -->
 			</section>
@@ -375,10 +376,13 @@
 				
 
 				<!-- <input type="submit" name="verPdf" value="verPdf"/> -->
+				<!-- datos usuario -->
 			<input type="text" id="correoUsuario" name="correoUsuario" value="<%= request.getUserPrincipal() %>" Style="display:none"/>
       		<input type="text" id="descripcionUsuario" name="descripcionUsuario" value="" Style="display:none"/>
       		<input type="text" id="nameUsuario" name="nameUsuario" value="" Style="display:none"/>
       		<input type="text" id="plantaUsuario" name="plantaUsuario" value="" Style="display:none"/>
+      		<input type="text" id="nameJefe" name="nameJefe" value="${model.vale.getAprobadorjefe()}" Style="Display:none"/>
+      		<input type="text" id="nameAlm" name="nameAlm" value="${model.vale.getAprobadoralmacen()}" Style="Display:none"/>
 		</form>
 		
 	<form id="generarPdf" name="generarPdf" method="post" action="/familia/verPdf">
@@ -463,8 +467,7 @@
       </div>
          </div>
       </div>
-      <!-- Fin modal rechazado -->
-      		    
+      <!-- Fin modal rechazado -->      		    
 </body>
 
 </html>

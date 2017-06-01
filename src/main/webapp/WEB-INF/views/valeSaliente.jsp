@@ -65,7 +65,7 @@
 						
 					</div> 
 		</section>
-		<form id="salidaMaterialesForm2" name="salidaMaterialesForm" method="post" action="valeSaliente">
+		<form id="salidaMaterialesForm2" class="porteria" name="salidaMaterialesForm" method="post" action="valeSaliente">
 
 			<section>
 				<div class="form-row">
@@ -295,7 +295,7 @@
 					</a>				
 			</section>	
 				<h1  Style="Display:none">{{filaCont}}</h1>
-
+				<input type="text" id="getPorteria" name="getPorteria" value="${model.vale.getPorteria()}" Style="Display:none"/>
 		</form>
 	</div>
 	

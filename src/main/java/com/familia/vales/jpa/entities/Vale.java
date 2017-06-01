@@ -24,6 +24,10 @@ public class Vale implements Serializable {
 	@Column(name="ALMACEN_ORIGEN")
 	private String almacenOrigen;
 
+	private String aprobadoralmacen;
+
+	private String aprobadorjefe;
+
 	@Column(name="DESTINO_CIUDAD")
 	private String destinoCiudad;
 
@@ -121,6 +125,22 @@ public class Vale implements Serializable {
 
 	public void setAlmacenOrigen(String almacenOrigen) {
 		this.almacenOrigen = almacenOrigen;
+	}
+
+	public String getAprobadoralmacen() {
+		return this.aprobadoralmacen;
+	}
+
+	public void setAprobadoralmacen(String aprobadoralmacen) {
+		this.aprobadoralmacen = aprobadoralmacen;
+	}
+
+	public String getAprobadorjefe() {
+		return this.aprobadorjefe;
+	}
+
+	public void setAprobadorjefe(String aprobadorjefe) {
+		this.aprobadorjefe = aprobadorjefe;
 	}
 
 	public String getDestinoCiudad() {

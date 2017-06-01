@@ -463,7 +463,7 @@
                   </div>
                   
                   <div class="input-block col-quarter">
-                   		<label class="label">Almacen:</label>
+                   		<label class="label">Jefe:</label>
 	                   	<select class="lugarAprobante" name="almacenOrigen" id="lugarAprobante" ng-model="lugarAprobante" ng-change="listaAlmacenistas()" onchange="mostrarAlmacenistas()">
 						  <option value=""></option>
 						  <option value="Aprobación Jefe Salma Medellín">Medellín</option>
@@ -480,7 +480,7 @@
                   
                   <div class="input-block col-quarter">
                      <label class="label">Correo del Almac&eacute;n:</label>
-                     <input class="obligatoriedad" type="text"  id="correoAlmacen" name="correoAlmacen"/>
+                     <input class="obligatoriedad" type="text"  id="correoAlmacen" name="correoAlmacen" readonly/>
                      <p class="obligatorio obligatoriocorreoAlmacen" style="display:none">Obligatorio</p>
                   </div>
                   

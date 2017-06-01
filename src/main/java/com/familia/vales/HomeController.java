@@ -235,6 +235,8 @@ public class HomeController{
 			  			/*vale*/
 			  			EstadoVale es = estREp.findOne(1);
 			  			
+			  			vale.setAprobadorjefe(usuarioAlmacen);
+			  			vale.setAprobadoralmacen("");
 			  			vale.setDestinoCiudad(ciuDest);
 			  			vale.setDestinoDireccion(direccion);
 			  			vale.setDestinoEmpresa(empresa);
@@ -686,6 +688,7 @@ public class HomeController{
 		  	String correo = obtenerCorreo(correoPort);
 			Vale val = valeRepository.findOne(Integer.parseInt(numVale));
 			val.setAlmacen(firma);
+			val.setAprobadoralmacen(correoPort);
 			valeRepository.save(val);	
 			this.contactenosServicio = new CorreoServicioImpl(); 
 			try {

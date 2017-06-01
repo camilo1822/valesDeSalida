@@ -44,7 +44,7 @@ public class CorreoServicioImpl implements CorreoServicio {
 			String correoAdministrador = correoDestino;
 			try {
 				out.println(remitente + correoAdministrador  + cuerpoHtml + response);
-				correo.enviarCorreoHtml(remitente, correoAdministrador, "Vale", cuerpoHtml,
+				correo.enviarCorreoHtml(remitente, correoAdministrador, "Vale No "+id, cuerpoHtml,
 						response);
 				envioExitoso = true;
 			} catch (Exception e) {
