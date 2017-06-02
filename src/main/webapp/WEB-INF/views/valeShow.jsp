@@ -17,6 +17,7 @@
     <script src="resources/js/jquery-1.11.3.min.js"></script>
     <script src="resources/js/jquery-ui.js"></script>
     <script src="resources/js/funciones.js"></script>
+    <script language="JavaScript">function tecla(){return false;}; document.onkeydown=tecla;</script>
 	
 	<body ng-app="validationApp" ng-controller="mainController">
 		<header>
@@ -69,7 +70,7 @@
 						
 					</div> 
 		</section>
-		<form id="salidaMaterialesForm2" name="salidaMaterialesForm" method="post" action="vale">
+		<form id="salidaMaterialesForm2" class="show" name="salidaMaterialesForm" method="post" action="vale">
 
 			<section>
 				<div class="form-row">

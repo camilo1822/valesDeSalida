@@ -8,6 +8,7 @@ function onReadyPortal(__jquery) {
 	if(__jquery(".inputLogin").length){
 		escape();
 	}
+	
 	 if (__jquery("#salidaMaterialesForm").length) {
            enter();
            callToolTipList();
