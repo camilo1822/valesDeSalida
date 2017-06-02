@@ -1019,6 +1019,11 @@ function buscarMaterial(){
 	}
 }
 
+function errorFaltantes(){
+	__jquery("#faltantes").attr("style","border: 18px solid white !important");
+	__jquery("#faltantes").modal();
+}
+
 function buscarMaterialListaJS(x){
 	var NomCentro = "#centro"+x;
 	var NomCodigo = "#codigoConsultar"+x;

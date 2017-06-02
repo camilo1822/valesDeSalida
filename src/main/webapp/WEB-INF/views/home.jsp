@@ -501,7 +501,7 @@
             <section class="buttons">
                <br>
                <input ng-if="salidaMaterialesForm.$invalid || contador1 === 1" type="button" id="Guardar1" name="Guardar1" value="Guardar" class="submit"
-                  ng-click="submitForm()" />
+                  ng-click="submitForm()"/>
                <input ng-if="!salidaMaterialesForm.$invalid && contador1 > 1" type="button" id="Guardar" name="Guardar" value="Guardar"
                   class="submit" ng-click="redireccionar()" />
     
@@ -565,6 +565,22 @@
       </div>
          </div>
       </div>
+      
+      <div class="modal fade" id="faltantes" role="dialog">
+         <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+         <div class="cancelar">
+            <button class="btnCancel" onclick="cerrarModalCentro()"></button>
+         </div>
+         <div class="modal-header1 headerError">
+            <h4>Verifique todos los campos</h4>
+                 </div>
+      </div>
+         </div>
+      </div>
+      
       <!-- Fin modal centro -->
         <!-- Modal centroIncorrecto -->
        <div class="modal fade" id="centroIncorrecto" role="dialog">

@@ -193,9 +193,43 @@ public class HomeController{
 	 */
 	  @RequestMapping(value = "/vale", method = RequestMethod.POST)
 	   public ModelAndView vale(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model,final RedirectAttributes redirectAttributes) throws IOException, ParseException, MessagingException {		
+		  String numVale =  request.getParameter("idFiltrado");
+			
+			Vale valPru = valeRepository.findOne(Integer.parseInt(numVale));
+			System.out.println("valeeeeee "+numVale);
+			if(valPru!=null){
+				actualizado="";
+				System.out.println("valeeeeee null"+numVale);
+				Collection<Vale> val = valeRepository.findAll();
+				int num=0;
+				for(int l = 1; l<=val.size();l++){
+					Vale valPru2 = valeRepository.findOne(l);
+					if(valPru2==null){
+						num = l;
+						break;
+					}		  					
+					num=l+1;
+				}
+				numVale=Integer.toString(num);
+				System.out.println("valeeeeee nuevo"+numVale);
+			}
 		  if(actualizado.equals("")){
 		  				String ciuDest = request.getParameter("ciudadContacto");
-		  				String numVale =  request.getParameter("idFiltrado");
+		  				
+		  			
+		  				/*Collection<Vale> val = valeRepository.findAll();
+		  				int num=0;
+		  				int tam = val.size();
+		  				for(int l = 1; l<=val.size();l++){
+		  					Vale valPru = valeRepository.findOne(l);
+		  					if(valPru==null){
+		  						num = l;
+		  						break;
+		  					}		  					
+		  					num=l+1;
+		  				}*/
+		  					
+		  				
 			  			String piciz =  request.getParameter("contratadoEnPiciz");
 			  			String senores =  request.getParameter("senhores");
 			  			String diligenciado =  request.getParameter("autorizadoPor");
