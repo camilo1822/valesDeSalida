@@ -1,5 +1,8 @@
 package com.familia.vales;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -86,7 +89,6 @@ public class HomeController{
 	private static final String PLANTILLA_PORTERIA = "com/familia/vales/correo/plantillaCorreoPortero.vm";
 	private static final String PLANTILLA_ALMACEN = "com/familia/vales/correo/plantillaCorreo2.vm";
 	private CorreoServicio contactenosServicio;		
-	private String actualizado;
 	
 	/*private String Logeado="deslogeado";
 	private String CorreoLogeado="";*/
@@ -115,7 +117,6 @@ public class HomeController{
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model,HttpServletRequest request, HttpServletResponse response) throws Exception{
-		actualizado="";
 		String esSolicitante="";
 
 		this.contactenosServicio = new CorreoServicioImpl();	
@@ -198,7 +199,6 @@ public class HomeController{
 			Vale valPru = valeRepository.findOne(Integer.parseInt(numVale));
 			System.out.println("valeeeeee "+numVale);
 			if(valPru!=null){
-				actualizado="";
 				System.out.println("valeeeeee null"+numVale);
 				Collection<Vale> val = valeRepository.findAll();
 				int num=0;
@@ -213,7 +213,6 @@ public class HomeController{
 				numVale=Integer.toString(num);
 				System.out.println("valeeeeee nuevo"+numVale);
 			}
-		  if(actualizado.equals("")){
 		  				String ciuDest = request.getParameter("ciudadContacto");
 		  			  					
 		  				
@@ -437,27 +436,27 @@ public class HomeController{
 			  					}
 			  				}
 			  				
-			  				Date date1 = new Date();	
-			  				DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");		  			
-			  				String fecha = dateFormat.format(date1);
+			  				//Date date1 = new Date();	
+			  				//DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");		  			
+			  				//String fecha = dateFormat.format(date1);
 			  				
-			  				Map<String, Object> miModelo = new HashMap<String, Object>();
-			  				miModelo.put("fecha", fecha);
-			  				miModelo.put("numFila", numFila);
-			  				miModelo.put("vale", val1);
-			  				miModelo.put("detVales", vecDetalle);
-			  				miModelo.put("prueba", numero);
-			  				ModelAndView miMAV = new ModelAndView();
-			  		        miMAV.setViewName("valeShow");
-			  		        miMAV.addObject("model",miModelo);
+//			  				Map<String, Object> miModelo = new HashMap<String, Object>();
+//			  				miModelo.put("fecha", fecha);
+//			  				miModelo.put("numFila", numFila);
+//			  				miModelo.put("vale", val1);
+//			  				miModelo.put("detVales", vecDetalle);
+//			  				miModelo.put("prueba", numero);
+//			  				ModelAndView miMAV = new ModelAndView();
+//			  		        miMAV.setViewName("lista");
+//			  		        miMAV.addObject("model",miModelo);
 
 			  		      try {
 			  		        	contactenosServicio.enviarCorreo(correoAlmacen,correo,numVale, PLANTILLA_CONTACTENOS, response);
 							} catch (Exception e) {
 								System.out.println("error "+ e);
 							}
-				  		    actualizado="lista";
-			  		        return miMAV;
+				  		   
+				  		  return new ModelAndView("redirect:/valeDetail?valorFiltrado="+numVale);
 			  			}
 			  			
 			  			ModelAndView miMAV = new ModelAndView();
@@ -472,12 +471,7 @@ public class HomeController{
 						} catch (Exception e) {
 							System.out.println("error "+ e);
 						}
-			  			return miMAV;	
-		  			}else{
-		  				actualizado="";
-		  				return new ModelAndView("redirect:/lista");
-		  			}
-		  			
+			  			return miMAV;			  			
 	   }
 	  
 	  public String[] retornaAlmacenes(String numVale) throws IOException, ParseException{
