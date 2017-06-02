@@ -215,20 +215,7 @@ public class HomeController{
 			}
 		  if(actualizado.equals("")){
 		  				String ciuDest = request.getParameter("ciudadContacto");
-		  				
-		  			
-		  				/*Collection<Vale> val = valeRepository.findAll();
-		  				int num=0;
-		  				int tam = val.size();
-		  				for(int l = 1; l<=val.size();l++){
-		  					Vale valPru = valeRepository.findOne(l);
-		  					if(valPru==null){
-		  						num = l;
-		  						break;
-		  					}		  					
-		  					num=l+1;
-		  				}*/
-		  					
+		  			  					
 		  				
 			  			String piciz =  request.getParameter("contratadoEnPiciz");
 			  			String senores =  request.getParameter("senhores");

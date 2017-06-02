@@ -282,10 +282,10 @@
 				</div>
 			</section>
 			<section class="buttons">
-				<br>
-				<a href="lista">
-					<button name="Guardar1" class="submit verLista valeShow">Ver Lista</button>
-				</a>			
+				<br>			
+				<a href="lista">	
+                 <input class="submit verLista valeShow" type="button" id="Guardar1" name="Guardar1" value="Ver Lista"/>
+                 </a>			
 			</section>	
 				<h1  Style="Display:none">{{filaCont}}</h1>
 
