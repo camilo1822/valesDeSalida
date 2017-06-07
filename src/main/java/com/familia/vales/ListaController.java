@@ -74,6 +74,28 @@ public class ListaController {
 	}
 	
 
+	@RequestMapping(value = "/excel", method = RequestMethod.GET)
+	   public ModelAndView excel(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");		
+		String formattedDate = dateFormat.format(date);
+		
+		Collection<Vale> vales = valeRepository.findAll();
+		EstadoVale estatus = estREp.findOne(1);
+		String status = estatus.getEstado();
+
+		Map<String, Object> miModelo = new HashMap<String, Object>();
+		miModelo.put("estado", status);
+		miModelo.put("fecha", formattedDate);
+		miModelo.put("vales", vales);
+		ModelAndView miMAV = new ModelAndView();
+        miMAV.setViewName("excel");
+        miMAV.addObject("model",miModelo);
+
+        return miMAV;//return new ModelAndView("redirect:/result");
+	   }
+	
+
 	@RequestMapping(value = "/filtro", method = RequestMethod.POST)
 	   public ModelAndView filtro(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
 			String radicado = request.getParameter("radicadoFiltro");
@@ -136,6 +158,7 @@ public class ListaController {
 			}
 
 	   }
+	
 	
 	@RequestMapping(value="/FiltroFecha", method = RequestMethod.POST)
 	   public ModelAndView FiltroFecha(HttpServletRequest request, HttpServletResponse response,Locale locale, Model model) throws IOException, ParseException {
