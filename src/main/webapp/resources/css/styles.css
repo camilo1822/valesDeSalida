@@ -490,6 +490,15 @@ input.pdf {
 	 background: #8CC63F url('../img/lupa.png') no-repeat 90% center;
 }
 
+#descargaExc{
+	background: url(../img/microsoft_excel.png) no-repeat center;
+    background-size: 57px;
+    width: 58px;
+    height: 49px;
+    float: right;
+    margin-right: 67px;
+}
+
 .botComent{
 	border-radius: 6px;
     padding: 13px;

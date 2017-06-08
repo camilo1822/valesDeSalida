@@ -6,9 +6,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="application/vnd.ms-excel"
     pageEncoding="ISO-8859-1"%>
-<% response.setHeader("Content-Disposition", "attachment; filename=vales.xls"); %> 
+<% response.setHeader("Content-Disposition", "attachment; filename=vales.xls"); %>
+
+
+
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <html>
-<head>
+<head> --%>
 
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
@@ -31,7 +36,7 @@
 		<tbody class="items">
 			<c:forEach items="${model.vales}" var="i" varStatus="j">
 					<h4>VALE No <c:out value="${i.getIdVale()}"/></h4>	
-					<h6>Solicitud de Salida</h6>
+					<h4>Solicitud de Salida</h4>
 					<table>
 				  		<tr>
 						    <th colspan="3">Diligenciado / Autorizado por</th>
@@ -50,7 +55,7 @@
 						    <td colspan="6"><c:out value="${i.getJustificacion()}"/></td>
 						  </tr>	
 					</table>
-					<h6>Solicitud de Destino</h6>					  
+					<h4>Solicitud de Destino</h4>					  
 					<table>
 				  		<tr>
 						    <th colspan="3">Proveedor</th>
@@ -84,7 +89,7 @@
 						  </tr>					  
 					</table>
 			
-					<h6>Datos de quien retira</h6>
+					<h4>Datos de quien retira</h4>
 					<table>
 				  		<tr>
 						    <th  colspan="3">Nombre</th>
@@ -104,8 +109,72 @@
 						    <td  colspan="3"><c:out value="${i.getRetiraEmpresa()}"/></td>
 						    <td  colspan="3"><c:out value="${i.getRetiraPlaca()}"/></td>
 						  </tr>						
-					</table>	
-			</c:forEach>					
+					</table>
+					<h4>Materiales</h4>
+					<table>
+					<tr>
+						    <th  colspan="1">Fila</th>
+						    <th  colspan="2">Codigo</th>
+						    <th  colspan="2">Centro</th>
+						    <th  colspan="5">Descripcion</th>
+						    <th  colspan="1">Cantidad</th>
+						    <th  colspan="2">Vlr Unitario</th>
+						    <th  colspan="2">Vlr Estimado</th>
+						    <th  colspan="2">UM</th>
+						    <th  colspan="2">Peso</th>
+						    <th  colspan="2">Pertenece Maq.</th>
+						    <th  colspan="2">OC servicio</th>
+						    <th  colspan="2">OC adquisicion</th>
+						    <th  colspan="2">Fecha regreso</th>
+				 		 </tr>
+					</table>
+						<c:forEach items="${model.detVal}" var="l" varStatus="m">
+						<c:if test="${i.getIdVale()eq l.getVale().getIdVale()}">
+				<table>
+				  		
+						  <tr>
+						    <td  colspan="1"><c:out value="${l.getFila()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getCodigo()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getCentro()}"/></td>
+						    <td  colspan="5"><c:out value="${l.getDescripcion()}"/></td>
+						    <td  colspan="1"><c:out value="${l.getCantidad()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getValorUni()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getValor()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getUnidad()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getPeso()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getPerteneceMaquina()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getNoOc()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getOcAd()}"/></td>
+						    <td  colspan="2"><c:out value="${l.getFechaEsperada()}"/></td>
+						  </tr>						
+					</table>
+				</c:if>
+			</c:forEach>
+			<table>
+				<tr>
+				<th  colspan="10">Observaciones</th>
+				</tr>
+				<tr>
+				<td  colspan="10"><c:out value="${i.getObservaciones()}"/></td>				
+				</tr>						
+			</table>
+			<table>
+				<tr>
+				<th  colspan="8">Solicitante</th>
+				</tr>
+				<tr>
+				<td  colspan="8"><c:out value="${i.getSolicitante()}"/></td>				
+				</tr>						
+			</table>
+			<table>
+				<tr>
+				<th  colspan="8">Almacen</th>
+				</tr>
+				<tr>
+				<td  colspan="8"><c:out value="${i.getAlmacen()}"/></td>				
+				</tr>						
+			</table>
+			</c:forEach>							
 		</tbody>
 		
 	</body>

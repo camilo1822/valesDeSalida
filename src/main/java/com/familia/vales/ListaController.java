@@ -59,6 +59,7 @@ public class ListaController {
 		String formattedDate = dateFormat.format(date);
 		
 		Collection<Vale> vales = valeRepository.findAll();
+		
 		EstadoVale estatus = estREp.findOne(1);
 		String status = estatus.getEstado();
 
@@ -81,6 +82,7 @@ public class ListaController {
 		String formattedDate = dateFormat.format(date);
 		
 		Collection<Vale> vales = valeRepository.findAll();
+		Collection<DetalleVale> detVal = detValRep.findAll();
 		EstadoVale estatus = estREp.findOne(1);
 		String status = estatus.getEstado();
 
@@ -88,6 +90,7 @@ public class ListaController {
 		miModelo.put("estado", status);
 		miModelo.put("fecha", formattedDate);
 		miModelo.put("vales", vales);
+		miModelo.put("detVal", detVal);
 		ModelAndView miMAV = new ModelAndView();
         miMAV.setViewName("excel");
         miMAV.addObject("model",miModelo);

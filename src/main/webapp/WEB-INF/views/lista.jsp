@@ -73,6 +73,10 @@
 						</select>
 					</div>
 					<input type="submit" name="Consultar" value="Consultar" class="add" ng-click="consultar()"/>
+					<a href="excel"><div id="descargaExc">
+
+					</div></a>
+					
 				</div>
 			</form>
 			
