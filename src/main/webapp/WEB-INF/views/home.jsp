@@ -279,7 +279,7 @@
 
                         <td class="">
                            <input type="text" class="obligacionTabla inputCentro" id="centro" name="centro" ng-model="material.centro" ng-change="convMayusculasAng()"/>
-                          
+                          <p class="obligatorio obligatoriedadcentro" style="display:none">Obligatorio</p>
                         </td>
                         
                          <td>
@@ -287,7 +287,8 @@
                               <input class="input-lupa1 obligacionTabla" type="text" id="codigoConsultar" name="codigo" ng-model="material.codigo" ng-model-options="{ updateOn: 'blur' }" required
                                  />
                               <img class="imgLupa" src="resources/img/lupa.png" alt="Buscar" onclick="buscarMaterial()"/>
-                              <p class="obligatorio" ng-show="salidaMaterialesForm.codigo.$invalid && salidaMaterialesForm.codigo.$touched">Obligatorio</p>
+                             <p class="obligatorio obligatoriedadcodigoConsultar" style="display:none">Obligatorio</p>
+                             <!--  <p class="obligatorio" ng-show="salidaMaterialesForm.codigo.$invalid && salidaMaterialesForm.codigo.$touched">Obligatorio</p> -->
                            </div>
                         </td>
 
@@ -296,9 +297,9 @@
                         	<p class="obligatorio obligatoriedaddescripcionSAP" style="display:none">Obligatorio</p>
                         </td>
                         <td>
-                           <input type="text" id="umSOAP" class="selectUm UmHome" name="um" ng-model="material.um"/>
-                  
-                           <p class="obligatorio" ng-show="salidaMaterialesForm.um.$invalid && salidaMaterialesForm.um.$touched">Obligatorio</p>
+                           <input type="text" class="selectUm UmHome obligacionTabla" id="umSOAP" name="um" ng-model="material.um"/>
+                  	<p class="obligatorio obligatoriedadumSOAP" style="display:none">Obligatorio</p>
+                           <!-- <p class="obligatorio" ng-show="salidaMaterialesForm.um.$invalid && salidaMaterialesForm.um.$touched">Obligatorio</p> -->
                         </td>                     
                         <td>
                            <input class="obligacionTabla cantMat" type="number" name="vlrUnitario" id="vlrUnitarioSAP" ng-model="material.vlrUnitario"/>                         
@@ -307,15 +308,18 @@
                          <td>
                            <input type="number" name="cantidad" class="cantMat obligacionTabla" id="cantMat"  ng-model="material.cantidad" ng-model-options="{ updateOn: 'blur' }" required min="1"
                               />
-                           <p class="obligatorio" ng-show="salidaMaterialesForm.cantidad.$invalid && salidaMaterialesForm.cantidad.$touched">Obligatorio</p>
+                              <p class="obligatorio obligatoriedadcantMat" style="display:none">Obligatorio</p>
+                           <!-- <p class="obligatorio" ng-show="salidaMaterialesForm.cantidad.$invalid && salidaMaterialesForm.cantidad.$touched">Obligatorio</p> -->
                         </td>
                         <td>
                            <input type="text" name="valorEstimado" id="vlrEstimado" ng-value="material.cantidad * material.vlrUnitario" ng-model="estimado" readonly/> 
-                           <p class="obligatorio" ng-show="salidaMaterialesForm.valorEstimado.$invalid && salidaMaterialesForm.valorEstimado.$touched">Obligatorio</p>
+                           <p class="obligatorio obligatoriedadvlrEstimado" style="display:none">Obligatorio</p>
+                           <!-- <p class="obligatorio" ng-show="salidaMaterialesForm.valorEstimado.$invalid && salidaMaterialesForm.valorEstimado.$touched">Obligatorio</p> -->
                         </td>
                         <td>
                            <input class="obligacionTabla" type="number" name="peso" id="peso" ng-model="material.peso" ng-model-options="{ updateOn: 'blur' }" required/>
-                           <p class="obligatorio" ng-show="salidaMaterialesForm.peso.$invalid && salidaMaterialesForm.peso.$touched">Obligatorio</p>
+                           <p class="obligatorio obligatoriedadpeso" style="display:none">Obligatorio</p>
+                           <!-- <p class="obligatorio" ng-show="salidaMaterialesForm.peso.$invalid && salidaMaterialesForm.peso.$touched">Obligatorio</p> -->
                         </td>
                         <td class="column-eight">
                            <select class="selectForm" name="regresa" id="regresa" ng-model="data.regresa" ng-change="clicRegresa()" onchange="CallPicker()">
@@ -332,18 +336,20 @@
                            <p class="obligatorio" ng-show="salidaMaterialesForm.repuesto.$invalid && salidaMaterialesForm.repuesto.$touched">Obligatorio</p>
                         </td>
                         <td>
-                           <input ng-if="data.singleSelect=='Si'" type="number" name="noOC" ng-model="material.noOC" ng-model-options="{ updateOn: 'blur' }"
+                           <input class="obligacionTabla" id="ocN1" ng-if="data.singleSelect=='Si'" type="number" name="noOC" ng-model="material.noOC" ng-model-options="{ updateOn: 'blur' }"
                               required/>
                            <input ng-if="data.singleSelect=='No'" type="text" name="noOC" value="N/A" readOnly/>
-                           <p class="obligatorio" ng-show="salidaMaterialesForm.noOC.$invalid && salidaMaterialesForm.noOC.$touched">Obligatorio</p>
+                          <p class="obligatorio obligatoriedadocN1" style="display:none">Obligatorio</p>
+                          <!--  <p class="obligatorio" ng-show="salidaMaterialesForm.noOC.$invalid && salidaMaterialesForm.noOC.$touched">Obligatorio</p> -->
                         </td>
                         
                         
                         <td>
-                           <input ng-if="data.singleSelect=='Si'" type="number" name="noOCa" ng-model="material.noOCa" ng-model-options="{ updateOn: 'blur' }"
+                           <input class="obligacionTabla" id="ocN" ng-if="data.singleSelect=='Si'" type="number" name="noOCa" ng-model="material.noOCa" ng-model-options="{ updateOn: 'blur' }"
                               required/>
                            <input ng-if="data.singleSelect=='No'" type="text" name="noOCa" value="N/A" readOnly/>
-                           <p class="obligatorio" ng-show="salidaMaterialesForm.noOCa.$invalid && salidaMaterialesForm.noOCa.$touched">Obligatorio</p>
+                           <p class="obligatorio obligatoriedadocN" style="display:none">Obligatorio</p>
+                          <!--  <p class="obligatorio" ng-show="salidaMaterialesForm.noOCa.$invalid && salidaMaterialesForm.noOCa.$touched">Obligatorio</p> -->
                         </td>
                         
                   		<%-- <td>

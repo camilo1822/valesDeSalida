@@ -1496,6 +1496,8 @@ function obligatoriedadTabla(){
 		}
 	}
 	if(cont==0){
+		
+		
 		return "si";
 	}else{
 		return "no";
