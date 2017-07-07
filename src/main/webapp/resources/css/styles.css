@@ -34,7 +34,7 @@ body {
 input#numPags {
     float: left;
     padding: 9px;
-    width: 83px;
+    width: 95px;
     border: none;
     color: #A28392;
 }
@@ -107,6 +107,11 @@ th{
     display: inline-block;
     margin-top: 15px;
 }
+
+.mensaje{
+	margin-left: 45%;
+}
+
 .selColum:before{
     content: url("http://www.grupofamilia.com.co/Style%20Library/familia-clientes/img/add.png");
     position: relative;
@@ -1267,11 +1272,22 @@ form#salidaMaterialesForm td a.recibido:before{
     border-radius: 0px !important;
 }
 
-#centroIncorrecto{
+#todosObligatorio{
 	height: 160px;
     height: 50px;
     padding: 45px;
     background-color: #FF0385 !important;
+    width: 25% !important;
+    /*border: 18px solid !important;*/
+    /*border-color: white !important;*/
+    border-radius: 0px !important;
+}
+
+#centroIncorrecto{
+	height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #7DC200 !important;
     width: 25% !important;
     /*border: 18px solid !important;*/
     /*border-color: white !important;*/

@@ -237,10 +237,18 @@
             <section class="table-container">
                <h3>Materiales</h3>
                <div class="agregar">
-                  <input ng-disabled="salidaMaterialesForm.codigo.$invalid || salidaMaterialesForm.centro.$invalid || salidaMaterialesForm.um.$invalid
-                     || salidaMaterialesForm.cantidad.$invalid || salidaMaterialesForm.peso.$invalid
-                     || salidaMaterialesForm.repuesto.$invalid || salidaMaterialesForm.noOC.$invalid || salidaMaterialesForm.noOCa.$invalid""  type="button" name="Agregar" value="Agregar"
+                 <!--  <input ng-show="salidaMaterialesForm.codigo.$valid && salidaMaterialesForm.centro.$valid && salidaMaterialesForm.um.$valid
+                     && salidaMaterialesForm.cantidad.$valid && salidaMaterialesForm.peso.$valid
+                     && salidaMaterialesForm.repuesto.$valid && salidaMaterialesForm.noOC.$valid && salidaMaterialesForm.noOCa.$valid"  type="button" name="Agregar" value="Agregar"
                      class="add" ng-click="addMaterial()"/>
+                     
+                     <input ng-show="salidaMaterialesForm.codigo.$invalid || salidaMaterialesForm.centro.$invalid || salidaMaterialesForm.um.$invalid
+                     || salidaMaterialesForm.cantidad.$invalid || salidaMaterialesForm.peso.$invalid
+                     || salidaMaterialesForm.repuesto.$invalid || salidaMaterialesForm.noOC.$invalid || salidaMaterialesForm.noOCa.$invalid"  type="button" name="Agregar" value="Agregar"
+                     class="add" onclick="msgError()"/> -->
+                     
+                      <input  type="button" name="Agregar" value="Agregar" class="add" ng-click="addMaterial()"/>
+                     
                </div>
                <table name="tabla-materiales" class="tabla-materiales">
                   <thead>
@@ -503,7 +511,7 @@
                <input ng-if="salidaMaterialesForm.$invalid || contador1 === 1" type="button" id="Guardar1" name="Guardar1" value="Guardar" class="submit"
                   ng-click="submitForm()"/>
                <input ng-if="!salidaMaterialesForm.$invalid && contador1 > 1" type="button" id="Guardar" name="Guardar" value="Guardar"
-                  class="submit" ng-click="redireccionar()" />
+                  class="submit" ng-click="redireccionar()"/>
     
                <div modal="showModal" close="cancel()">
                   <div class="modal-header">
@@ -565,6 +573,25 @@
       </div>
          </div>
       </div>
+      
+      
+      <!-- Modal centro -->
+       <div class="modal fade" id="todosObligatorio" role="dialog">
+         <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+         <div class="cancelar">
+            <button class="btnCancel" onclick="cerrarModalTodos()"></button>
+         </div>
+         <div class="modal-header1 headerError">
+            <h4>Verifique todos los campos</h4>
+                 </div>
+      </div>
+         </div>
+      </div>
+      
+      
       
       <div class="modal fade" id="faltantes" role="dialog">
          <div class="modal-dialog">

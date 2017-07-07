@@ -336,8 +336,13 @@
                      <p class="obligatorio obligatoriocorreoPorteria" style="display:none">Obligatorio</p>
                     <!--  <p class="obligatorio" ng-show="(salidaMaterialesForm2.correoPorteria.$invalid && show) || (salidaMaterialesForm2.correoPorteria.$invalid && salidaMaterialesForm2.correoPorteria.$touched)">Obligatorio</p> -->
                   </div>
+            
 				</div>
+				
 			</section>
+			
+			<h3 class="mensaje">Este vale ya fue gestionado</h3>
+			
 			<section class="buttons">
 				<br>
 				<input type="button" name="Guardar" value="Aprobar" class="submit2 bloqueados" onclick="salidaAlm()" Style="display:none"/>
@@ -364,7 +369,9 @@
 	<form id="generarPdf" name="generarPdf" method="post" action="/familia/verPdf">
 			<input type="button" name="verPdf" value="Ver Pdf" class="pdf visualizar" onclick="pdfBrowser()">
 			<input type="text" id="prueba" name="idFiltrado" value="${model.vale.getIdVale()}" Style="Display:none"/>	
+			
 		</form>
+		
 		</div>
 		
       

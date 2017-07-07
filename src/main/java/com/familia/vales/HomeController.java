@@ -702,7 +702,7 @@ public class HomeController{
 			
 		  	String correo = obtenerCorreo(correoPort);
 			Vale val = valeRepository.findOne(Integer.parseInt(numVale));
-			val.setAlmacen(firma);
+			//val.setAlmacen(firma);
 			val.setAprobadoralmacen(correoPort);
 			valeRepository.save(val);	
 			this.contactenosServicio = new CorreoServicioImpl(); 

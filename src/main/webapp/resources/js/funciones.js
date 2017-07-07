@@ -56,7 +56,9 @@ function onReadyPortal(__jquery) {
 			 var nameAlm = jQuery("#nameAlm").val();
 			 if(user.trim()==nameJefe && nameAlm==""){			 
 				 __jquery(".bloqueados").css("display","block");
+				 __jquery(".mensaje").css("display","none");
 			 }else{
+				 __jquery(".mensaje").css("display","block");
 				 __jquery(".visualizar").attr("style","margin-left: 50% !important");
 			 }
 			 logeandoAprobar(user,correo);
@@ -962,6 +964,10 @@ function cerrarModalCentro(){
 	__jquery("#centroObligatorio").modal('toggle');
 }
 
+function cerrarModalTodos(){
+	__jquery("#todosObligatorio").modal('toggle');
+}
+
 function cerrarModalIncorrecto(){
 	__jquery("#centroIncorrecto").modal('toggle');
 }
@@ -1018,6 +1024,11 @@ function buscarMaterial(){
 			__jquery("#errorModal").modal();
 		}
 	}
+}
+
+function msgError(){
+	__jquery("#todosObligatorio").attr("style","border: 18px solid white !important");
+	__jquery("#todosObligatorio").modal();
 }
 
 function errorFaltantes(){
@@ -1435,6 +1446,7 @@ function obligatoriedad(){
 	if(cont==0){
 		return "si";
 	}else{
+		msgError();
 		return "no";
 	} 	
 }
