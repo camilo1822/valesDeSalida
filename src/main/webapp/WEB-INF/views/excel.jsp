@@ -56,19 +56,19 @@
 								<th colspan="3">Empresa de Transporte</th>
 								<th colspan="3">Placa vehiculo</th>
 
-								<th colspan="1">Fila</th>
-								<th colspan="2">Codigo</th>
-								<th colspan="2">Centro</th>
-								<th colspan="5">Descripcion</th>
-								<th colspan="1">Cantidad</th>
-								<th colspan="2">Vlr Unitario</th>
-								<th colspan="2">Vlr Estimado</th>
-								<th colspan="2">UM</th>
-								<th colspan="2">Peso</th>
-								<th colspan="2">Pertenece Maq.</th>
-								<th colspan="2">OC servicio</th>
-								<th colspan="2">OC adquisicion</th>
-								<th colspan="2">Fecha regreso</th>
+								<th colspan="1" bgcolor="#a29b9b">Fila</th>
+								<th colspan="2" bgcolor="#a29b9b">Codigo</th>
+								<th colspan="2" bgcolor="#a29b9b">Centro</th>
+								<th colspan="5" bgcolor="#a29b9b">Descripcion</th>
+								<th colspan="1" bgcolor="#a29b9b">Cantidad</th>
+								<th colspan="2" bgcolor="#a29b9b">Vlr Unitario</th>
+								<th colspan="2" bgcolor="#a29b9b">Vlr Estimado</th>
+								<th colspan="2" bgcolor="#a29b9b">UM</th>
+								<th colspan="2" bgcolor="#a29b9b">Peso</th>
+								<th colspan="2" bgcolor="#a29b9b">Pertenece Maq.</th>
+								<th colspan="2" bgcolor="#a29b9b">OC servicio</th>
+								<th colspan="2" bgcolor="#a29b9b">OC adquisicion</th>
+								<th colspan="2" bgcolor="#a29b9b">Fecha regreso</th>
 
 							</tr>
 						</table>
@@ -76,68 +76,68 @@
 							<table style ="BORDER: #000000  solid">
 
 								<tr>
-									<td colspan="3"><c:out value="${i.getIdVale()}" /></td>
-									<td colspan="3"><c:out value="${i.getNombreDiligencio()}" /></td>
-									<td colspan="3"><c:out value="${i.getMotivo()}" /></td>
-									<td colspan="6"><c:out value="${i.getJustificacion()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoProveedor()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoNit()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoEmpresa()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoDireccion()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoNombre()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoTel()}" /></td>
-									<td colspan="3"><c:out value="${i.getDestinoCiudad()}" /></td>
-									<td colspan="3"><c:out value="${i.getRetiraNombre()}" /></td>
-									<td colspan="3"><c:out
+									<td colspan="3" align='center'><c:out value="${i.getIdVale()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getNombreDiligencio()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getMotivo()}" /></td>
+									<td colspan="6" align='center'><c:out value="${i.getJustificacion()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoProveedor()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoNit()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoEmpresa()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoDireccion()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoNombre()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoTel()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getDestinoCiudad()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getRetiraNombre()}" /></td>
+									<td colspan="3"align='center'><c:out
 											value="${i.getRetiraIdentificacion()}" /></td>
-									<td colspan="3"><c:out value="${i.getRetiraEmpresa()}" /></td>
-									<td colspan="3"><c:out value="${i.getRetiraPlaca()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getRetiraEmpresa()}" /></td>
+									<td colspan="3" align='center'><c:out value="${i.getRetiraPlaca()}" /></td>
 
 									<c:forEach items="${model.detVal}" var="l" varStatus="m">
 										<c:if test="${i.getIdVale()eq l.getVale().getIdVale()}">
 											<tr>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="6"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
-												<td colspan="3"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="6" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
+												<td colspan="3" bgcolor="#a29b9b"></td>
 
 
-												<td colspan="1" align="center"><c:out
+												<td colspan="1" align="center" bgcolor="#a29b9b"><c:out
 														value="${l.getFila()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getCodigo()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getCentro()}" /></td>
-												<td colspan="5" ><c:out
+												<td colspan="5" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getDescripcion()}" /></td>
-												<td colspan="1" ><c:out
+												<td colspan="1" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getCantidad()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getValorUni()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getValor()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getUnidad()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getPeso()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getPerteneceMaquina()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getNoOc()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getOcAd()}" /></td>
-												<td colspan="2" ><c:out
+												<td colspan="2" align='center' bgcolor="#a29b9b"><c:out
 														value="${l.getFechaEsperada()}" /></td>
 											</tr>
 										</c:if>
