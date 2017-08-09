@@ -361,6 +361,9 @@
                   </div> -->
 				</div>
 			</section>
+			<h3 class="mensaje">Este vale ya fue gestionado</h3>
+			
+			
 			<section class="buttons">
 				<br>
 				<!-- botones -->
