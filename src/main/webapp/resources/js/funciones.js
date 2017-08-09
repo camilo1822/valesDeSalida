@@ -806,7 +806,7 @@ function mostrarLista(){
 	            	}
 	        	}
 	        	for(var i = 1; i < d.length-1;i++){
-	        		var ht = "<div class=\"bordeSel\" onclick=\"obtenerEmpresa("+"\'"+d[i]+"\'"+")\">"+d[i]+"</div>"
+	        		var ht = "<div class=\"bordeSel selectLista\" onclick=\"obtenerEmpresa("+"\'"+d[i]+"\'"+")\">"+d[i]+"</div>"
 	        		__jquery( ".listaEmpresas" ).append(ht);
 	        	}
 	        	__jquery( ".bordeSel" ).on("click",function(){
@@ -1206,7 +1206,7 @@ function mostrarAlmacenistas(){
 	            	}
 	        	}
 	        	for(var i = 1; i < d.length-1;i++){
-	        		var ht = "<div class=\"bordeSel\" onclick=\"llevarAlmacenista("+"\'"+d[i]+"\'"+")\">"+d[i]+"</div>"
+	        		var ht = "<div class=\"bordeSel selectLista\" onclick=\"llevarAlmacenista("+"\'"+d[i]+"\'"+")\">"+d[i]+"</div>"
 	        		__jquery( ".listaAlmacenistas" ).append(ht);
 	        	}
 	        	__jquery( ".bordeSel" ).on("click",function(){
