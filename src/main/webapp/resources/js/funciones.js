@@ -85,8 +85,10 @@ function onReadyPortal(__jquery) {
 	 
 	 if (__jquery(".valeDetail").length) {
 		 var x = __jquery("#nameJef").val();
-		 if(x==""){
+		 var y = __jquery("#nameAlm").val();
+		 if(x=="" || y==""){
 			 __jquery(".ocultarr").css("display","none");
+			 __jquery(".apro").css("display","block");
 			 __jquery("#modalPorteria").attr("style","border: 18px solid white !important");
 			__jquery("#modalPorteria").modal();
 		 }
@@ -125,6 +127,33 @@ var pdf = function() {
 		        	
 		}
 	});
+}
+
+var redirectAprobar = function(){
+	var x = __jquery("#nameJef").val();
+	var y = __jquery("#nameAlm").val();
+	var jefe = __jquery("#nameAlmJ").val();
+	jefe=jefe.trim();
+	x=x.trim();
+	y=y.trim();
+	var num = __jquery("#valeNum").val();
+	var user = localStorage.getItem("usuario");
+	user=user.trim();
+	 if(x==""){
+		 if(user==jefe){
+			 window.location="http://danae:8081/ValesDeSalida/aprobarJ?valorFiltrado="+num; 
+		 }else{
+			 
+		 }
+		  
+	 }else if(y==""){
+		 if(user==x){
+			 window.location="http://danae:8081/ValesDeSalida/aprobar?valorFiltrado="+num; 
+		 }else{
+			
+		 }
+		 
+	 }
 }
 
 var pdfLista = function(x) {
