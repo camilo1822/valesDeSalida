@@ -89,8 +89,11 @@ function onReadyPortal(__jquery) {
 		 if(x=="" || y==""){
 			 __jquery(".ocultarr").css("display","none");
 			 __jquery(".apro").css("display","block");
-			 __jquery("#modalPorteria").attr("style","border: 18px solid white !important");
-			__jquery("#modalPorteria").modal();
+			 if(localStorage.getItem("correo")!=null){
+				 __jquery("#modalPorteria").attr("style","border: 18px solid white !important");
+					__jquery("#modalPorteria").modal();
+			 }
+			 
 		 }
 	}
 
@@ -1167,6 +1170,7 @@ function llenarTabla(x){
 	document.getElementById(nomUm).value= um;
 	document.getElementById("vlrUnitarioSAP").value= "";
 	document.getElementById("vlrEstimado").value= "NaN";
+	document.getElementById("codigoConsultar").value= "0";
 	document.getElementById("cantMat").value= "";
 	document.getElementById("umSOAP").value= "";
 	document.getElementById("peso").value= "";

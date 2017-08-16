@@ -161,6 +161,7 @@ validationApp.controller('mainController', function($scope,$filter,$window) {
 			date = $filter('date')(date, "dd/MM/yyyy");
 			$scope.fechaFinalisima=date;
 			callToolTip();
+			$scope.material.codigo="";
 		}else{
 			msgError();
 		}

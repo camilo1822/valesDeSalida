@@ -284,7 +284,7 @@
                         
                          <td>
                            <div class="lupCod">
-                              <input class="input-lupa1 obligacionTabla" type="text" id="codigoConsultar" name="codigo" ng-model="material.codigo" ng-model-options="{ updateOn: 'blur' }" required
+                              <input class="input-lupa1" type="text" id="codigoConsultar" name="codigo" ng-model="material.codigo" ng-model-options="{ updateOn: 'blur' }" 
                                  />
                               <img class="imgLupa" src="resources/img/lupa.png" alt="Buscar" onclick="buscarMaterial()"/>
                              <p class="obligatorio obligatoriedadcodigoConsultar" style="display:none">Obligatorio</p>
