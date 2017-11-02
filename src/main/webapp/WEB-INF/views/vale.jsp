@@ -227,6 +227,7 @@ form input.ng-invalid.ng-touched {
 												<th ng-if="data.prorroga=='Si'">Comentario</th>
 												<th class="prorrogaTh" ng-if="data.prorroga=='Si'">Fecha
 													de prorroga</th>
+												<th ng-if="data.prorroga=='Si'">Cantidad Recibido</th>
 												<th ng-if="data.prorroga=='Si'">Recibido</th>
 												<th ng-if="data.prorroga=='Si'">Recibido Porteria</th>
 												<th>Fecha final</th>
@@ -286,7 +287,6 @@ form input.ng-invalid.ng-touched {
 														<td class="column-eleven"><input
 															class="in-descri fec" type="date"
 															value="<c:out value="${i.getFechaEsperada()}"/>" readonly /></td>
-
 														<td ng-if="data.prorroga=='Si'"><input type="button"
 															id="botCom<c:out value="${i.getFila()}"/>"
 															class="botComent"
@@ -310,7 +310,21 @@ form input.ng-invalid.ng-touched {
 															name="fecProrroga<c:out value="${i.getFila()}"/>"
 															value="<c:out value="${i.getFechaProrroga()}"/>" readonly />
 														</td>
-
+														
+														<td ng-if="data.prorroga=='Si'"><input
+															class="numeros" type="number"
+															id="checkRecibido<c:out value="${i.getFila()}"/>"
+															class="checkbox"
+															ng-model="chekRecibido<c:out value="${i.getFila()}"/>"
+															ng-init="chekRecibido<c:out value="${i.getFila()}"/>=false"
+															ng-change="mostrarFecha('${i.getFila()}','{{chekRecibido<c:out value="${i.getFila()}"/>}}')" />
+															<a ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
+															class="recibido"></a> <label
+															ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''"
+															for="checkRecibido<c:out value="${i.getFila()}"/>"
+															class="elemento imgCheck imgCheckCond"
+															id="checkRecibido<c:out value="${i.getFila()}"/>" /></td>
+														
 														<td ng-if="data.prorroga=='Si'"><input
 															type="checkbox"
 															id="checkRecibido<c:out value="${i.getFila()}"/>"
@@ -324,8 +338,6 @@ form input.ng-invalid.ng-touched {
 															for="checkRecibido<c:out value="${i.getFila()}"/>"
 															class="elemento imgCheck imgCheckCond"
 															id="checkRecibido<c:out value="${i.getFila()}"/>" /></td>
-
-
 														<td ng-if="data.prorroga=='Si'"><input
 															type="checkbox"
 															id="checkRecibidoPort<c:out value="${i.getFila()}"/>"
@@ -340,9 +352,6 @@ form input.ng-invalid.ng-touched {
 															class="elemento imgCheck imgCheckCond"
 															id="checkRecibidoPort<c:out value="${i.getFila()}"/>" />
 														</td>
-
-
-
 														<td class="column-six"><input
 															id="fecFinal<c:out value="${i.getFila()}"/>"
 															class="in-descri" type="text"
