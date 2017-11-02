@@ -126,12 +126,8 @@ form input.ng-invalid.ng-touched {
 										<label class="label">Motivo:</label> <input type="text"
 											name="selectMotivo" value="${model.vale.getMotivo()}"
 											readonly />
-
 									</div>
-
-
 								</div>
-
 								<div class="form-row">
 									<div class="input-block col-full">
 										<label class="label">Justificaci&oacute;n
@@ -145,7 +141,6 @@ form input.ng-invalid.ng-touched {
 									<div class="input-block col-half">
 										<label class="label">Proveedor:</label> <input type="text"
 											name="codigo" value="${model.vale.getDestinoProveedor()}" />
-
 									</div>
 									<div class="input-block col-half izqui">
 										<label class="label">Nit:</label> <input type="text"

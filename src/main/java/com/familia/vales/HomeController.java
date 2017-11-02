@@ -1195,7 +1195,6 @@ public class HomeController{
 				            Attributes attrs1 = result1.getAttributes ();
 				            String ciudad = attrs1.get("ou").toString();
 				            ciudad=ciudad.substring(4);
-				            System.out.println("las ciudades son : xxxxxxxxxxxxx " + ciudad);
 				            String ruta2="OU="+ciudad+","+ruta1;
 				            NamingEnumeration<?> namingEnum2 = ctx.search(ruta2, "CN=*", new SearchControls());
 				            while(namingEnum2.hasMore ()){
