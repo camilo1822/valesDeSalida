@@ -208,9 +208,22 @@ function guardarMaterial(x) {
 	var fila = jQuery("#fila"+x).val();
 	var apro = jQuery("#varRecibido"+x).val();
 	var correo = jQuery("#correoUsuario").val();
+	var cantidad = jQuery("#cantidadMat"+x).val();
+	var recibido = jQuery("#cantidadRecibido"+x).val();
+	if(cantidad == recibido){
+		angular.element(document.getElementById('cantidadRecibido'+x)).scope().mostrarFecha();
+		var dt = new Date();
+		var month = dt.getMonth()+1;
+		var day = dt.getDate();
+		var year = dt.getFullYear();
+		fecFinal = year + '-' + month + '-' + day;
+	}
+	if(parseInt(recibido) > parseInt(cantidad)){
+		recibido = 0;
+	}
 	__jquery.ajax({
 		url : "/ValesDeSalida/valeEditar",
-		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero},
+		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero, Cantidad : recibido},
 		type : "POST",
 		async : false,
 		success : function(evt) {
@@ -227,28 +240,22 @@ function guardarMaterial2(x) {
 	var fila = jQuery("#fila"+x).val();
 	var apro = jQuery("#varRecibido"+x).val();
 	var correo = jQuery("#correoUsuario").val();
+	var cantidad = jQuery("#cantidadMat"+x).val();
+	var recibido = jQuery("#cantidadRecibido"+x).val();
+	if(cantidad == recibido){
+		angular.element(document.getElementById('cantidadRecibido'+x)).scope().mostrarFecha();
+		var dt = new Date();
+		var month = dt.getMonth()+1;
+		var day = dt.getDate();
+		var year = dt.getFullYear();
+		fecFinal = year + '-' + month + '-' + day;
+	}
+	if(parseInt(recibido) > parseInt(cantidad)){
+		recibido = 0;
+	}
 	__jquery.ajax({
 		url : "/ValesDeSalida/valeEditar2",
-		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero},
-		type : "POST",
-		async : false,
-		success : function(evt) {
-	
-		}
-	});
-}
-
-function guardarMaterial2(x) {
-	var fecProrroga = jQuery("#fecProrroga"+x).val();
-	var fecFinal = jQuery("#fecFinal"+x).val();
-	var portero = jQuery("#fecFinalPort"+x).val();
-	var idVales = jQuery("#valeNum").val();
-	var fila = jQuery("#fila"+x).val();
-	var apro = jQuery("#varRecibido"+x).val();
-	var correo = jQuery("#correoUsuario").val();
-	__jquery.ajax({
-		url : "/ValesDeSalida/valeEditar2",
-		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero},
+		data : {idVal : idVales, idFila : fila, fecPro : fecProrroga, fecFin : fecFinal, valApro : apro, Correo : correo, Port : portero,Cantidad : recibido},
 		type : "POST",
 		async : false,
 		success : function(evt) {
@@ -863,7 +870,6 @@ function mostrarLista(){
 					async : false,
 					success : function(evt) {
 						var l = evt.split("?");
-			            console.log(l);
 			            for(var j = 1; j < l.length;j++){
 			            	if(l[j].length<3){
 			            		l.splice(j,1);
@@ -1317,9 +1323,6 @@ function listaPorteros(){
 	            	}
 	        	}
 	        	for(var i = 1; i < d.length-1;i++){
-	        		console.log("porteria");
-	        		console.log(d[i]);
-	        		console.log(nombre);
 	        		nombre=nombre.trim();
 	        		if(nombre==d[i]){
 	        			__jquery("#conPort").attr("style","display: block !important");
@@ -1361,10 +1364,6 @@ function listaAlmacenistas(){
 	            	}
 	        	}
 	        	for(var i = 1; i < d.length-1;i++){
-	        		console.log("Almacenistas");
-	        		console.log(d[i]);
-	        		
-	        		console.log(nombre);
 	        		nombre=nombre.trim();
 	        		if(nombre==d[i]){
 	        			document.getElementById("btnRecha").disabled = false; 
@@ -1399,10 +1398,6 @@ function botonGuardar(){
 	            	}
 	        	}
 	        	for(var i = 1; i <= d.length-1;i++){
-	        		console.log(d.length-1);
-	        		console.log(i);
-	        		console.log(d[i]);
-	        		console.log(nombre.trim());
 	        		nombre=nombre.trim();
 	        		if(nombre==d[i]){
 	        			

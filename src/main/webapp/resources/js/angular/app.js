@@ -199,11 +199,16 @@ validationApp.controller('mainController', function($scope,$filter,$window) {
 		}		
 	}
 		  
-	$scope.mostrarFecha = function(x,y){					  
+	$scope.mostrarFecha = function(x,y){
 		$scope.CurrentDate = new Date();	
 		var nombre = 'chekRecibido'+x;
 		var nombre1 = 'fechaFinal'+x;
 		var nombre2 = 'fechaFinali'+x;
+		
+		var date = $scope.CurrentDate;
+		date = $filter('date')(date, "yyyy-MM-dd"); 
+		$scope[nombre1]=date;
+		
 		if(y=="false"){
 			var date = $scope.CurrentDate;
 			date = $filter('date')(date, "yyyy-MM-dd"); 

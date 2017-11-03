@@ -60,8 +60,7 @@
 									value="${model.vale.getAprobadoralmacen()}"
 									Style="Display: none" /> <input id="nameAlm" type="text"
 									name="nameAlm" value="${model.vale.getAlmacen()}"
-									Style="Display: none" />
-									<input id="nameAlmJ" type="text"
+									Style="Display: none" /> <input id="nameAlmJ" type="text"
 									name="nameAlmJ" value="${model.vale.getAprobadorjefe()}"
 									Style="Display: none" />
 								<style type="text/css">
@@ -260,6 +259,7 @@ form input.ng-invalid.ng-touched {
 															type="text" value="<c:out value="${i.getUnidad()}"/>"
 															readonly /></td>
 														<td class="column-five"><input class="in-descri"
+															id="cantidadMat<c:out value="${i.getFila()}"/>"
 															type="text" value="<c:out value="${i.getCantidad()}"/>"
 															readonly /></td>
 														<td class="column-five"><input class="in-descri"
@@ -310,28 +310,14 @@ form input.ng-invalid.ng-touched {
 															name="fecProrroga<c:out value="${i.getFila()}"/>"
 															value="<c:out value="${i.getFechaProrroga()}"/>" readonly />
 														</td>
-														
+
 														<td ng-if="data.prorroga=='Si'"><input
 															class="numeros" type="number"
-															id="checkRecibido<c:out value="${i.getFila()}"/>"
-															class="checkbox"
-															ng-model="chekRecibido<c:out value="${i.getFila()}"/>"
-															ng-init="chekRecibido<c:out value="${i.getFila()}"/>=false"
-															ng-change="mostrarFecha('${i.getFila()}','{{chekRecibido<c:out value="${i.getFila()}"/>}}')" />
-															<a ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
-															class="recibido"></a> <label
-															ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''"
-															for="checkRecibido<c:out value="${i.getFila()}"/>"
-															class="elemento imgCheck imgCheckCond"
-															id="checkRecibido<c:out value="${i.getFila()}"/>" /></td>
-														
-														<td ng-if="data.prorroga=='Si'"><input
-															type="checkbox"
-															id="checkRecibido<c:out value="${i.getFila()}"/>"
-															class="checkbox"
-															ng-model="chekRecibido<c:out value="${i.getFila()}"/>"
-															ng-init="chekRecibido<c:out value="${i.getFila()}"/>=false"
-															ng-change="mostrarFecha('${i.getFila()}','{{chekRecibido<c:out value="${i.getFila()}"/>}}')" />
+															id="cantidadRecibido<c:out value="${i.getFila()}"/>"
+															value="<c:out value="${i.getCantidadRecibido()}"/>" />
+														</td>
+
+														<td ng-if="data.prorroga=='Si'">
 															<a ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
 															class="recibido"></a> <label
 															ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''"
@@ -381,10 +367,6 @@ form input.ng-invalid.ng-touched {
 															ng-model="fechaFinaliPort<c:out value="${i.getFila()}"/>"
 															ng-init="fechaFinaliPort<c:out value="${i.getFila()}"/>='<c:out value="${i.getPort()}"/>'"
 															readonly /></td>
-
-
-														<!-- Aprobado -->
-														<!-- <td  ng-if="data.prorroga=='Si'"> -->
 														<td id="campoAprobado"><input
 															name="aprobado<c:out value="${i.getFila()}"/>"
 															type="checkbox"
@@ -400,9 +382,6 @@ form input.ng-invalid.ng-touched {
 															id="varRecibido<c:out value="${i.getFila()}"/>"
 															ng-model="varRecibido<c:out value="${i.getFila()}"/>"
 															Style="Display: none" /></td>
-														<!-- Fin Aprobado -->
-
-
 														<td
 															ng-if="'${model.vale.getEstadoVale().getEstado()}'!='CERRADO'"
 															class="column-fifteen"><a class="edite ocultarr"
@@ -501,8 +480,8 @@ form input.ng-invalid.ng-touched {
 									type="button" name="verPdf" value="Aprobar"
 									class="pdf visualizar apro" onclick="redirectAprobar()"
 									Style="display: none"><input type="text" id="prueba"
-									name="idFiltrado" value="${model.vale.getIdVale()}"
-									Style="Display: none" /></section>
+										name="idFiltrado" value="${model.vale.getIdVale()}"
+										Style="Display: none" /></section>
 
 								<!-- Modal comentario -->
 								<div class="modal fade" id="modalRechazo" role="dialog">

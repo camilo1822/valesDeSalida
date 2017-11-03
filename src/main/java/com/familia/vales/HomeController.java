@@ -386,6 +386,7 @@ public class HomeController{
 					  			detVal.setIdDetalleVale(tamm);
 					  			detVal.setPort("");
 					  			detVal.setComentario("");
+					  			detVal.setCantidadRecibido(0);
 					  			if(oc.equals("N/A")){
 					  				detVal.setNoOc(0);
 					  			}else{
@@ -435,20 +436,6 @@ public class HomeController{
 			  						numFila+=1;
 			  					}
 			  				}
-			  				
-			  				//Date date1 = new Date();	
-			  				//DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy");		  			
-			  				//String fecha = dateFormat.format(date1);
-			  				
-//			  				Map<String, Object> miModelo = new HashMap<String, Object>();
-//			  				miModelo.put("fecha", fecha);
-//			  				miModelo.put("numFila", numFila);
-//			  				miModelo.put("vale", val1);
-//			  				miModelo.put("detVales", vecDetalle);
-//			  				miModelo.put("prueba", numero);
-//			  				ModelAndView miMAV = new ModelAndView();
-//			  		        miMAV.setViewName("lista");
-//			  		        miMAV.addObject("model",miModelo);
 
 			  		      try {
 			  		        	contactenosServicio.enviarCorreo(correoAlmacen,correo,numVale, PLANTILLA_CONTACTENOS, response);

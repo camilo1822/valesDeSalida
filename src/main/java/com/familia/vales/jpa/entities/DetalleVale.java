@@ -23,6 +23,9 @@ public class DetalleVale implements Serializable {
 
 	private int cantidad;
 
+	@Column(name="CANTIDAD_RECIBIDO")
+	private int cantidadRecibido;
+
 	private String centro;
 
 	private String codigo;
@@ -104,6 +107,14 @@ public class DetalleVale implements Serializable {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public int getCantidadRecibido() {
+		return this.cantidadRecibido;
+	}
+
+	public void setCantidadRecibido(int cantidadRecibido) {
+		this.cantidadRecibido = cantidadRecibido;
 	}
 
 	public String getCentro() {

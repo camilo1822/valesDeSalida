@@ -104,6 +104,7 @@ public class EditarController {
 		String aprobado= request.getParameter("valApro");
 		String correo2= request.getParameter("Correo");
 		String aporbadoPort= request.getParameter("Port");
+		String cantidad= request.getParameter("Cantidad");
 		
 		this.contactenosServicio = new CorreoServicioImpl(); 
 	  	Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
@@ -136,6 +137,7 @@ public class EditarController {
 				}
 				
 				try {
+		  			detallVale.setCantidadRecibido(Integer.parseInt(cantidad));
 		  			if(fecFinal.equals("")){
 			  			detallVale.setFechaFinal(null);
 			  			detallVale.setRecibido("No");
@@ -193,6 +195,7 @@ public class EditarController {
 		String aprobado= request.getParameter("valApro");
 		String correo2= request.getParameter("Correo");
 		String aporbadoPort= request.getParameter("Port");
+		String cantidad= request.getParameter("Cantidad");
 	  	Vale vale = valeRepository.findOne(Integer.parseInt(numVale));
 	  	OperacionVale opVal = operacionRep.findOne(Integer.parseInt(numVale));
 	  	String correo = opVal.getUsuario().getEmail();
@@ -223,11 +226,11 @@ public class EditarController {
 				}
 				
 				try {
+		  			detallVale.setCantidadRecibido(Integer.parseInt(cantidad));
 		  			if(fecFinal.equals("")){
 			  			detallVale.setFechaFinal(null);
 			  			detallVale.setRecibido("No");
 			  			detallVale.setPort(aporbadoPort);
-			  			System.out.println(aporbadoPort);
 			  			if(aporbadoPort.equals("Si")){
 			  				String[] almacenes = retornaAlmacenes(numVale);
 			  				String[] correos = obtenerCorreos(almacenes);
