@@ -57,6 +57,11 @@ img {
     border: none;
     -webkit-tap-highlight-color: transparent;
 }
+
+#mensajeAprobacion{
+    font-size: 11px !important;
+}
+
 h2 {
     font-family: 'Dosis', sans-serif;
     font-weight: 600 !important;

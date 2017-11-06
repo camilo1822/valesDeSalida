@@ -22,7 +22,7 @@ public class BSEXTRANET_SI_CON_PROVEEDOR_OC_UID_OUT_SLocator extends org.apache.
     }
 
     // Use to get a proxy class for HTTPS_Port
-    private java.lang.String HTTPS_Port_address = "http://Reqaccount:Pluton6000*@maia:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_sgto_ordenes_compra";
+    private java.lang.String HTTPS_Port_address = "http://Reqaccount:Pluton6000*@200.85.241.29:50100/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_sgto_ordenes_compra";
 
     public java.lang.String getHTTPS_PortAddress() {
         return HTTPS_Port_address;
@@ -67,7 +67,7 @@ public class BSEXTRANET_SI_CON_PROVEEDOR_OC_UID_OUT_SLocator extends org.apache.
 
 
     // Use to get a proxy class for HTTP_Port
-    private java.lang.String HTTP_Port_address = "https://Reqaccount:Pluton6000*@maia:443/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_sgto_ordenes_compra";
+    private java.lang.String HTTP_Port_address = "https://Reqaccount:Pluton6000*@200.85.241.29:50100/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_sgto_ordenes_compra";
 
     public java.lang.String getHTTP_PortAddress() {
         return HTTP_Port_address;

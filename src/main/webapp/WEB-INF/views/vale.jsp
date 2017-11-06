@@ -531,7 +531,7 @@ form input.ng-invalid.ng-touched {
 										<button class="btnCancel" onclick="cerrarModalPorteria1()"></button>
 									</div>
 									<div class="modal-header1 headerError">
-										<h4>Vale sin aprobar</h4>
+										<h4 id="mensajeAprobacion"></h4>
 									</div>
 								</div>
 							</div>
