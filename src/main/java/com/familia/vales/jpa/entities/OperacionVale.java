@@ -27,12 +27,12 @@ public class OperacionVale implements Serializable {
 	//bi-directional many-to-one association to EstadoVale
 	@ManyToOne
 	@JoinColumn(name="ID_ESTADO_FINAL")
-	private EstadoVale estadoValeFinal;
+	private EstadoVale estadoVale1;
 
 	//bi-directional many-to-one association to EstadoVale
 	@ManyToOne
 	@JoinColumn(name="ID_ESTADO_INICIAL")
-	private EstadoVale estadoValeInicial;
+	private EstadoVale estadoVale2;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -71,20 +71,20 @@ public class OperacionVale implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public EstadoVale getEstadoValeFinal() {
-		return this.estadoValeFinal;
+	public EstadoVale getEstadoVale1() {
+		return this.estadoVale1;
 	}
 
-	public void setEstadoValeFinal(EstadoVale estadoValeFinal) {
-		this.estadoValeFinal = estadoValeFinal;
+	public void setEstadoVale1(EstadoVale estadoVale1) {
+		this.estadoVale1 = estadoVale1;
 	}
 
-	public EstadoVale getEstadoValeInicial() {
-		return this.estadoValeInicial;
+	public EstadoVale getEstadoVale2() {
+		return this.estadoVale2;
 	}
 
-	public void setEstadoValeInicial(EstadoVale estadoValeInicial) {
-		this.estadoValeInicial = estadoValeInicial;
+	public void setEstadoVale2(EstadoVale estadoVale2) {
+		this.estadoVale2 = estadoVale2;
 	}
 
 	public Usuario getUsuario() {

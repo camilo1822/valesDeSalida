@@ -310,12 +310,15 @@ form input.ng-invalid.ng-touched {
 												class="contFila" type="text" value="contador1" name="fila"
 												ng-model="contador1" readonly /></td>
 
-											<td class=""><input type="text"
-												class="obligacionTabla inputCentro" id="centro"
-												name="centro" ng-model="material.centro"
-												ng-change="convMayusculasAng()" />
-												<p class="obligatorio obligatoriedadcentro"
-													style="display: none">Obligatorio</p></td>
+											<td class=""><select name="centro"
+												class="obligacionTabla inputCentro" id="centroSelect"
+												name="selectMotivo" ng-model="material.centro">
+													<c:forEach items="${model.centros}" var="i">
+															<option value=<c:out value="${i}"/>>
+																<c:out value="${i}" />
+															</option>
+													</c:forEach>
+											</select>
 
 											<td>
 												<div class="lupCod">

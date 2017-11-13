@@ -51,6 +51,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.familia.vales.jpa.entities.Centro;
 import com.familia.vales.jpa.entities.DetalleVale;
 import com.familia.vales.jpa.entities.EstadoVale;
 import com.familia.vales.jpa.entities.MotivoVale;
@@ -58,6 +59,7 @@ import com.familia.vales.jpa.entities.OperacionVale;
 import com.familia.vales.jpa.entities.UnidadMedidaVale;
 import com.familia.vales.jpa.entities.Usuario;
 import com.familia.vales.jpa.entities.Vale;
+import com.familia.vales.jpa.repository.CentroRepository;
 import com.familia.vales.jpa.repository.DetalleValeRepository;
 import com.familia.vales.jpa.repository.EstadoValeRepository;
 import com.familia.vales.jpa.repository.MotivoValeRepository;
@@ -110,6 +112,9 @@ public class HomeController {
 
 	@Autowired
 	private MotivoValeRepository motRep;
+	
+	@Autowired
+	private CentroRepository centRep;
 
 	@Autowired
 	private ValeRepository valeRepository;
@@ -124,6 +129,8 @@ public class HomeController {
 		String unidades[] = new String[umVale.size()];
 		Collection<MotivoVale> mtVale = motRep.findAll();
 		String motivos[] = new String[mtVale.size()];
+		Collection<Centro> ctVale = centRep.findAll();
+		String centros[] = new String[ctVale.size()];
 
 		int i = 0;
 		for (Iterator<UnidadMedidaVale> iterator = umVale.iterator(); iterator.hasNext();) {
@@ -137,6 +144,13 @@ public class HomeController {
 			MotivoVale mtVAl = (MotivoVale) iterator.next();
 			motivos[j] = mtVAl.getMotivo();
 			j += 1;
+		}
+		
+		int cv = 0;
+		for (Iterator<Centro> iterator = ctVale.iterator(); iterator.hasNext();) {
+			Centro centVal = (Centro) iterator.next();
+			centros[cv] = centVal.getCentro();
+			cv += 1;
 		}
 
 		Date date = new Date();
@@ -181,6 +195,7 @@ public class HomeController {
 		miModelo.put("estado", status);
 		miModelo.put("unidades", unidades);
 		miModelo.put("motivos", motivos);
+		miModelo.put("centros", centros);
 		ModelAndView miMAV = new ModelAndView();
 		miMAV.setViewName("home");
 		miMAV.addObject("model", miModelo);
@@ -340,8 +355,8 @@ public class HomeController {
 		/* Operacion */
 		estVal = estREp.findOne(1);
 		oprVal.setDescripcion("General");
-		oprVal.setEstadoValeFinal(estVal);
-		oprVal.setEstadoValeInicial(estVal);
+		oprVal.setEstadoVale1(estVal);
+		oprVal.setEstadoVale2(estVal);
 		oprVal.setFecha(null);
 		oprVal.setIdOperacionVale(Integer.parseInt(numVale));
 		oprVal.setUsuario(user);

@@ -312,13 +312,19 @@ form input.ng-invalid.ng-touched {
 														</td>
 
 														<td ng-if="data.prorroga=='Si'"><input
+															ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''"
 															class="numeros" type="number"
 															id="cantidadRecibido<c:out value="${i.getFila()}"/>"
-															value="<c:out value="${i.getCantidadRecibido()}"/>" />
-														</td>
+															value="<c:out value="${i.getCantidadRecibido()}"/>" /> <input
+															ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
+															ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
+															class="numeros" type="number"
+															id="cantidadRecibido<c:out value="${i.getFila()}"/>"
+															value="<c:out value="${i.getCantidadRecibido()}"/>"
+															readonly /></td>
 
-														<td ng-if="data.prorroga=='Si'">
-															<a ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
+														<td ng-if="data.prorroga=='Si'"><a
+															ng-if="'<c:out value="${i.getFechaFinal()}"/>' != ''"
 															class="recibido"></a> <label
 															ng-if="'<c:out value="${i.getFechaFinal()}"/>' == ''"
 															for="checkRecibido<c:out value="${i.getFila()}"/>"

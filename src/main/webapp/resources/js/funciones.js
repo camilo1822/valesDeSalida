@@ -833,7 +833,6 @@ function validarCorreo() {
 	var correo = __jquery("#correoFiltrado").val();
 	var ciclo = __jquery("#numFilass").text();
 	if (correo == pass) {
-		// document.getElementById("btnRecha").disabled = true;
 		for (var i = 1; i <= ciclo; i++) {
 			var nom = "checkRecibido1" + i;
 			document.getElementById(nom).disabled = false;
@@ -864,14 +863,10 @@ var valeDatos = function() {
 							__jquery("#verifiDatos").css("display", "block");
 						} else {
 							__jquery("#myModal").modal('toggle');
-							// document.getElementById("plantaUsuario").value=
-							// planta;
 							var r = evt.split("[").toString();
 							var s = r.split("]").toString();
 							var m = s.split(",");
 							document.getElementById("correoUsuario").value = m[1];
-							// document.getElementById("descripcionUsuario").value=
-							// m[2];
 							document.getElementById("nameUsuario").value = m[2];
 							document.getElementById("plantaUsuario").value = m[3];
 							localStorage.setItem("correo", m[1]);
@@ -1409,7 +1404,6 @@ function llenarTabla(x) {
 	document.getElementById("umSOAP").value = "";
 	document.getElementById("peso").value = "";
 	document.getElementById("descripcionSAP").value = "";
-	document.getElementById("centro").value = "";
 	document.getElementById("codigoConsultar").value = "";
 }
 
@@ -1775,6 +1769,10 @@ function obligatoriedadTabla() {
 	camposTabla = document.querySelectorAll(".obligacionTabla");
 	var nombre = "obligatoriedad";
 	var cont = 0;
+	var centro = __jquery("#centroSelect").val();
+	if(centro == "? undefined:undefined ?"){
+		return "no";
+	}
 	for (var i = 0; i < camposTabla.length; i++) {
 		if (camposTabla[i].value == '') {
 			var identi = "." + nombre + camposTabla[i].id;

@@ -26,11 +26,11 @@ public class EstadoVale implements Serializable {
 	private int orden;
 
 	//bi-directional many-to-one association to OperacionVale
-	@OneToMany(mappedBy="estadoValeFinal")
+	@OneToMany(mappedBy="estadoVale1")
 	private List<OperacionVale> operacionVales1;
 
 	//bi-directional many-to-one association to OperacionVale
-	@OneToMany(mappedBy="estadoValeInicial")
+	@OneToMany(mappedBy="estadoVale2")
 	private List<OperacionVale> operacionVales2;
 
 	//bi-directional many-to-one association to Vale
@@ -82,14 +82,14 @@ public class EstadoVale implements Serializable {
 
 	public OperacionVale addOperacionVales1(OperacionVale operacionVales1) {
 		getOperacionVales1().add(operacionVales1);
-		operacionVales1.setEstadoValeFinal(this);
+		operacionVales1.setEstadoVale1(this);
 
 		return operacionVales1;
 	}
 
 	public OperacionVale removeOperacionVales1(OperacionVale operacionVales1) {
 		getOperacionVales1().remove(operacionVales1);
-		operacionVales1.setEstadoValeFinal(null);
+		operacionVales1.setEstadoVale1(null);
 
 		return operacionVales1;
 	}
@@ -104,14 +104,14 @@ public class EstadoVale implements Serializable {
 
 	public OperacionVale addOperacionVales2(OperacionVale operacionVales2) {
 		getOperacionVales2().add(operacionVales2);
-		operacionVales2.setEstadoValeInicial(this);
+		operacionVales2.setEstadoVale2(this);
 
 		return operacionVales2;
 	}
 
 	public OperacionVale removeOperacionVales2(OperacionVale operacionVales2) {
 		getOperacionVales2().remove(operacionVales2);
-		operacionVales2.setEstadoValeInicial(null);
+		operacionVales2.setEstadoVale2(null);
 
 		return operacionVales2;
 	}

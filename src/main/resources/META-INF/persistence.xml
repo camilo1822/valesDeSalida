@@ -8,6 +8,7 @@
 		<class>com.familia.vales.jpa.entities.UnidadMedidaVale</class>
 		<class>com.familia.vales.jpa.entities.Usuario</class>
 		<class>com.familia.vales.jpa.entities.Vale</class>
+		<class>com.familia.vales.jpa.entities.Centro</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/vales_salida"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
