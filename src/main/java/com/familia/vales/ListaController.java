@@ -140,7 +140,6 @@ public class ListaController {
 				}	
 
 			}else{
-				System.out.println("radicado igual");
 				Collection<Vale> valess = valeRepository.findAll();
 				Vector<Vale> vales = new Vector<Vale>();
 
@@ -205,7 +204,6 @@ public class ListaController {
 		        return miMAV;
 
 			}else{
-				System.out.println("no tiene fecha");
 				return new ModelAndView("redirect:/lista");
 			}
 	   }
@@ -247,7 +245,6 @@ public class ListaController {
 		        return miMAV;
 
 			}else{
-				System.out.println("no tiene fecha");
 				return new ModelAndView("redirect:/lista");
 			}
 	   }
@@ -259,7 +256,6 @@ public class ListaController {
 		extranet_sgto_ordenes_compra.familia.SI_CON_PROVEEDOR_OC_UID_OUT_SProxy sampleSI_CON_PROVEEDOR_OC_UID_OUT_SProxyid = new SI_CON_PROVEEDOR_OC_UID_OUT_SProxy();
 
        String cOD_PROV_4id=  request.getParameter("CodProveedor");
-       System.out.println(cOD_PROV_4id);
            java.lang.String cOD_PROV_4idTemp = null;
        if(!cOD_PROV_4id.equals("")){
         cOD_PROV_4idTemp  = cOD_PROV_4id;
@@ -269,7 +265,6 @@ public class ListaController {
 
        extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id.setPROVEEDOR(extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id);
        extranet_sgto_ordenes_compra.familia.DT_RESPONSE_PROVEEDOR SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp = sampleSI_CON_PROVEEDOR_OC_UID_OUT_SProxyid.SI_CON_PROVEEDOR_OC_UID_OUT_S(extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id);
-       System.out.println("sii "+SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp);
   
        DT_PROVEEDOR[] proveedor = SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp.getPROVEEDOR();
        DT_CONTACTO[] contacto = proveedor[0].getCONTACTO();
@@ -287,7 +282,6 @@ public class ListaController {
 		   repuesta.add("?"+contacto[0].getNOMBRES()+"?");		   
 	   }
 	   String ciudad = quitarTilde(proveedor[0].getCIUDAD());
-	   System.out.println(ciudad);
 	   repuesta.add("?"+ciudad+"?");
        response.getWriter().println(repuesta);
 	}
@@ -304,12 +298,10 @@ public class ListaController {
        if(!nOMBRE_7id.equals("")){
         nOMBRE_7idTemp  = nOMBRE_7id;
        }
-       //extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id.setCOD_PROV("");
        extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id.setNOMBRE(nOMBRE_7idTemp);
 
        extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id.setPROVEEDOR(extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id);
        extranet_sgto_ordenes_compra.familia.DT_RESPONSE_PROVEEDOR SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp = sampleSI_CON_PROVEEDOR_OC_UID_OUT_SProxyid.SI_CON_PROVEEDOR_OC_UID_OUT_S(extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id);
-       System.out.println("sii "+SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp);
   
        DT_PROVEEDOR[] proveedor = SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp.getPROVEEDOR();
        DT_CONTACTO[] contacto = proveedor[0].getCONTACTO();
@@ -349,7 +341,6 @@ public class ListaController {
 
        extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id.setPROVEEDOR(extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id);
        extranet_sgto_ordenes_compra.familia.DT_RESPONSE_PROVEEDOR SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp = sampleSI_CON_PROVEEDOR_OC_UID_OUT_SProxyid.SI_CON_PROVEEDOR_OC_UID_OUT_S(extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id);
-       System.out.println("sii "+SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp);
   
        DT_PROVEEDOR[] proveedor = SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp.getPROVEEDOR();
 	   ArrayList<String> repuesta=new ArrayList<>();
@@ -384,7 +375,6 @@ public class ListaController {
 
        extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id.setPROVEEDOR(extranet_sgto_ordenes_compra1familia1DT_CON_PROV_2id);
        extranet_sgto_ordenes_compra.familia.DT_RESPONSE_PROVEEDOR SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp = sampleSI_CON_PROVEEDOR_OC_UID_OUT_SProxyid.SI_CON_PROVEEDOR_OC_UID_OUT_S(extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id);
-       System.out.println("sii "+SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp);
   
        DT_PROVEEDOR[] proveedor = SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp.getPROVEEDOR();
        DT_CONTACTO[] contacto = proveedor[0].getCONTACTO();
@@ -423,7 +413,6 @@ public class ListaController {
        extranet_sgto_ordenes_compra.familia.DT_RESPONSE_PROVEEDOR SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp = sampleSI_CON_PROVEEDOR_OC_UID_OUT_SProxyid.SI_CON_PROVEEDOR_OC_UID_OUT_S(extranet_sgto_ordenes_compra1familia1DT_REQUEST_PROVEDOR_1id);
   
        DT_PROVEEDOR[] proveedor = SI_CON_PROVEEDOR_OC_UID_OUT_S13mtemp.getPROVEEDOR();
-       System.out.println("proveedor "+proveedor);
        ArrayList<String> repuesta=new ArrayList<>();
 	   
 	   for(int i=0;i<proveedor.length;i++){

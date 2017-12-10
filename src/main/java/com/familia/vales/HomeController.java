@@ -216,9 +216,7 @@ public class HomeController {
 		String numVale = request.getParameter("idFiltrado");
 
 		Vale valPru = valeRepository.findOne(Integer.parseInt(numVale));
-		System.out.println("valeeeeee " + numVale);
 		if (valPru != null) {
-			System.out.println("valeeeeee null" + numVale);
 			Collection<Vale> val = valeRepository.findAll();
 			int num = 0;
 			for (int l = 1; l <= val.size(); l++) {
@@ -230,7 +228,6 @@ public class HomeController {
 				num = l + 1;
 			}
 			numVale = Integer.toString(num);
-			System.out.println("valeeeeee nuevo" + numVale);
 		}
 		String ciuDest = request.getParameter("ciudadContacto");
 
@@ -257,7 +254,6 @@ public class HomeController {
 		String correo = request.getParameter("correoUsuario");
 		String usuarioAlmacen = request.getParameter("correoAlmacen");
 		String correoAlmacen = obtenerCorreo(usuarioAlmacen);
-		System.out.println("correoAlmacen " + correoAlmacen);
 		String planta = request.getParameter("plantaUsuario");
 		String almacenOrigen = request.getParameter("almacenOrigen");
 
@@ -365,7 +361,6 @@ public class HomeController {
 		/* fin operacion */
 
 		int pare = Integer.parseInt(request.getParameter("filaTotal"));
-		System.out.println(pare);
 		for (int i = 1; i < pare; i++) {
 			String idDet = numVale + i;
 			int tamm = Integer.parseInt(idDet);
@@ -490,7 +485,6 @@ public class HomeController {
 		String ciudad = vale.getPlanta();
 		String almacen = "AprobadoresZFCajica";
 		String[] almacenes = null;
-		System.out.println(ciudad);
 		ArrayList<String> alamcenistas = new ArrayList<>();
 		alamcenistas = almacenistasLdap(almacen);
 		almacenes = new String[alamcenistas.size()];
@@ -550,8 +544,6 @@ public class HomeController {
 				correo[i] = unico;
 			}
 		}
-
-		System.out.println(correo);
 		return correo;
 	}
 
@@ -605,7 +597,6 @@ public class HomeController {
 
 	public ArrayList<String> almacenistasLdap(String lugar) throws IOException, ParseException {
 		String ruta = "CN=" + lugar;
-		System.out.println("ruta " + ruta);
 		String url = "ldap://familia.com.co:389";
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -837,7 +828,6 @@ public class HomeController {
 			String absoluteDiskPath = servletContext.getRealPath(relativeWebPath);
 			String relativeWebPath2 = "resources/rechazado.pdf";
 			String generado = servletContext.getRealPath(relativeWebPath2);
-			System.out.println("generado   " + generado);
 			JasperReport jasperReport = JasperCompileManager.compileReport(absoluteDiskPath);
 			String titulo = "Reporte De Vale " + valeId;
 			Map<String, Object> parameters = new HashMap<String, Object>();
@@ -852,9 +842,7 @@ public class HomeController {
 					vall.add(detallVale);
 				}
 			}
-
 			JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(vall);
-
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, beanColDataSource);
 			JasperExportManager.exportReportToPdfFile(jasperPrint, generado);
 			Usuario user = userRep.findOne(Integer.parseInt(valeId));
@@ -901,21 +889,18 @@ public class HomeController {
 	@RequestMapping("/existeMaterial")
 	public void existeMaterial(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model)
 			throws IOException, ParseException {
-		System.out.println("!acxascascas");
-		extranet_devoluciones_oc.familia.DT_FCMM extranet_devoluciones_oc1familia1DT_FCMM_1id = new DT_FCMM();
-		extranet_devoluciones_oc.familia.SI_CONSULTA_MATERIALES_OUT_SProxy sampleSI_CONSULTA_MATERIALES_OUT_SProxyid = new SI_CONSULTA_MATERIALES_OUT_SProxy();
-
+		String cODIGO_4id = request.getParameter("codigoMaterial");
 		String cENTRO_3id = request.getParameter("centroMaterial");
+		extranet_devoluciones_oc.familia.DT_FCMM extranet_devoluciones_oc1familia1DT_FCMM_1id = new DT_FCMM();
+		extranet_devoluciones_oc.familia.SI_CONSULTA_MATERIALES_OUT_SProxy sampleSI_CONSULTA_MATERIALES_OUT_SProxyid = new SI_CONSULTA_MATERIALES_OUT_SProxy();		
 		java.lang.String cENTRO_3idTemp = null;
 		if (!cENTRO_3id.equals("")) {
 			cENTRO_3idTemp = cENTRO_3id;
 		}
-		String cODIGO_4id = request.getParameter("codigoMaterial");
 		java.lang.String cODIGO_4idTemp = null;
 		if (!cODIGO_4id.equals("")) {
 			cODIGO_4idTemp = cODIGO_4id;
 		}
-
 		extranet_devoluciones_oc1familia1DT_FCMM_1id.setCENTRO(cENTRO_3idTemp);
 		extranet_devoluciones_oc1familia1DT_FCMM_1id.setCODIGO(cODIGO_4idTemp);
 		extranet_devoluciones_oc.familia.DT_MATERIAL[] SI_CONSULTA_MATERIALES_IN_S13mtemp = sampleSI_CONSULTA_MATERIALES_OUT_SProxyid
@@ -934,7 +919,6 @@ public class HomeController {
 			throws IOException, ParseException {
 		String lugar = request.getParameter("lugarAlmacenista");
 		String ruta = "CN=" + lugar;
-		System.out.println("ruta " + ruta);
 		String url = "ldap://familia.com.co:389";
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -990,7 +974,6 @@ public class HomeController {
 		ArrayList<String> listaPorteros = new ArrayList<>();
 		try {
 			for (int j = 0; j <= porteros.length; j++) {
-				System.out.println(porteros[j]);
 				String ruta = "CN=" + porteros[j];
 				DirContext ctx = new InitialDirContext(env);
 				NamingEnumeration<?> namingEnum = ctx.search(
@@ -1037,7 +1020,6 @@ public class HomeController {
 		ArrayList<String> listaPorteros = new ArrayList<>();
 		try {
 			for (int j = 0; j <= porteros.length; j++) {
-				System.out.println(porteros[j]);
 				String ruta = "CN=" + porteros[j];
 				DirContext ctx = new InitialDirContext(env);
 				NamingEnumeration<?> namingEnum = ctx.search(
@@ -1100,7 +1082,6 @@ public class HomeController {
 						SearchResult result2 = (SearchResult) namingEnum2.next();
 						Attributes attrs2 = result2.getAttributes();
 						correo = attrs2.get("mail").toString();
-						System.out.println(correo);
 					}
 				}
 			}
@@ -1163,7 +1144,6 @@ public class HomeController {
 	@RequestMapping("/aprobadorLdap")
 	public void aprobadorLdap(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String solicitante = request.getParameter("Aprobador");
-		System.out.println("::::::::::::::.lol:::::::::::::" + solicitante);
 		String ruta = "OU=Usuarios,OU=Familia,DC=familia,DC=com,DC=co";
 		String url = "ldap://familia.com.co:389";
 		String bandera = "no";
@@ -1212,14 +1192,11 @@ public class HomeController {
 	@RequestMapping("/conectionLdap")
 	public void conectionLdap(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String usuario = request.getParameter("Usuario");
-
 		String contrasena = request.getParameter("Password");
 		String correos = "";
 		String estado = "";
 		String nombre = "";
 		String planta = "";
-
-		// String url = "ldap://pragma.com.co:389";
 		String url = "ldap://familia.com.co:389";
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -1231,6 +1208,7 @@ public class HomeController {
 		try {
 			DirContext ctx = new InitialDirContext(env);
 			NamingEnumeration<?> namingEnum = ctx.search(ruta, "OU=*", new SearchControls());
+			mainLoop:
 			while (namingEnum.hasMore()) {
 				SearchResult result = (SearchResult) namingEnum.next();
 				Attributes attrs = result.getAttributes();
@@ -1256,6 +1234,7 @@ public class HomeController {
 							if (correos.equals(usuario)) {
 								nombre = usuarios;
 								planta = ciudad;
+								break mainLoop;
 							}
 						}
 					}
@@ -1295,7 +1274,8 @@ public class HomeController {
 		}
 
 	}
-
+	
+	
 	@RequestMapping(value = "/valeDetail", method = RequestMethod.GET)
 	public ModelAndView valeDetail(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model)
 			throws IOException, ParseException {

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="b027883c-d268-4817-8115-0cf30658bff6" activeEnvironment="Default" name="wsdlProveedor" resourceRoot="${projectDir}" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="283b1009-7180-4e90-89dc-a35c6a56cdcc" wsaVersion="NONE" name="SI_CON_PROVEEDOR_OC_UID_OUT_SBinding" type="wsdl" bindingName="{urn:familia:extranet_sgto_ordenes_compra}SI_CON_PROVEEDOR_OC_UID_OUT_SBinding" soapVersion="1_1" anonymous="optional" definition="wsdlProveedor.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\juancag\Documents\workspace-sts-3.8.1.RELEASE\ValesSalida_V3\wsdlProveedor.wsdl"><con:part><con:url>file:\C:\Users\juancag\Documents\workspace-sts-3.8.1.RELEASE\ValesSalida_V3\wsdlProveedor.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SI_CON_PROVEEDOR_OC_UID_OUT_S" targetNamespace="urn:familia:extranet_sgto_ordenes_compra" xmlns:p1="urn:familia:extranet_sgto_ordenes_compra" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation/>
+  <wsp:UsingPolicy wsdl:required="true"/>
+  <wsp:Policy wsu:Id="OP_SI_CON_PROVEEDOR_OC_UID_OUT_S"/>
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:familia:extranet_sgto_ordenes_compra" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:familia:extranet_sgto_ordenes_compra">
+      <xsd:element name="MT_RESULT_PROVEEDOR" type="DT_RESPONSE_PROVEEDOR"/>
+      <xsd:element name="MT_DATA_CON_PROVEEDOR" type="DT_REQUEST_PROVEDOR"/>
+      <xsd:complexType name="DT_REQUEST_PROVEDOR">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Parametros entrada consulta proveedor</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">de2660e1d7bf11e496b3ba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="PROVEEDOR" type="DT_CON_PROV"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_CONTACTO">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Persona de contacto</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">9f996ac18bd711e68518ba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="NOMBRES" type="xsd:string"/>
+          <xsd:element name="APELLIDOS" type="xsd:string"/>
+          <xsd:element name="TELEFONO" type="xsd:string"/>
+          <xsd:element name="CEDULA" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_PROVEEDOR">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Datos de proveedores</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">8692b1908c0311e6a0fcba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="COD_PROV" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">52086660dfbe11e4cdf25cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="NIT" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">0f7341a08bd711e68ef4082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="SOCIEDAD" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">52086661dfbe11e486035cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DEN_SOC" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">83e8832050a411e58a5e5cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="PAIS" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">52088d70dfbe11e48d375cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DEN_PAIS" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">83e8aa3050a411e5b91d5cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="NOMBRE" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">52088d71dfbe11e4b38a5cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="CORREO" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">52088d72dfbe11e495575cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DIRECCION" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">8738b5908c0311e6a5a9082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="CONTACTO" type="DT_CONTACTO" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_RESPONSE_PROVEEDOR">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Datos consultados de proveedor</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">b2ef81508c0311e684ceba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="PROVEEDOR" type="DT_PROVEEDOR" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">b88a46c0d7c011e4acde5cac4cf6827e</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="RESULT" type="DT_RETURN" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">c98e62408bd711e68888082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_RETURN">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">DT Retornar mensajes en tabla</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">0a2a4950ce4b11e4a909ba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="TYPE" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900032bd11e4bf6090a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Tipo mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ID" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900132bd11e4ca2d90a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>ID mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="NUMBER" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900232bd11e483f190a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Número de mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="MESSAGE" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900332bd11e4aa0790a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="MESSAGE_V1" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900432bd11e4b0ce90a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Variable de mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="MESSAGE_V2" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900532bd11e4a1ed90a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Variable de mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="MESSAGE_V3" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900632bd11e4a13f90a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Variable de mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="MESSAGE_V4" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">229a900732bd11e4c6d690a4de2c3a69</xsd:appinfo>
+              <xsd:documentation>Variable de mensaje</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_CON_PROV">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Datos para consulta de proveedor</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">177785b08bd611e68cd0ba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="COD_PROV" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">2e516fd08bd611e6bd5c082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="SOCIEDAD" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">2e516fd18bd611e68fc5082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="PAIS" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">2e516fd28bd611e68d85082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="NOMBRE" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">2e52f6708bd611e68b3e082e5f166208</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="NIT" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_DATA_CON_PROVEEDOR">
+    <wsdl:documentation/>
+    <wsdl:part name="MT_DATA_CON_PROVEEDOR" element="p1:MT_DATA_CON_PROVEEDOR"/>
+  </wsdl:message>
+  <wsdl:message name="MT_RESULT_PROVEEDOR">
+    <wsdl:documentation/>
+    <wsdl:part name="MT_RESULT_PROVEEDOR" element="p1:MT_RESULT_PROVEEDOR"/>
+  </wsdl:message>
+  <wsdl:portType name="SI_CON_PROVEEDOR_OC_UID_OUT_S">
+    <wsdl:documentation/>
+    <wsdl:operation name="SI_CON_PROVEEDOR_OC_UID_OUT_S">
+      <wsdl:documentation/>
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_CON_PROVEEDOR_OC_UID_OUT_S"/>
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_DATA_CON_PROVEEDOR"/>
+      <wsdl:output message="p1:MT_RESULT_PROVEEDOR"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_CON_PROVEEDOR_OC_UID_OUT_SBinding" type="p1:SI_CON_PROVEEDOR_OC_UID_OUT_S">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="SI_CON_PROVEEDOR_OC_UID_OUT_S">
+      <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BSEXTRANET_SI_CON_PROVEEDOR_OC_UID_OUT_S">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_CON_PROVEEDOR_OC_UID_OUT_SBinding">
+      <soap:address location="http://localhost:8080/SAProv/services/Proveedor" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_CON_PROVEEDOR_OC_UID_OUT_SBinding">
+      <soap:address location="http://localhost:8080/SAProv/services/Proveedor" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://jupiter.familia.com.co:50100/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&amp;interfaceNamespace=urn%3Afamilia%3Aextranet_sgto_ordenes_compra</con:endpoint><con:endpoint>http://jupiter.familia.com.co:50100/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&amp;interfaceNamespace=urn:familia:extranet_sgto_ordenes_compra</con:endpoint><con:endpoint>http://localhost:8080/SAProv/services/Proveedor</con:endpoint><con:endpoint>http://maia:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&amp;interfaceNamespace=urn%3Afamilia%3Aextranet_sgto_ordenes_compra</con:endpoint><con:endpoint>http://maia:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&amp;interfaceNamespace=urn:familia:extranet_sgto_ordenes_compra</con:endpoint></con:endpoints><con:operation id="132284ec-e290-42e6-925d-b6d3dbfca780" isOneWay="false" action="http://sap.com/xi/WebService/soap1.1" name="SI_CON_PROVEEDOR_OC_UID_OUT_S" bindingOperationName="SI_CON_PROVEEDOR_OC_UID_OUT_S" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e0007588-e234-42f1-a3e9-7b2e864451e4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://jupiter.familia.com.co:50100/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CON_PROVEEDOR_OC_UID_OUT_S&amp;interfaceNamespace=urn:familia:extranet_sgto_ordenes_compra</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:familia:extranet_sgto_ordenes_compra">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <urn:MT_DATA_CON_PROVEEDOR>\r
+         <PROVEEDOR>\r
+            <!--Optional:-->\r
+            <COD_PROV>350</COD_PROV>\r
+            <!--Optional:-->\r
+            <SOCIEDAD></SOCIEDAD>\r
+            <!--Optional:-->\r
+            <PAIS></PAIS>\r
+            <!--Optional:-->\r
+            <NOMBRE></NOMBRE>\r
+            <!--Optional:-->\r
+            <NIT></NIT>\r
+         </PROVEEDOR>\r
+      </urn:MT_DATA_CON_PROVEEDOR>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>Reqaccount</con:username><con:password>Pluton6000*</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sap.com/xi/WebService/soap1.1"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="88a67369-77c9-442b-82a9-47747c55f107" name="SI_CON_PROVEEDOR_OC_UID_OUT_SBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="9fc27ec1-b624-4c55-8f9a-7988cc7a74c8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SI_CON_PROVEEDOR_OC_UID_OUT_S TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="004449af-a4e0-45f1-89e5-002831a2bfb8" name="SI_CON_PROVEEDOR_OC_UID_OUT_S"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SI_CON_PROVEEDOR_OC_UID_OUT_SBinding</con:interface><con:operation>SI_CON_PROVEEDOR_OC_UID_OUT_S</con:operation><con:request name="SI_CON_PROVEEDOR_OC_UID_OUT_S" id="7d415d1a-5a0c-4132-8f66-0da7d6df84e6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/SAProv/services/Proveedor</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:familia:extranet_sgto_ordenes_compra">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <urn:MT_DATA_CON_PROVEEDOR>\r
+         <PROVEEDOR>\r
+            <!--Optional:-->\r
+            <COD_PROV>?</COD_PROV>\r
+            <!--Optional:-->\r
+            <SOCIEDAD>?</SOCIEDAD>\r
+            <!--Optional:-->\r
+            <PAIS>?</PAIS>\r
+            <!--Optional:-->\r
+            <NOMBRE>?</NOMBRE>\r
+            <!--Optional:-->\r
+            <NIT>?</NIT>\r
+         </PROVEEDOR>\r
+      </urn:MT_DATA_CON_PROVEEDOR>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://sap.com/xi/WebService/soap1.1"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

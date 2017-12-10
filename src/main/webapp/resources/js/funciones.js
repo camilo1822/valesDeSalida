@@ -778,7 +778,8 @@ var verificarDatos = function() {
 									.getItem("usuario");
 							validarSolicitante(m[2]);
 						}
-					}
+					},
+					 timeout: 40000 
 				});
 	} else {
 		__jquery("#verifiDatos").css("display", "block");
@@ -820,7 +821,8 @@ var aprobarDatos = function() {
 									.getItem("usuario");
 						}
 						location.reload();
-					}
+					},
+					timeout: 40000 
 				});
 	} else {
 		__jquery("#verifiDatos").css("display", "block");
@@ -891,7 +893,8 @@ var valeDatos = function() {
 							}
 							validarAprobador(m[2]);
 						}
-					}
+					},
+					timeout: 40000 
 				});
 	} else {
 		__jquery("#verifiDatos").css("display", "block");
@@ -1232,7 +1235,7 @@ function cerrarModalRechazado() {
 }
 
 function buscarMaterial() {
-	var centro = __jquery("#centro").val();
+	var centro = __jquery("#centroSelect").val();
 	var codigo = __jquery("#codigoConsultar").val();
 	var piciz = __jquery("#controladoPiciz").val();
 	if (centro == "") {

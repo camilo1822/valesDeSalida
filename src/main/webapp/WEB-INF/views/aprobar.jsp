@@ -434,12 +434,11 @@ form input.ng-invalid.ng-touched {
 
 								<section class="buttons"> <br> <input
 									type="button" name="Guardar" value="Aprobar"
-									class="submit2 bloqueados" onclick="salidaAlm()"/>
-									<input type="button" name="Rechazar"
-									value="Rechazar" class="submit2 rechazado bloqueados"
-									onclick="rechazar()" Style="display: none" /> <!-- <input ng-if="salidaMaterialesForm2.$invalid" type="button" name="Guardar1" value="Aprobar" class="submit2 buttonSalida" ng-click="submitForm()"/>
-				<input ng-if="!salidaMaterialesForm2.$invalid" type="button" id="Guardar" name="Guardar" value="Aprobar" class="submit2" onclick="salidaAlm()" ng-click="mensajeExito()"/> -->
-								</section> <input type="text" id="prueba" name="idFiltrado"
+									class="submit2 bloqueados" onclick="salidaAlm()" Style="display: none"/> <input
+									type="button" name="Rechazar" value="Rechazar"
+									class="submit2 rechazado bloqueados" onclick="rechazar()"
+									Style="display: none" />
+								</section> <input type="text" id="idFiltrado" name="idFiltrado"
 									value="${model.vale.getIdVale()}" Style="Display: none" /> <input
 									type="number" id="numFilas" name="numFilas" value=""
 									ng-init="filaCont='${model.numFila}'" Style="Display: none" />

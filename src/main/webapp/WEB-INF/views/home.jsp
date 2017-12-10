@@ -644,9 +644,9 @@ form input.ng-invalid.ng-touched {
 											<button class="btn" ng-click="cancel()">No</button>
 										</div>
 									</div>
-								</section> <input type="text" id="prueba" name="idFiltrado"
+								</section> <input type="text" id="idFiltrado" name="idFiltrado"
 									value="${model.numVale}" Style="Display: none" /> <input
-									type="text" id="prueba" name="direccionFiltrada"
+									type="text" id="direccionFiltrada" name="direccionFiltrada"
 									ng-model="redirecion" Style="Display: none" /> <input
 									type="text" id="correoUsuario" name="correoUsuario"
 									Style="display: none" /> <input type="text"
@@ -801,7 +801,7 @@ form input.ng-invalid.ng-touched {
 													class="glyphicon glyphicon-eye-open"></span> Password:</label> <input
 													type="password" class="form-control inputLogin" id="psw">
 													<p id="verifiDatos" class="obligatorio"
-														Style="display: none">Verifique sus datos</p> <!-- <input type="text" class="form-control inputLogin" id="psw" placeholder="Enter password"> -->
+														Style="display: none">Verifique sus datos</p>
 											</div>
 											<button type="submit" class="btn btn-success btn-block"
 												onclick="verificarDatos()">

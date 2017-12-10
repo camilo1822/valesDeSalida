@@ -468,7 +468,7 @@ form input.ng-invalid.ng-touched {
 								</section> <!-- <section class="buttons">
 				<br>
 				<input type="submit" name="Guardar" value="Aprobar" class="submit" ng-click="submitForm()"/>
-			</section> --> <input type="text" id="prueba" name="idFiltrado"
+			</section> --> <input type="text" id="idFiltrado" name="idFiltrado"
 									value="${model.vale.getIdVale()}" Style="Display: none" /> <input
 									type="number" id="numFilas" name="numFilas" value=""
 									ng-init="filaCont='${model.numFila}'" Style="Display: none" />

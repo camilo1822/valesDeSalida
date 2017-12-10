@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="38c46602-243a-4295-9645-8d18c6036c7d" activeEnvironment="Default" name="wsdlMateriales" resourceRoot="${projectDir}" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="0a6d649a-2402-4934-883d-099321ae017d" wsaVersion="NONE" name="SI_CONSULTA_MATERIALES_OUT_SBinding" type="wsdl" bindingName="{urn:familia:extranet_devoluciones_oc}SI_CONSULTA_MATERIALES_OUT_SBinding" soapVersion="1_1" anonymous="optional" definition="wsdlMateriales.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\juancag\Documents\workspace-sts-3.8.1.RELEASE\ValesSalida_V3\wsdlMateriales.wsdl"><con:part><con:url>file:\C:\Users\juancag\Documents\workspace-sts-3.8.1.RELEASE\ValesSalida_V3\wsdlMateriales.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SI_CONSULTA_MATERIALES_OUT_S" targetNamespace="urn:familia:extranet_devoluciones_oc" xmlns:p1="urn:familia:extranet_devoluciones_oc" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation/>
+  <wsp:UsingPolicy wsdl:required="true"/>
+  <wsp:Policy wsu:Id="OP_SI_CONSULTA_MATERIALES_IN_S"/>
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:familia:extranet_devoluciones_oc" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:familia:extranet_devoluciones_oc">
+      <xsd:element name="MT_MATERIALES" type="DT_MATERIALES"/>
+      <xsd:element name="MT_FCMM" type="DT_FCMM"/>
+      <xsd:complexType name="DT_FCMM">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">DT Filtros consulta maetro materiales</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">f526a7c1b25e11e69fd8ba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="CODIGO" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">917cc7d0b25f11e680e66c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DESCRIPCION" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">917cc7d1b25f11e6bd786c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="CENTRO" type="xsd:string">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">917cc7d2b25f11e69a096c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_MATERIALES">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">DT Materiales</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">35055d01b25f11e6949aba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="MATERIALES" type="DT_MATERIAL" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">a8a9b3f0b25f11e6c6056c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DT_MATERIAL">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">DT Material</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">6d4e8b01b25f11e6a258ba0f96a44902</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="CODIGO" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">7dd42070b25f11e6b53f6c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="DESCRIPCION" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">7dd42071b25f11e688db6c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="CENTRO" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">7dd42072b25f11e6a4d86c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="TIPO" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">7dd42073b25f11e6cb426c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="UMB" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">7dd42074b25f11e6cbf66c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="VALOR" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">7dd42075b25f11e6ac516c626dca2a08</xsd:appinfo>
+              <xsd:documentation/>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_FCMM">
+    <wsdl:documentation/>
+    <wsdl:part name="MT_FCMM" element="p1:MT_FCMM"/>
+  </wsdl:message>
+  <wsdl:message name="MT_MATERIALES">
+    <wsdl:documentation/>
+    <wsdl:part name="MT_MATERIALES" element="p1:MT_MATERIALES"/>
+  </wsdl:message>
+  <wsdl:portType name="SI_CONSULTA_MATERIALES_OUT_S">
+    <wsdl:documentation/>
+    <wsdl:operation name="SI_CONSULTA_MATERIALES_IN_S">
+      <wsdl:documentation/>
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_CONSULTA_MATERIALES_IN_S"/>
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_FCMM"/>
+      <wsdl:output message="p1:MT_MATERIALES"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_CONSULTA_MATERIALES_OUT_SBinding" type="p1:SI_CONSULTA_MATERIALES_OUT_S">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="SI_CONSULTA_MATERIALES_IN_S">
+      <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BSEXTRANET_SI_CONSULTA_MATERIALES_OUT_S">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_CONSULTA_MATERIALES_OUT_SBinding">
+      <soap:address location="http://localhost:8080/SAPmateriales/services/Materiales" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_CONSULTA_MATERIALES_OUT_SBinding">
+      <soap:address location="http://localhost:8080/SAPmateriales/services/Materiales" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://jupiter.familia.com.co:50100/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CONSULTA_MATERIALES_OUT_S&amp;interfaceNamespace=urn:familia:extranet_devoluciones_oc</con:endpoint><con:endpoint>http://localhost:8080/SAPmateriales/services/Materiales</con:endpoint><con:endpoint>http://maia.familia.com.co:50000/dir/wsdl?p=sa/1aa464cd0a96368fb4d2d4823a7d3cfd</con:endpoint><con:endpoint>http://maia:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CONSULTA_MATERIALES_OUT_S&amp;interfaceNamespace=urn:familia:extranet_devoluciones_oc</con:endpoint></con:endpoints><con:operation id="593ab8b8-3b75-45ba-b4df-fe2f05630494" isOneWay="false" action="http://sap.com/xi/WebService/soap1.1" name="SI_CONSULTA_MATERIALES_IN_S" bindingOperationName="SI_CONSULTA_MATERIALES_IN_S" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0bc9764c-890f-4635-9c2c-db1bcfb041a2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://maia:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BSEXTRANET&amp;receiverParty=&amp;receiverService=&amp;interface=SI_CONSULTA_MATERIALES_OUT_S&amp;interfaceNamespace=urn:familia:extranet_devoluciones_oc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:familia:extranet_devoluciones_oc">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <urn:MT_FCMM>\r
+         <!--Optional:-->\r
+         <CODIGO>5112266</CODIGO>\r
+         <!--Optional:-->\r
+         <DESCRIPCION></DESCRIPCION>\r
+         <CENTRO>CO10</CENTRO>\r
+      </urn:MT_FCMM>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>Reqaccount</con:username><con:password>Pluton6000*</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sap.com/xi/WebService/soap1.1"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="e5d6bbc1-5b9b-4412-babb-7bbd0329d585" name="SI_CONSULTA_MATERIALES_OUT_SBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a9135c3c-164a-4e2f-921e-a2d73268412b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="SI_CONSULTA_MATERIALES_IN_S TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="1714800c-52d7-449f-85df-3e636fe98b09" name="SI_CONSULTA_MATERIALES_IN_S"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SI_CONSULTA_MATERIALES_OUT_SBinding</con:interface><con:operation>SI_CONSULTA_MATERIALES_IN_S</con:operation><con:request name="SI_CONSULTA_MATERIALES_IN_S" id="5df4642f-49ca-4460-ab5a-48dae9ee1897"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/SAPmateriales/services/Materiales</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:familia:extranet_devoluciones_oc">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <urn:MT_FCMM>\r
+         <!--Optional:-->\r
+         <CODIGO>?</CODIGO>\r
+         <!--Optional:-->\r
+         <DESCRIPCION>?</DESCRIPCION>\r
+         <CENTRO>?</CENTRO>\r
+      </urn:MT_FCMM>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://sap.com/xi/WebService/soap1.1"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

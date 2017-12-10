@@ -213,7 +213,6 @@ public class EditarController {
 	  		DetalleVale detallVale = (DetalleVale) iterator.next();
 			if(detallVale.getFila()==Integer.parseInt(idDetVales)){
 				try {
-					System.out.println(fecProrroga);
 		  			if(fecProrroga.equals("")){
 			  			detallVale.setFechaProrroga(null);
 			  		}else{
@@ -245,7 +244,6 @@ public class EditarController {
 				  		Date datew2 = formatter1.parse(datew1);
 				  		detallVale.setFechaFinal(datew2);
 				  		detallVale.setPort(aporbadoPort);
-				  		System.out.println(aporbadoPort);
 				  		if(aporbadoPort.equals("Si")){
 			  				String[] almacenes = retornaAlmacenes(numVale);
 			  				String[] correos = obtenerCorreos(almacenes);			  				
@@ -311,7 +309,6 @@ public class EditarController {
 		String ciudad = vale.getPlanta();
 		String almacen = vale.getAlmacenOrigen();
 		String[] almacenes = null;
-		System.out.println(ciudad);
 		ArrayList<String> alamcenistas=new ArrayList<>();
 		alamcenistas = almacenistasLdap(almacen);
 		almacenes=new String[alamcenistas.size()];
@@ -370,14 +367,11 @@ public class EditarController {
 					  correo[i]=unico;
 			  }			  
 		  }
-		  
-		  System.out.println(correo);
 		  return correo;
 	  }
 	
 	public ArrayList<String> almacenistasLdap(String lugar) throws IOException, ParseException {
 		  String ruta="CN="+lugar;
-		  System.out.println("ruta "+ruta);
 		  String url = "ldap://familia.com.co:389";
 		  Hashtable<String, String> env = new Hashtable<String, String>();
 		  env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
@@ -665,7 +659,6 @@ public String obtenerCorreo(String cn){
 			            	SearchResult result2 = (SearchResult) namingEnum2.next ();    
 				            Attributes attrs2 = result2.getAttributes ();
 				            correo = attrs2.get("mail").toString();
-				            System.out.println(correo);
 			            }
 		            }
 		        }
