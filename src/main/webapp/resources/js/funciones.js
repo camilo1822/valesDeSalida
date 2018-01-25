@@ -8,6 +8,10 @@ function onReadyPortal(__jquery) {
 	if (__jquery(".inputLogin").length) {
 		escape();
 	}
+	
+	if (__jquery(".blockInspect").length) {
+		inspect();
+	}
 
 	if (__jquery("#salidaMaterialesForm").length) {
 		enter();
@@ -132,10 +136,12 @@ function onReadyPortal(__jquery) {
 				__jquery("#modalPorteria").attr("style",
 						"border: 18px solid white !important");
 				__jquery("#modalPorteria").modal();
-				if(x == ""){
-					__jquery("#mensajeAprobacion").text("Vale sin aprobar("+jefe+")");
-				}else{
-					__jquery("#mensajeAprobacion").text("Vale sin aprobar("+x+")");
+				if (x == "") {
+					__jquery("#mensajeAprobacion").text(
+							"Vale sin aprobar(" + jefe + ")");
+				} else {
+					__jquery("#mensajeAprobacion").text(
+							"Vale sin aprobar(" + x + ")");
 				}
 
 			}
@@ -362,6 +368,16 @@ function escape() {
 	});
 }
 
+function inspect() {
+	__jquery('.blockInspect').on('keyup keypress keydown', function(e) {
+		var keyCode = e.keyCode || e.which;
+		if (keyCode === 123) {
+			e.preventDefault();
+			return false;
+		}
+	});
+}
+
 function numPaginas() {
 	__jquery(".paginate").paginga({});
 
@@ -469,7 +485,7 @@ function salidaAlm() {
 		var numeroVale = jQuery("#valeNum").val();
 		var firma = jQuery("#almacenLogeado").val();
 		var correo = jQuery("#credencialCorreo").val();
-		
+
 		var x = 1;
 		while (null != jQuery("#fila" + x).val()
 				&& jQuery("#fila" + x).val() != '') {
@@ -510,7 +526,7 @@ function salidaAlm() {
 				break;
 			}
 			x++;
-		}		
+		}
 
 		__jquery("#modalPorteria").attr("style",
 				"border: 18px solid white !important");
@@ -779,7 +795,7 @@ var verificarDatos = function() {
 							validarSolicitante(m[2]);
 						}
 					},
-					 timeout: 40000 
+					timeout : 40000
 				});
 	} else {
 		__jquery("#verifiDatos").css("display", "block");
@@ -822,7 +838,7 @@ var aprobarDatos = function() {
 						}
 						location.reload();
 					},
-					timeout: 40000 
+					timeout : 40000
 				});
 	} else {
 		__jquery("#verifiDatos").css("display", "block");
@@ -894,7 +910,7 @@ var valeDatos = function() {
 							validarAprobador(m[2]);
 						}
 					},
-					timeout: 40000 
+					timeout : 40000
 				});
 	} else {
 		__jquery("#verifiDatos").css("display", "block");
@@ -1213,6 +1229,10 @@ function cerrarModalCentro() {
 	__jquery("#centroObligatorio").modal('toggle');
 }
 
+function cerrarModalCode() {
+	__jquery("#codeObligatorio").modal('toggle');
+}
+
 function cerrarModalTodos() {
 	__jquery("#todosObligatorio").modal('toggle');
 }
@@ -1238,50 +1258,57 @@ function buscarMaterial() {
 	var centro = __jquery("#centroSelect").val();
 	var codigo = __jquery("#codigoConsultar").val();
 	var piciz = __jquery("#controladoPiciz").val();
-	if (centro == "") {
-		__jquery("#centroObligatorio").attr("style",
+	if (codigo == "") {
+		__jquery("#codeObligatorio").attr("style",
 				"border: 18px solid white !important");
-		__jquery("#centroObligatorio").modal();
-	} else if ((piciz == "Si" && centro != "CO05")
-			&& (piciz == "Si" && centro != "CO60")
-			&& (piciz == "Si" && centro != "CO61")) {
-		__jquery("#centroIncorrecto").attr("style",
-				"border: 18px solid white !important");
-		__jquery("#centroIncorrecto").modal();
+		__jquery("#codeObligatorio").modal();
 	} else {
-		var cond = validaMaterial(centro, codigo);
-		if (cond == true) {
-			__jquery
-					.ajax({
-						url : "/ValesDeSalida/obtenerMaterial",
-						data : {
-							centroMaterial : centro,
-							codigoMaterial : codigo
-						},
-						type : "POST",
-						async : false,
-						success : function(evt) {
-							var l = evt.split("?");
-							for (var j = 1; j < l.length; j++) {
-								if (l[j].length < 3) {
-									l.splice(j, 1);
-								}
-							}
-							document.getElementById("descripcionSAP").value = l[3];
-							var numero = findAndReplace(l[4]);
-							document.getElementById("vlrUnitarioSAP").value = parseInt(numero);
-							document.getElementById("umSOAP").value = l[5];
-						}
-					});
-			valorEstimado2();
-			validaCampoObligatorios();
-		} else {
-			document.getElementById("codProveedor").value = "";
-			__jquery("#errorModal").attr("style",
+		if (centro == "" || centro == "? undefined:undefined ?") {
+			__jquery("#centroObligatorio").attr("style",
 					"border: 18px solid white !important");
-			__jquery("#errorModal").modal();
+			__jquery("#centroObligatorio").modal();
+		} else if ((piciz == "Si" && centro != "CO05")
+				&& (piciz == "Si" && centro != "CO60")
+				&& (piciz == "Si" && centro != "CO61")) {
+			__jquery("#centroIncorrecto").attr("style",
+					"border: 18px solid white !important");
+			__jquery("#centroIncorrecto").modal();
+		} else {
+			var cond = validaMaterial(centro, codigo);
+			if (cond == true) {
+				__jquery
+						.ajax({
+							url : "/ValesDeSalida/obtenerMaterial",
+							data : {
+								centroMaterial : centro,
+								codigoMaterial : codigo
+							},
+							type : "POST",
+							async : false,
+							success : function(evt) {
+								var l = evt.split("?");
+								for (var j = 1; j < l.length; j++) {
+									if (l[j].length < 3) {
+										l.splice(j, 1);
+									}
+								}
+								document.getElementById("descripcionSAP").value = l[3];
+								var numero = findAndReplace(l[4]);
+								document.getElementById("vlrUnitarioSAP").value = parseInt(numero);
+								document.getElementById("umSOAP").value = l[5];
+							}
+						});
+				valorEstimado2();
+				validaCampoObligatorios();
+			} else {
+				document.getElementById("codProveedor").value = "";
+				__jquery("#errorModal").attr("style",
+						"border: 18px solid white !important");
+				__jquery("#errorModal").modal();
+			}
 		}
 	}
+
 }
 
 function msgError() {
@@ -1773,7 +1800,7 @@ function obligatoriedadTabla() {
 	var nombre = "obligatoriedad";
 	var cont = 0;
 	var centro = __jquery("#centroSelect").val();
-	if(centro == "? undefined:undefined ?"){
+	if (centro == "? undefined:undefined ?") {
 		return "no";
 	}
 	for (var i = 0; i < camposTabla.length; i++) {

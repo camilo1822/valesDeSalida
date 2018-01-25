@@ -22,8 +22,16 @@
 					<script src="resources/js/funciones.js"></script>
 					<script src="resources/js/bootstrap.min.js"></script>
 
-					<body id="cuerpo" class="vistaPorterias" ng-app="validationApp"
+					<body id="cuerpo" class="blockInspect vistaPorterias" ng-app="validationApp"
 						ng-controller="mainController">
+						
+						<!-- Evitar inspección -->
+						<script language="Javascript">
+							document.oncontextmenu = function() {
+								return false
+							}
+						</script>
+						
 						<header>
 						<div id="logo">
 							<div id="Custom_Logo">

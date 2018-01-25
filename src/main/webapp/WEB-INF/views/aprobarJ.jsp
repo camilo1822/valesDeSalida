@@ -23,7 +23,15 @@
 					<script src="resources/js/bootstrap.min.js"></script>
 
 					<body id="cuerpo" ng-app="validationApp"
-						ng-controller="mainController">
+						ng-controller="mainController" class="blockInspect">
+						
+						<!-- Evitar inspección -->
+						<script language="Javascript">
+							document.oncontextmenu = function() {
+								return false
+							}
+						</script>
+						
 						<header>
 						<div id="logo">
 							<div id="Custom_Logo">

@@ -1281,6 +1281,15 @@ form#salidaMaterialesForm td a.recibido:before{
     border-radius: 0px !important;
 }
 
+#codeObligatorio{
+	height: 160px;
+    height: 50px;
+    padding: 45px;
+    background-color: #FF0385 !important;
+    width: 25% !important;
+    border-radius: 0px !important;
+}
+
 #todosObligatorio{
 	height: 160px;
     height: 50px;

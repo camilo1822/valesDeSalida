@@ -22,7 +22,7 @@ public class BSEXTRANET_SI_CONSULTA_MATERIALES_OUT_SLocator extends org.apache.a
     }
 
     // Use to get a proxy class for HTTPS_Port
-    private java.lang.String HTTPS_Port_address = "http://Reqaccount:Pluton6000*@maia.familia.com.co:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CONSULTA_MATERIALES_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_devoluciones_oc";
+    private java.lang.String HTTPS_Port_address = "http://Reqaccount:Pluton6000*@jupiter.familia.com.co:50100/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CONSULTA_MATERIALES_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_devoluciones_oc";
 
     public java.lang.String getHTTPS_PortAddress() {
         return HTTPS_Port_address;
@@ -67,7 +67,7 @@ public class BSEXTRANET_SI_CONSULTA_MATERIALES_OUT_SLocator extends org.apache.a
 
 
     // Use to get a proxy class for HTTP_Port
-    private java.lang.String HTTP_Port_address = "https://Reqaccount:Pluton6000*@maia.familia.com.co:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CONSULTA_MATERIALES_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_devoluciones_oc";
+    private java.lang.String HTTP_Port_address = "https://Reqaccount:Pluton6000*@jupiter.familia.com.co:50100/XISOAPAdapter/MessageServlet?senderParty=&senderService=BSEXTRANET&receiverParty=&receiverService=&interface=SI_CONSULTA_MATERIALES_OUT_S&interfaceNamespace=urn%3Afamilia%3Aextranet_devoluciones_oc";
 
     public java.lang.String getHTTP_PortAddress() {
         return HTTP_Port_address;
